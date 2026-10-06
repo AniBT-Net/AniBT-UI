@@ -33,6 +33,9 @@ import SelectStates from "./select-states"
 import SwitchDemo from "./switch-demo"
 import SwitchSettings from "./switch-settings"
 import SwitchStates from "./switch-states"
+import TabsDemo from "./tabs-demo"
+import TabsIcons from "./tabs-icons"
+import TabsOverflow from "./tabs-overflow"
 import TextareaDemo from "./textarea-demo"
 import TextareaStates from "./textarea-states"
 import ToggleGroupDemo from "./toggle-group-demo"
@@ -83,6 +86,9 @@ export const demos = {
   "toggle-group-demo": ToggleGroupDemo,
   "toggle-group-sizes": ToggleGroupSizes,
   "toggle-group-track": ToggleGroupTrack,
+  "tabs-demo": TabsDemo,
+  "tabs-icons": TabsIcons,
+  "tabs-overflow": TabsOverflow,
 } satisfies Record<string, ComponentType>
 
 export type DemoName = keyof typeof demos

@@ -1,4 +1,4 @@
 {
   "title": "组件",
-  "pages": ["index", "button", "badge", "card", "input", "textarea", "label", "field", "select", "checkbox", "switch", "radio-group", "segmented-control", "toggle-group"]
+  "pages": ["index", "button", "badge", "card", "input", "textarea", "label", "field", "select", "checkbox", "switch", "radio-group", "segmented-control", "toggle-group", "tabs"]
 }
