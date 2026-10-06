@@ -77,7 +77,7 @@ export default function SheetDemo() {
             重置
           </Button>
           <SheetClose asChild>
-            <Button>看 {count ? "筛选后的" : "全部"}资源</Button>
+            <Button>{count ? "看筛选后的资源" : "看全部资源"}</Button>
           </SheetClose>
         </SheetFooter>
       </SheetContent>
