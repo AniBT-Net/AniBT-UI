@@ -135,6 +135,25 @@
       "categories": [
         "forms"
       ]
+    },
+    {
+      "name": "textarea",
+      "type": "registry:ui",
+      "title": "Textarea",
+      "description": "AniBT multi-line field: the input's material and states, growing with its content from two lines.",
+      "author": "AniBT <https://anibt.net>",
+      "registryDependencies": [
+        "@anibt/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/anibt/ui/textarea.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "forms"
+      ]
     }
   ]
 }
