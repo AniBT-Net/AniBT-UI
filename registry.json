@@ -116,6 +116,25 @@
       "categories": [
         "forms"
       ]
+    },
+    {
+      "name": "input",
+      "type": "registry:ui",
+      "title": "Input",
+      "description": "AniBT 32px text field: paper under a 1px input ring, pink on hover, a 1.5px ring edge with the pink halo on focus, red when invalid, a sunk well when read-only or disabled.",
+      "author": "AniBT <https://anibt.net>",
+      "registryDependencies": [
+        "@anibt/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/anibt/ui/input.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "forms"
+      ]
     }
   ]
 }
