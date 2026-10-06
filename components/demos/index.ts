@@ -20,6 +20,9 @@ import FieldDemo from "./field-demo"
 import InputDemo from "./input-demo"
 import InputStates from "./input-states"
 import LabelDemo from "./label-demo"
+import SelectDemo from "./select-demo"
+import SelectGroups from "./select-groups"
+import SelectStates from "./select-states"
 import TextareaDemo from "./textarea-demo"
 import TextareaStates from "./textarea-states"
 
@@ -51,6 +54,9 @@ export const demos = {
   "field-demo": FieldDemo,
   "field-choices": FieldChoices,
   "field-compose": FieldCompose,
+  "select-demo": SelectDemo,
+  "select-groups": SelectGroups,
+  "select-states": SelectStates,
 } satisfies Record<string, ComponentType>
 
 export type DemoName = keyof typeof demos
