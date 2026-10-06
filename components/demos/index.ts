@@ -14,6 +14,9 @@ import CardDemo from "./card-demo"
 import CardDensity from "./card-density"
 import CardWell from "./card-well"
 // U1: inputs and forms.
+import CheckboxDemo from "./checkbox-demo"
+import CheckboxSelectAll from "./checkbox-select-all"
+import CheckboxStates from "./checkbox-states"
 import FieldChoices from "./field-choices"
 import FieldCompose from "./field-compose"
 import FieldDemo from "./field-demo"
@@ -57,6 +60,9 @@ export const demos = {
   "select-demo": SelectDemo,
   "select-groups": SelectGroups,
   "select-states": SelectStates,
+  "checkbox-demo": CheckboxDemo,
+  "checkbox-select-all": CheckboxSelectAll,
+  "checkbox-states": CheckboxStates,
 } satisfies Record<string, ComponentType>
 
 export type DemoName = keyof typeof demos

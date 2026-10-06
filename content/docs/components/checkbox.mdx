@@ -1,0 +1,54 @@
+---
+title: Checkbox
+description: 18px 的糖果勾选框：选中是糖果粉加一个弹出来的白色对勾，部分选中是一道横线。
+---
+
+<ComponentPreview name="checkbox-demo" />
+
+## 安装
+
+<InstallBlock name="checkbox" />
+
+## 用法
+
+```tsx title="用法"
+import { Checkbox } from "@/components/ui/checkbox"
+import { Field, FieldLabel } from "@/components/ui/field"
+
+<Field orientation="horizontal">
+  <Checkbox id="only-chs" defaultChecked />
+  <FieldLabel htmlFor="only-chs">只看简体中文</FieldLabel>
+</Field>
+```
+
+勾选框旁的文字是选项，不是字段标签：13/400 墨色。用 `Field orientation="horizontal"` 会自动排成这样。
+
+## 状态
+
+<ComponentPreview name="checkbox-states" />
+
+- 未选：纸面、1.5px `input` 色内边；悬停边变粉。
+- 已选：糖果渐变、深一档的底边、白色对勾弹入。多选里选中的项一定露出对勾，不只换颜色。
+- 部分：`checked="indeterminate"`，同样的糖果底，中间一道白色横线。
+- 焦点：2px `ring` 色轮廓，外偏 2px；出错（`aria-invalid`）是同样的红色轮廓。
+- 禁用：下沉的浅底、弱色的勾，选没选都读得出来。
+- 点击区域比方块大一圈（每边 8px），手指也好点。
+
+## 全选
+
+<ComponentPreview name="checkbox-select-all" />
+
+## 属性
+
+<PropsTable
+  title="Checkbox"
+  rows={[
+    { name: "checked", type: 'boolean | "indeterminate"', description: "受控的选中状态" },
+    { name: "defaultChecked", type: 'boolean | "indeterminate"', description: "非受控的初始状态" },
+    { name: "onCheckedChange", type: '(checked: boolean | "indeterminate") => void', description: "状态改变时调用" },
+    { name: "disabled", type: "boolean", description: "禁用：浅底弱色" },
+    { name: "aria-invalid", type: "boolean", description: "出错：红色轮廓" },
+  ]}
+/>
+
+基于 Radix `Checkbox`，渲染成 `button role="checkbox"`；放进 `<form>` 时 Radix 会补一个隐藏的原生 input，`name` / `value` / `required` 照常提交。
