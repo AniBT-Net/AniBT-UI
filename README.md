@@ -89,13 +89,13 @@ public/brand/                     品牌素材（不在 MIT 许可内）
 
 站点是纯静态导出。根目录的 `wrangler.jsonc` 把 `out/` 作为 Worker `anibt-ui` 的静态资源，没有 Worker 脚本。这份文件在仓库里时，`npx wrangler deploy` 会直接上传 `out/`，不会再检测 Next.js、也不会安装 OpenNext。
 
-`out/` 在 `.gitignore` 里。Workers Builds 不执行 `wrangler.jsonc` 里的自定义构建，所以面板上的构建命令必须先生成 `out/`。
+`out/` 在 `.gitignore` 里。Workers Builds 不执行 `wrangler.jsonc` 里的自定义构建。连接这个仓库时，安装依赖之后的部署命令是 `npx wrangler deploy`，面板上的构建命令是空的。因此 `pnpm install` 在 `WORKERS_CI=1` 时会跑 `scripts/ensure-export.mjs`：`out/` 不存在就执行 `pnpm build`。本地安装不会构建。
 
-在已连接的 Worker 里打开 **Settings → Build**，保存以下设置后再重试。重试使用的是保存之后的设置。
+部署命令保持 `npx wrangler deploy`。构建命令留空。面板里再填一次 `pnpm build` 会把站点构建两遍，结果相同。
 
 | 设置 | 值 |
 | --- | --- |
-| Build command | `pnpm build` |
+| Build command | 留空 |
 | Deploy command | `npx wrangler deploy` |
 | 生产分支 | `main` |
 | Node.js | 22。仓库 `.node-version` 已写明；也可设 `NODE_VERSION=22`。Next.js 16 要求 ≥ 20.9 |
@@ -104,7 +104,7 @@ public/brand/                     品牌素材（不在 MIT 许可内）
 
 面板里的 Worker 名称必须是 `anibt-ui`，与 `wrangler.jsonc` 的 `name` 一致。名称不一致时，构建失败。
 
-构建命令留空时，部署阶段找不到 `out/`，上传失败。删掉 `wrangler.jsonc` 后再跑 `npx wrangler deploy`，Wrangler 会把项目改成 OpenNext；静态导出没有 `.next/standalone`，会在 `next build` 成功之后失败。
+删掉 `wrangler.jsonc` 后再跑 `npx wrangler deploy`，Wrangler 会把项目改成 OpenNext。静态导出没有 `.next/standalone`，会在 `next build` 成功之后失败。
 
 **`NEXT_PUBLIC_SITE_URL` 必须和 Worker 实际绑定的域名一致。** 它决定 `registry.json` 的 `homepage`、站内所有安装命令和 `components.json` 示例里的地址。不一致时，用户复制的命令会指向错误的地址。构建时 `registry:theme` 会按它改写 `registry.json` 的 `homepage`。自定义域名还没绑定时，把这个变量设成当前的 `*.workers.dev` 地址，或者先绑定域名再构建。
 

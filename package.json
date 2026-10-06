@@ -15,7 +15,8 @@
     "registry:theme": "node scripts/registry-theme.mjs",
     "registry:build": "node scripts/registry-theme.mjs && node scripts/check-as-child.mjs && shadcn build",
     "typecheck": "node scripts/registry-theme.mjs --check && node scripts/check-as-child.mjs && next typegen && tsc --noEmit",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "postinstall": "node scripts/ensure-export.mjs"
   },
   "dependencies": {
     "@fontsource/fredoka": "^5.3.0",
