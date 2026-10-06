@@ -433,7 +433,7 @@ function ReleaseRowAction({
   const square = cn(SQUARE, className)
   const control =
     href && !disabled ? (
-      <Button variant="secondary" size="icon" className={square} asChild>
+      <Button variant="secondary" size="icon" className={square} {...{ asChild: true }}>
         <a href={href} download={download === true ? "" : download || undefined} aria-label={label}>
           {children}
         </a>
@@ -447,7 +447,7 @@ function ReleaseRowAction({
   if (disabled) return control
   return (
     <Tooltip>
-      <TooltipTrigger asChild>{control}</TooltipTrigger>
+      <TooltipTrigger {...{ asChild: true }}>{control}</TooltipTrigger>
       <TooltipContent>{label}</TooltipContent>
     </Tooltip>
   )
@@ -500,7 +500,7 @@ function ReleaseRowCopyAction({
   return (
     // While 「已复制」 shows, the tip stays open even though the press closed it.
     <Tooltip open={open || copied} onOpenChange={setOpen}>
-      <TooltipTrigger asChild>
+      <TooltipTrigger {...{ asChild: true }}>
         <Button
           variant="secondary"
           size="icon"

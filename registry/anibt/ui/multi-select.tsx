@@ -131,7 +131,7 @@ function MultiSelect({
 
   return (
     <Popover modal open={open} onOpenChange={setOpen}>
-      <PopoverAnchor asChild>
+      <PopoverAnchor {...{ asChild: true }}>
         <div
           role="group"
           aria-label={ariaLabel}
@@ -167,7 +167,7 @@ function MultiSelect({
               </span>
             )
           })}
-          <PopoverTrigger asChild>
+          <PopoverTrigger {...{ asChild: true }}>
             <button
               type="button"
               id={id}

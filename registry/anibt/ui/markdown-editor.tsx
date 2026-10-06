@@ -405,7 +405,7 @@ function ToolButton({
         if (open && tool.key) setShortcut(shortcutLabel(tool.key))
       }}
     >
-      <TooltipPrimitive.Trigger asChild>
+      <TooltipPrimitive.Trigger {...{ asChild: true }}>
         <button
           type="button"
           aria-label={label}

@@ -13,8 +13,8 @@
     "dev": "next dev",
     "build": "pnpm registry:build && next build",
     "registry:theme": "node scripts/registry-theme.mjs",
-    "registry:build": "node scripts/registry-theme.mjs && shadcn build",
-    "typecheck": "node scripts/registry-theme.mjs --check && next typegen && tsc --noEmit",
+    "registry:build": "node scripts/registry-theme.mjs && node scripts/check-as-child.mjs && shadcn build",
+    "typecheck": "node scripts/registry-theme.mjs --check && node scripts/check-as-child.mjs && next typegen && tsc --noEmit",
     "lint": "eslint ."
   },
   "dependencies": {

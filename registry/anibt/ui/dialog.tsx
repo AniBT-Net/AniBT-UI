@@ -159,7 +159,7 @@ function DialogFooter({
       {...props}
     >
       {showCloseButton ? (
-        <DialogPrimitive.Close asChild>
+        <DialogPrimitive.Close {...{ asChild: true }}>
           <Button variant="ghost">{closeLabel}</Button>
         </DialogPrimitive.Close>
       ) : null}

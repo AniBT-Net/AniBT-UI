@@ -109,7 +109,7 @@ function ConfirmDialog({
 
   return (
     <AlertDialog open={isOpen} onOpenChange={setOpen}>
-      {trigger ? <AlertDialogTrigger asChild>{trigger}</AlertDialogTrigger> : null}
+      {trigger ? <AlertDialogTrigger {...{ asChild: true }}>{trigger}</AlertDialogTrigger> : null}
       <AlertDialogContent>
         <AlertDialogHeader>
           {mark ? <AlertDialogMedia tone={destructive ? "destructive" : "accent"}>{mark}</AlertDialogMedia> : null}

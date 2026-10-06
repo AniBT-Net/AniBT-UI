@@ -107,7 +107,7 @@ function SearchableSelect({
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
-      <PopoverTrigger asChild disabled={disabled}>
+      <PopoverTrigger {...{ asChild: true }} disabled={disabled}>
         <Button
           id={id}
           type="button"
