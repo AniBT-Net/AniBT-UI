@@ -14,6 +14,9 @@ import CardDemo from "./card-demo"
 import CardDensity from "./card-density"
 import CardWell from "./card-well"
 // U1: inputs and forms.
+import FieldChoices from "./field-choices"
+import FieldCompose from "./field-compose"
+import FieldDemo from "./field-demo"
 import InputDemo from "./input-demo"
 import InputStates from "./input-states"
 import LabelDemo from "./label-demo"
@@ -45,6 +48,9 @@ export const demos = {
   "textarea-demo": TextareaDemo,
   "textarea-states": TextareaStates,
   "label-demo": LabelDemo,
+  "field-demo": FieldDemo,
+  "field-choices": FieldChoices,
+  "field-compose": FieldCompose,
 } satisfies Record<string, ComponentType>
 
 export type DemoName = keyof typeof demos

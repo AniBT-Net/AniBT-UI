@@ -1,0 +1,144 @@
+---
+title: Field
+description: AniBT 的表单版式：标签在上、标签旁的小签和右端的元信息、控件下的说明或错误、短字段两两成行、一组字段一张卡。导出名与 shadcn 的 field 相同。
+---
+
+<ComponentPreview name="field-demo" />
+
+## 安装
+
+<InstallBlock name="field" />
+
+## 版式
+
+一个表单只有一套版式：
+
+- **标签在控件上方**：13/600 `ink2`，离控件 6px。必填是粉色 `*`，读屏念「必填」。
+- **标签旁只放小签**（`FieldTag`，20 高、不倾斜）：数据来源、`已锁定`、`只读`。标签行右端放元信息（字数、接管人、变更时间）；窄的时候元信息折到下一行，不挤标签。
+- **控件下方**：12px 的说明（`muted-foreground`），或 12px 的红色错误（带图标、`aria-live`），二者只出一个。
+- **节奏**：字段之间 16px；一组字段是一张卡（`FieldGroup` 带 `title`：纸面、缝线头、14/700 标题、16px 内边距），卡与卡之间 20px。
+- **两列只给短字段**（集数、年份、类型、状态……），而且由这一行自己的宽度决定（`FieldRow` 是容器查询：够 30rem 才两列）。标题、网址、正文永远独占一行。
+
+## 用法
+
+```tsx title="components/anime-form.tsx"
+import { LockIcon } from "lucide-react"
+
+import { Field, FieldControl, FieldGroup, FieldRow, FieldTag } from "@/components/ui/field"
+import { Input } from "@/components/ui/input"
+
+export function AnimeForm() {
+  return (
+    <FieldGroup title="基本信息" note="短字段两两成行">
+      <Field label="中文标题" required meta="2 天前修改">
+        <FieldControl>
+          <Input defaultValue="药屋少女的呢喃 第二季" />
+        </FieldControl>
+      </Field>
+      <FieldRow>
+        <Field label="集数" tags={<FieldTag icon={LockIcon}>已锁定</FieldTag>}>
+          <FieldControl>
+            <Input type="number" className="anibt-num" />
+          </FieldControl>
+        </Field>
+        <Field label="官网" error="请输入以 https:// 开头的网址">
+          <FieldControl>
+            <Input type="url" />
+          </FieldControl>
+        </Field>
+      </FieldRow>
+    </FieldGroup>
+  )
+}
+```
+
+`FieldControl` 把字段的 id、`aria-describedby`（指向说明或错误）和 `aria-invalid` 交给唯一的子控件，标签的 `for` 也指向它。给一组控件（分段控件、筛选签）命名时用 `labelFor="group"`：标签不再用 `for`，控件改用 `aria-labelledby`。
+
+## 选项行与选择卡
+
+<ComponentPreview name="field-choices" />
+
+- `orientation="horizontal"` 是选项行：控件在前，选项文字是 13/400 墨色正文，不是字段标签。
+- 用 `FieldLabel` 包住整个 `Field` 就是一张选择卡：1px 边的井，悬停边变粉；里面的单选或勾选被选中时整张卡变成粉色淡底。开关是设置不是选择，开着的设置卡仍是纸面。
+- `FieldSet` + `FieldLegend` 给一组勾选框起标题；`FieldLegend` 默认是 14/700 的小标题，`variant="label"` 是 13/600 的标签档。
+
+## 组合写法
+
+<ComponentPreview name="field-compose" />
+
+shadcn 的 field 写法原样可用：`FieldSet`、`FieldLegend`、`FieldGroup`、`Field`、`FieldLabel`、`FieldContent`、`FieldTitle`、`FieldDescription`、`FieldError`、`FieldSeparator` 的导出名和属性都相同，替换 `components/ui/field.tsx` 后原来的代码继续能编译。差别只在样子：A 的字号、间距和缝线。
+
+`orientation="responsive"` 在 `FieldGroup` 宽于 28rem 时把标签放到控件左边。A 的表单标签一律在上方，这一档只为兼容 shadcn 的写法。
+
+## 配合 react-hook-form
+
+不需要额外的 form 组件：用 react-hook-form 的 `Controller`，把 `fieldState` 交给 `Field`。
+
+```tsx title="用法"
+<Controller
+  name="title"
+  control={form.control}
+  render={({ field, fieldState }) => (
+    <Field label="中文标题" required error={fieldState.error?.message}>
+      <FieldControl>
+        <Input {...field} />
+      </FieldControl>
+    </Field>
+  )}
+/>
+```
+
+## 属性
+
+<PropsTable
+  title="Field"
+  rows={[
+    { name: "label", type: "ReactNode", description: "一次写完的写法：控件上方的标签。不给就是 shadcn 的组合写法" },
+    { name: "required", type: "boolean", default: "false", description: "标签后的粉色 *，读屏念 requiredLabel" },
+    { name: "readOnly", type: "boolean", default: "false", description: "标签旁加一个「只读」小签" },
+    { name: "tags", type: "ReactNode", description: "标签旁的小签（FieldTag、StatusBadge）" },
+    { name: "meta", type: "ReactNode", description: "标签行右端的元信息，12px muted" },
+    { name: "hint", type: "ReactNode", description: "控件下的说明；有错误时不显示" },
+    { name: "error", type: "ReactNode", description: "控件下的错误，同时把控件标成 aria-invalid" },
+    { name: "id", type: "string", description: "控件的 id；不给就自动生成" },
+    { name: "labelFor", type: '"control" | "group"', default: '"control"', description: "group：标签给一组控件命名（aria-labelledby）" },
+    { name: "orientation", type: '"vertical" | "horizontal" | "responsive"', default: '"vertical"', description: "horizontal 是选项行；responsive 只为兼容 shadcn" },
+    { name: "requiredLabel", type: "string", default: '"必填"', description: "读屏念的「必填」" },
+    { name: "readOnlyLabel", type: "string", default: '"只读"', description: "只读小签的字" },
+  ]}
+/>
+
+<PropsTable
+  title="FieldGroup"
+  rows={[
+    { name: "title", type: "ReactNode", description: "给了就是一张卡：缝线头加 14/700 标题；不给就是 16px 间距的一摞字段" },
+    { name: "note", type: "ReactNode", description: "标题旁 12px 的备注（卡片形式）" },
+    { name: "actions", type: "ReactNode", description: "卡片头右端的工具（卡片形式）" },
+    { name: "bodyClassName", type: "string", description: "卡片正文的类名" },
+  ]}
+/>
+
+<PropsTable
+  title="FieldRow"
+  rows={[
+    { name: "columns", type: "2 | 3", default: "2", description: "这一行自己够宽（30rem / 34rem）时并排几列，否则一列" },
+  ]}
+/>
+
+<PropsTable
+  title="FieldTag"
+  rows={[
+    { name: "icon", type: "ComponentType", description: "12px 图标，例如 LockIcon" },
+    { name: "tone", type: '"neutral" | "accent" | "ok" | "warn" | "danger"', default: '"neutral"', description: "中性 / 粉 / 薄荷 / 琥珀 / 红" },
+  ]}
+/>
+
+<PropsTable
+  title="FieldError"
+  rows={[
+    { name: "children", type: "ReactNode", description: "错误文字" },
+    { name: "errors", type: "Array<{ message?: string } | undefined>", description: "校验器给的错误列表；去重后一条直接显示，多条成列表" },
+  ]}
+/>
+
+其余导出：`FieldControl`（把 id 和描述交给子控件的 Slot）、`FieldLabel`、`FieldTitle`、`FieldContent`、`FieldDescription`（别名 `FieldHint`）、`FieldSet`、`FieldLegend`（`variant` 为 `legend` / `label`）、`FieldSeparator`（缝线分隔，可在中间放一个词）、`fieldVariants`。
