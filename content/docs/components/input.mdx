@@ -1,0 +1,52 @@
+---
+title: Input
+description: 32 高的文本框：纸面加一圈细边，聚焦是粉色边和光晕，出错变红，只读和禁用是下沉的浅底。
+---
+
+<ComponentPreview name="input-demo" />
+
+## 安装
+
+<InstallBlock name="input" />
+
+## 用法
+
+```tsx title="用法"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+
+<Label htmlFor="title">中文标题</Label>
+<Input id="title" placeholder="番剧的中文名" />
+```
+
+标签放在输入框上方、离它 6px。表单里用 [Field](/docs/components/field)，它会替你排好标签、说明和错误。
+
+## 状态
+
+<ComponentPreview name="input-states" />
+
+- 静止：纸面加 1px `input` 色内边；悬停时边变粉。
+- 聚焦：1.5px `ring` 色边，外面一圈粉色光晕。
+- 出错：`aria-invalid` 让边和光晕变红，聚焦时仍然是红色。
+- 只读：`readOnly` 是下沉的 `muted` 底、`ink2` 字；仍然能聚焦、能复制。
+- 禁用：`muted` 底、弱字，边退成 `border`。不用透明度，禁用的字也读得清。
+- 数字（集数、年份、体积、哈希）加 `anibt-num`，换成 Fredoka 圆体的等宽数字。
+- 手机上字号是 16px，iOS 聚焦时不会放大页面；`md` 起是 A 的 13px。
+
+## 放进 InputGroup
+
+放进 shadcn 的 `InputGroup` 时（`data-slot="input-group-control"`），输入框会去掉自己的边、光晕和底色，由组画那一圈边。
+
+## 属性
+
+<PropsTable
+  title="Input"
+  rows={[
+    { name: "type", type: "string", description: "原生 type；搜索框和密码框另有 SearchInput、PasswordInput" },
+    { name: "aria-invalid", type: "boolean", description: "出错：红边红光晕。Field 的 error 会自动加上" },
+    { name: "readOnly", type: "boolean", description: "只读：下沉的浅底" },
+    { name: "disabled", type: "boolean", description: "禁用：浅底弱字，不用透明度" },
+  ]}
+/>
+
+`Input` 就是一个 `<input>`：其余原生属性和 `ref` 原样透传。

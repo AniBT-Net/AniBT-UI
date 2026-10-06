@@ -13,6 +13,39 @@ import ButtonVariants from "./button-variants"
 import CardDemo from "./card-demo"
 import CardDensity from "./card-density"
 import CardWell from "./card-well"
+// U1: inputs and forms.
+import CheckboxDemo from "./checkbox-demo"
+import CheckboxSelectAll from "./checkbox-select-all"
+import CheckboxStates from "./checkbox-states"
+import FieldChoices from "./field-choices"
+import FieldCompose from "./field-compose"
+import FieldDemo from "./field-demo"
+import InputDemo from "./input-demo"
+import InputStates from "./input-states"
+import KbdDemo from "./kbd-demo"
+import KbdLegend from "./kbd-legend"
+import LabelDemo from "./label-demo"
+import PasswordInputDemo from "./password-input-demo"
+import RadioGroupCards from "./radio-group-cards"
+import RadioGroupDemo from "./radio-group-demo"
+import SearchInputDemo from "./search-input-demo"
+import SearchInputStates from "./search-input-states"
+import SegmentedControlDemo from "./segmented-control-demo"
+import SegmentedControlVariants from "./segmented-control-variants"
+import SelectDemo from "./select-demo"
+import SelectGroups from "./select-groups"
+import SelectStates from "./select-states"
+import SwitchDemo from "./switch-demo"
+import SwitchSettings from "./switch-settings"
+import SwitchStates from "./switch-states"
+import TabsDemo from "./tabs-demo"
+import TabsIcons from "./tabs-icons"
+import TabsOverflow from "./tabs-overflow"
+import TextareaDemo from "./textarea-demo"
+import TextareaStates from "./textarea-states"
+import ToggleGroupDemo from "./toggle-group-demo"
+import ToggleGroupSizes from "./toggle-group-sizes"
+import ToggleGroupTrack from "./toggle-group-track"
 
 /**
  * Every live example the docs can show. The key is the file name in this
@@ -33,6 +66,39 @@ export const demos = {
   "card-demo": CardDemo,
   "card-well": CardWell,
   "card-density": CardDensity,
+  // U1: inputs and forms.
+  "input-demo": InputDemo,
+  "input-states": InputStates,
+  "textarea-demo": TextareaDemo,
+  "textarea-states": TextareaStates,
+  "label-demo": LabelDemo,
+  "field-demo": FieldDemo,
+  "field-choices": FieldChoices,
+  "field-compose": FieldCompose,
+  "select-demo": SelectDemo,
+  "select-groups": SelectGroups,
+  "select-states": SelectStates,
+  "checkbox-demo": CheckboxDemo,
+  "checkbox-select-all": CheckboxSelectAll,
+  "checkbox-states": CheckboxStates,
+  "switch-demo": SwitchDemo,
+  "switch-settings": SwitchSettings,
+  "switch-states": SwitchStates,
+  "radio-group-demo": RadioGroupDemo,
+  "radio-group-cards": RadioGroupCards,
+  "segmented-control-demo": SegmentedControlDemo,
+  "segmented-control-variants": SegmentedControlVariants,
+  "toggle-group-demo": ToggleGroupDemo,
+  "toggle-group-sizes": ToggleGroupSizes,
+  "toggle-group-track": ToggleGroupTrack,
+  "tabs-demo": TabsDemo,
+  "tabs-icons": TabsIcons,
+  "tabs-overflow": TabsOverflow,
+  "search-input-demo": SearchInputDemo,
+  "search-input-states": SearchInputStates,
+  "password-input-demo": PasswordInputDemo,
+  "kbd-demo": KbdDemo,
+  "kbd-legend": KbdLegend,
 } satisfies Record<string, ComponentType>
 
 export type DemoName = keyof typeof demos

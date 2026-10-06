@@ -1,0 +1,59 @@
+---
+title: Segmented Control
+description: 下沉的轨道里并排几个选项，选中的一项是白色贴纸拇指、图标变粉；底下是单选组的语义。
+---
+
+<ComponentPreview name="segmented-control-demo" />
+
+## 安装
+
+<InstallBlock name="segmented-control" />
+
+## 用法
+
+```tsx title="用法"
+import { Columns2Icon, EyeIcon, PencilLineIcon } from "lucide-react"
+
+import { SegmentedControl } from "@/components/ui/segmented-control"
+
+const VIEWS = [
+  { value: "write", label: "编写", icon: PencilLineIcon },
+  { value: "split", label: "分栏", icon: Columns2Icon },
+  { value: "preview", label: "预览", icon: EyeIcon },
+] as const
+
+<SegmentedControl aria-label="编辑器视图" options={VIEWS} value={view} onValueChange={setView} />
+```
+
+`options` 的 `value` 类型会传给 `onValueChange`，不用自己再断言。
+
+## 变体
+
+<ComponentPreview name="segmented-control-variants" />
+
+- `label`：轨道上方的标签（13/600），并用它给整组命名；没有可见标签时给 `aria-label`。
+- `size="compact"`：处处 24 高，放进工具栏。默认档在手机上是 36 高的拇指目标，`sm` 起收回 24。
+- `iconOnly`：只显示图标，选项文字成为每项的可读名称和悬停提示。
+- `block`：撑满容器，各项等宽。
+- 选项可以单独 `disabled`。
+
+## 和 ToggleGroup 的区别
+
+分段控件底下是 Radix 的单选组：整组一个 Tab 位置、方向键切换、读屏念「单选，第 2 项，共 3 项」，**永远选着一项**，可以带 `name` 进表单。按下能再弹起、或者能同时按下几个的，用 [Toggle Group](/docs/components/toggle-group)。在页面之间切换用 [Tabs](/docs/components/tabs)。
+
+## 属性
+
+<PropsTable
+  title="SegmentedControl"
+  rows={[
+    { name: "options", type: "{ value, label, icon?, disabled? }[]", description: "选项；label 是文字，也是 iconOnly 时的可读名称" },
+    { name: "value", type: "TValue", description: "受控的选中值" },
+    { name: "defaultValue", type: "TValue", description: "非受控的初始值" },
+    { name: "onValueChange", type: "(value: TValue) => void", description: "选中改变时调用" },
+    { name: "label", type: "ReactNode", description: "轨道上方的可见标签" },
+    { name: "size", type: '"default" | "compact"', default: '"default"', description: "手机 36 / 其余 24，或处处 24" },
+    { name: "iconOnly", type: "boolean", default: "false", description: "只显示图标（每项都要有 icon）" },
+    { name: "block", type: "boolean", default: "false", description: "撑满容器、各项等宽" },
+    { name: "name", type: "string", description: "放进 form 时提交的字段名" },
+  ]}
+/>

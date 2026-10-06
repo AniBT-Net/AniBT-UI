@@ -1,0 +1,62 @@
+---
+title: Tabs
+description: 缝线上的 32 高页签；当前页签下贴一条倾斜的和纸胶带，全站唯一的「你在这里」记号。
+---
+
+<ComponentPreview name="tabs-demo" />
+
+## 安装
+
+<InstallBlock name="tabs" />
+
+## 用法
+
+```tsx title="用法"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+
+<Tabs defaultValue="progress">
+  <TabsList>
+    <TabsTrigger value="progress">发布进度</TabsTrigger>
+    <TabsTrigger value="releases">资源</TabsTrigger>
+  </TabsList>
+  <TabsContent value="progress">…</TabsContent>
+  <TabsContent value="releases">…</TabsContent>
+</Tabs>
+```
+
+## 图标与计数
+
+<ComponentPreview name="tabs-icons" />
+
+页签是 13/600 的 `ink2`，悬停是粉色淡底；当前页签换成墨色，标签下面贴一条 6px 的条纹胶带，倾斜 1.5°，切换时从左往右贴上去。图标是 16px，当前页签的图标变粉。可以放一个 `count-quiet` 计数。禁用的页签字变灰，不变淡。
+
+## 放不下时
+
+<ComponentPreview name="tabs-overflow" />
+
+页签永远一行：放不下就横向滚动（不显示滚动条），不换行。手机上一排八个番组表页签就是这样。
+
+## 什么时候不用 Tabs
+
+Tabs 是同一页面里几块内容之间的切换。视图切换和筛选（列表 / 海报墙、简中 / 繁中）是「选择」，用 [Segmented Control](/docs/components/segmented-control) 或 [Toggle Group](/docs/components/toggle-group)，它们是下沉轨道里的贴纸拇指，不贴胶带。
+
+## 属性
+
+<PropsTable
+  title="Tabs"
+  rows={[
+    { name: "value", type: "string", description: "受控的当前页签" },
+    { name: "defaultValue", type: "string", description: "非受控的初始页签" },
+    { name: "onValueChange", type: "(value: string) => void", description: "切换时调用" },
+    { name: "activationMode", type: '"automatic" | "manual"', default: '"automatic"', description: "方向键移过去就切换，还是要按回车" },
+  ]}
+/>
+
+<PropsTable
+  title="TabsList"
+  rows={[
+    { name: "variant", type: '"default" | "line"', default: '"default"', description: "只为兼容 shadcn 的写法；两者都是贴胶带的页签条" },
+  ]}
+/>
+
+基于 Radix `Tabs`。另外导出 `tabsListVariants`。

@@ -1,0 +1,64 @@
+---
+title: Select
+description: 短列表的选择器：触发器是输入框的材质，列表浮在 A 的弹层上，选中的一行是粉字加粉色对勾。
+---
+
+<ComponentPreview name="select-demo" />
+
+## 安装
+
+<InstallBlock name="select" />
+
+## 用法
+
+```tsx title="用法"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+
+<Select defaultValue="nekomoe">
+  <SelectTrigger className="w-56">
+    <SelectValue placeholder="选择字幕组" />
+  </SelectTrigger>
+  <SelectContent>
+    <SelectItem value="nekomoe">喵萌奶茶屋</SelectItem>
+    <SelectItem value="sakurato">桜都字幕组</SelectItem>
+  </SelectContent>
+</Select>
+```
+
+选项多到需要搜索时（几十个字幕组、上百部番），用组合框，不要用 Select。
+
+## 分组
+
+<ComponentPreview name="select-groups" />
+
+`SelectGroup` + `SelectLabel` 给一组选项一个 12px 的灰色小标题；`SelectSeparator` 是一道缝线。
+
+## 状态
+
+<ComponentPreview name="select-states" />
+
+- 触发器和 [Input](/docs/components/input) 是同一种控件：纸面、细边、悬停粉边、聚焦或展开时 1.5px 的 `ring` 边。占位文字是 `muted-foreground`。
+- `size="sm"` 是 28 高，放进工具栏；默认 32 高。放进竖排的 `Field` 时自动占满宽度。
+- `aria-invalid` 变红，`disabled` 是下沉的浅底。
+- 列表里，指针或键盘停在哪一行，哪一行就是粉色淡底；**选中**的一行是加粗的粉字，末尾一个粉色对勾。一个面表示「在这里」，一个记号表示「选了它」，不会混。
+
+## 属性
+
+<PropsTable
+  title="SelectTrigger"
+  rows={[
+    { name: "size", type: '"default" | "sm"', default: '"default"', description: "32 / 28 高" },
+    { name: "aria-invalid", type: "boolean", description: "出错：红边红光晕" },
+  ]}
+/>
+
+<PropsTable
+  title="SelectContent"
+  rows={[
+    { name: "position", type: '"popper" | "item-aligned"', default: '"popper"', description: "popper 在触发器下方展开；item-aligned 让选中项盖在触发器上" },
+    { name: "alignItemWithTrigger", type: "boolean", default: "false", description: "Base UI 的写法，等同 position=\"item-aligned\"" },
+    { name: "side / align / sideOffset", type: "—", default: '"bottom" / "start" / 4', description: "popper 的位置" },
+  ]}
+/>
+
+基于 Radix `Select`：键盘、输入字母跳转、读屏行为都是 Radix 的。导出 `Select`、`SelectTrigger`、`SelectValue`、`SelectContent`、`SelectGroup`、`SelectLabel`、`SelectItem`、`SelectSeparator`、`SelectScrollUpButton`、`SelectScrollDownButton`，与 shadcn 的 select 同名。

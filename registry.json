@@ -94,6 +94,316 @@
       "categories": [
         "layout"
       ]
+    },
+    {
+      "name": "input",
+      "type": "registry:ui",
+      "title": "Input",
+      "description": "AniBT 32px text field: paper under a 1px input ring, pink on hover, a 1.5px ring edge with the pink halo on focus, red when invalid, a sunk well when read-only or disabled.",
+      "author": "AniBT <https://anibt.net>",
+      "registryDependencies": [
+        "@anibt/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/anibt/ui/input.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "forms"
+      ]
+    },
+    {
+      "name": "textarea",
+      "type": "registry:ui",
+      "title": "Textarea",
+      "description": "AniBT multi-line field: the input's material and states, growing with its content from two lines.",
+      "author": "AniBT <https://anibt.net>",
+      "registryDependencies": [
+        "@anibt/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/anibt/ui/textarea.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "forms"
+      ]
+    },
+    {
+      "name": "label",
+      "type": "registry:ui",
+      "title": "Label",
+      "description": "AniBT field label: 13/600 in ink2 above its control; a disabled control greys it instead of fading it.",
+      "author": "AniBT <https://anibt.net>",
+      "dependencies": [
+        "radix-ui"
+      ],
+      "registryDependencies": [
+        "@anibt/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/anibt/ui/label.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "forms"
+      ]
+    },
+    {
+      "name": "field",
+      "type": "registry:ui",
+      "title": "Field",
+      "description": "AniBT form grammar on shadcn's field names: label above the control, tags and meta on the label row, a hint or an error under it, choice rows and cards, container-query field rows and stitched field-group cards.",
+      "author": "AniBT <https://anibt.net>",
+      "dependencies": [
+        "class-variance-authority",
+        "lucide-react",
+        "radix-ui"
+      ],
+      "registryDependencies": [
+        "@anibt/theme",
+        "@anibt/label"
+      ],
+      "files": [
+        {
+          "path": "registry/anibt/ui/field.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "forms"
+      ]
+    },
+    {
+      "name": "select",
+      "type": "registry:ui",
+      "title": "Select",
+      "description": "AniBT select: a field-material trigger and a floating A panel whose chosen row carries the pink label and tick.",
+      "author": "AniBT <https://anibt.net>",
+      "dependencies": [
+        "lucide-react",
+        "radix-ui"
+      ],
+      "registryDependencies": [
+        "@anibt/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/anibt/ui/select.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "forms"
+      ]
+    },
+    {
+      "name": "checkbox",
+      "type": "registry:ui",
+      "title": "Checkbox",
+      "description": "AniBT candy checkbox: an 18px box that turns candy with a white tick that pops in; indeterminate shows a dash.",
+      "author": "AniBT <https://anibt.net>",
+      "dependencies": [
+        "lucide-react",
+        "radix-ui"
+      ],
+      "registryDependencies": [
+        "@anibt/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/anibt/ui/checkbox.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "forms"
+      ]
+    },
+    {
+      "name": "switch",
+      "type": "registry:ui",
+      "title": "Switch",
+      "description": "AniBT candy switch: a 36x20 sunk track that turns candy, with a white knob that springs across; a 28x16 small size.",
+      "author": "AniBT <https://anibt.net>",
+      "dependencies": [
+        "radix-ui"
+      ],
+      "registryDependencies": [
+        "@anibt/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/anibt/ui/switch.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "forms"
+      ]
+    },
+    {
+      "name": "radio-group",
+      "type": "registry:ui",
+      "title": "Radio Group",
+      "description": "AniBT candy radio: 18px paper discs; the chosen one is candy with a white dot.",
+      "author": "AniBT <https://anibt.net>",
+      "dependencies": [
+        "radix-ui"
+      ],
+      "registryDependencies": [
+        "@anibt/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/anibt/ui/radio-group.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "forms"
+      ]
+    },
+    {
+      "name": "segmented-control",
+      "type": "registry:ui",
+      "title": "Segmented Control",
+      "description": "AniBT segmented track: a sunk well of 24px choices where the chosen one is a white sticker thumb with a pink glyph, with radio semantics and an optional label.",
+      "author": "AniBT <https://anibt.net>",
+      "dependencies": [
+        "radix-ui"
+      ],
+      "registryDependencies": [
+        "@anibt/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/anibt/ui/segmented-control.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "forms"
+      ]
+    },
+    {
+      "name": "toggle-group",
+      "type": "registry:ui",
+      "title": "Toggle Group",
+      "description": "AniBT toggle group: the segmented track with sticker thumbs, or a row of 28px filter chips that turn pink and show a tick when pressed.",
+      "author": "AniBT <https://anibt.net>",
+      "dependencies": [
+        "class-variance-authority",
+        "lucide-react",
+        "radix-ui"
+      ],
+      "registryDependencies": [
+        "@anibt/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/anibt/ui/toggle-group.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "forms"
+      ]
+    },
+    {
+      "name": "tabs",
+      "type": "registry:ui",
+      "title": "Tabs",
+      "description": "AniBT tabs: 32px tabs over a stitched line; the current tab wears the tilted washi tape, the site's one \"you are here\" mark.",
+      "author": "AniBT <https://anibt.net>",
+      "dependencies": [
+        "class-variance-authority",
+        "radix-ui"
+      ],
+      "registryDependencies": [
+        "@anibt/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/anibt/ui/tabs.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "navigation"
+      ]
+    },
+    {
+      "name": "search-input",
+      "type": "registry:ui",
+      "title": "Search Input",
+      "description": "AniBT search box: an input with the magnifier, a clear key that keeps focus, a key-cap shortcut hint and the phone keyboard's search key.",
+      "author": "AniBT <https://anibt.net>",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@anibt/theme",
+        "@anibt/input",
+        "@anibt/kbd"
+      ],
+      "files": [
+        {
+          "path": "registry/anibt/ui/search-input.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "forms"
+      ]
+    },
+    {
+      "name": "password-input",
+      "type": "registry:ui",
+      "title": "Password Input",
+      "description": "AniBT password field: an input with a named show / hide key that reports its state.",
+      "author": "AniBT <https://anibt.net>",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@anibt/theme",
+        "@anibt/input"
+      ],
+      "files": [
+        {
+          "path": "registry/anibt/ui/password-input.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "forms"
+      ]
+    },
+    {
+      "name": "kbd",
+      "type": "registry:ui",
+      "title": "Kbd",
+      "description": "AniBT key cap: a sunk 20px cap with a 1px floor in the round face, and KbdGroup for a chord.",
+      "author": "AniBT <https://anibt.net>",
+      "registryDependencies": [
+        "@anibt/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/anibt/ui/kbd.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "display"
+      ]
     }
   ]
 }

@@ -1,0 +1,38 @@
+---
+title: Label
+description: 字段标签：13/600 的 ink2，放在控件上方；控件禁用时标签变灰而不是变淡。
+---
+
+<ComponentPreview name="label-demo" />
+
+## 安装
+
+<InstallBlock name="label" />
+
+## 用法
+
+```tsx title="用法"
+import { Label } from "@/components/ui/label"
+
+<Label htmlFor="group">字幕组名称</Label>
+```
+
+标签比下面的值轻一档、比说明重一档：13/600 `ink2`。它在控件**上方**，离控件 6px（`Field` 管这个间距），不和控件挤在一行。
+
+勾选框、开关旁边的选项文字不是字段标签，是正文：13/400 墨色。用 `Field orientation="horizontal"` 时会自动换成这一档；单独用时传 `className="font-normal text-foreground"`。
+
+## 禁用
+
+紧跟在禁用控件后面（`peer-disabled`），或在 `data-disabled="true"` 的组里，标签换成 `muted-foreground`，鼠标变成禁止。不用透明度，禁用的文字仍然读得清。
+
+## 属性
+
+<PropsTable
+  title="Label"
+  rows={[
+    { name: "htmlFor", type: "string", description: "指向的控件 id" },
+    { name: "asChild", type: "boolean", default: "false", description: "把样式交给唯一的子元素（例如给一组控件命名的 span）" },
+  ]}
+/>
+
+基于 Radix `Label`：双击标签不会选中文字，其余属性透传给 `<label>`。

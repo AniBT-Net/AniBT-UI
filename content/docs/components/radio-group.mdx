@@ -1,0 +1,61 @@
+---
+title: Radio Group
+description: 18px 的糖果单选：选中的一项是糖果粉加白点，和勾选框同一种填充。
+---
+
+<ComponentPreview name="radio-group-demo" />
+
+## 安装
+
+<InstallBlock name="radio-group" />
+
+## 用法
+
+```tsx title="用法"
+import { Field, FieldLabel } from "@/components/ui/field"
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
+
+<RadioGroup defaultValue="1080p">
+  <Field orientation="horizontal">
+    <RadioGroupItem value="1080p" id="q-1080" />
+    <FieldLabel htmlFor="q-1080">1080p</FieldLabel>
+  </Field>
+  <Field orientation="horizontal">
+    <RadioGroupItem value="720p" id="q-720" />
+    <FieldLabel htmlFor="q-720">720p</FieldLabel>
+  </Field>
+</RadioGroup>
+```
+
+两三个短选项横着排、而且是视图或筛选时，用 [Segmented Control](/docs/components/segmented-control)；选项需要说明时用下面的选择卡。
+
+## 选择卡
+
+<ComponentPreview name="radio-group-cards" />
+
+`FieldLabel` 包住横排的 `Field`：整张卡都能点，选中的卡是粉色淡底加粉边。禁用的选项字变灰、悬停不变色。
+
+## 状态
+
+纸面圆点加 1.5px `input` 色内边，悬停变粉；选中是糖果渐变加一个弹入的白点。焦点是 2px `ring` 色轮廓；禁用是下沉的浅底、灰点。方向键在选项间移动并选中（Radix 的 roving focus），整组只占一个 Tab 位置。
+
+## 属性
+
+<PropsTable
+  title="RadioGroup"
+  rows={[
+    { name: "value", type: "string", description: "受控的选中值" },
+    { name: "defaultValue", type: "string", description: "非受控的初始值" },
+    { name: "onValueChange", type: "(value: string) => void", description: "选中改变时调用" },
+    { name: "name", type: "string", description: "放进 form 时提交的字段名" },
+    { name: "disabled", type: "boolean", description: "整组禁用" },
+  ]}
+/>
+
+<PropsTable
+  title="RadioGroupItem"
+  rows={[
+    { name: "value", type: "string", description: "这一项的值" },
+    { name: "disabled", type: "boolean", description: "只禁用这一项" },
+  ]}
+/>
