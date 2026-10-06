@@ -1,0 +1,67 @@
+---
+title: Command
+description: 可搜索的命令列表和 ⌘K 面板：44 高的缝线搜索行，32 高的行，选中是粉色淡底。
+---
+
+<ComponentPreview name="command-demo" />
+
+## 安装
+
+<InstallBlock name="command" />
+
+## 用法
+
+```tsx title="components/site-search.tsx"
+import {
+  Command,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
+} from "@/components/ui/command"
+
+<Command>
+  <CommandInput placeholder="搜索番剧、字幕组、设置…" />
+  <CommandList>
+    <CommandEmpty>没有找到相关结果</CommandEmpty>
+    <CommandGroup heading="番剧">
+      <CommandItem>药屋少女的呢喃 第三季</CommandItem>
+    </CommandGroup>
+  </CommandList>
+</Command>
+```
+
+## 材质
+
+- 列表是内容，不是一层浮层：它铺满所在的 `DialogContent` 或 `PopoverContent`，边和阴影由外层负责，自己只画浮层纸面，不画第二条边。单独放在页面上时，给它加 `anibt-pop`，像上面的例子。
+- 搜索行 44 高，下沿是缝线，放大镜在输入时变粉。`CommandInput` 的子元素排在搜索行右端，适合放 `esc` 键帽。
+- 行高 32、圆角 10；键盘或指针所在的行是粉色淡底、粉字、粉色图标。组名 12/600 弱色，组之间是缝线。
+- 手机上输入框是 16 号字，iOS 不会自动放大页面。
+
+## ⌘K 面板
+
+<ComponentPreview name="command-dialog" />
+
+`CommandDialog` 把列表放进 [Dialog](/docs/components/dialog)：贴在视口上方、宽 576，默认不显示关闭按钮（Esc 关闭）。标题和说明只给读屏器。
+
+## 属性
+
+<PropsTable
+  title="CommandDialog"
+  rows={[
+    { name: "title", type: "string", default: '"命令面板"', description: "读屏标题" },
+    { name: "description", type: "string", default: '"搜索要执行的命令或要去的页面"', description: "读屏说明" },
+    { name: "showCloseButton", type: "boolean", default: "false", description: "显示弹窗的关闭方块" },
+    { name: "open / onOpenChange", type: "boolean / (open) => void", description: "受控打开，配合 ⌘K 快捷键" },
+  ]}
+/>
+
+<PropsTable
+  title="CommandInput"
+  rows={[
+    { name: "children", type: "ReactNode", description: "搜索行右端的内容，比如 esc 键帽" },
+  ]}
+/>
+
+其余部件的属性透传给 [cmdk](https://cmdk.paco.me)。导出名与 shadcn 一致。

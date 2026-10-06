@@ -303,6 +303,82 @@
         "feedback",
         "overlay"
       ]
+    },
+    {
+      "name": "command",
+      "type": "registry:ui",
+      "title": "Command",
+      "description": "AniBT command list and ⌘K palette on cmdk: a 44px stitched search row, 32px rows with the pink wash, stitched groups, and CommandDialog on @anibt/dialog.",
+      "author": "AniBT <https://anibt.net>",
+      "dependencies": [
+        "cmdk",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@anibt/theme",
+        "@anibt/dialog"
+      ],
+      "files": [
+        {
+          "path": "registry/anibt/ui/command.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "overlay"
+      ]
+    },
+    {
+      "name": "searchable-select",
+      "type": "registry:ui",
+      "title": "Searchable Select",
+      "description": "AniBT single-choice combobox: a 32px field that opens a searchable command list (groups, second lines, a pink tick on the chosen row). Radix popover + cmdk.",
+      "author": "AniBT <https://anibt.net>",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@anibt/theme",
+        "@anibt/button",
+        "@anibt/command",
+        "@anibt/popover"
+      ],
+      "files": [
+        {
+          "path": "registry/anibt/ui/searchable-select.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "forms",
+        "overlay"
+      ]
+    },
+    {
+      "name": "multi-select",
+      "type": "registry:ui",
+      "title": "Multi Select",
+      "description": "AniBT subscription picker: chosen values as removable tags in a 32px field, a searchable checklist with a 全部 row and candy tick boxes that stays open while you tick.",
+      "author": "AniBT <https://anibt.net>",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@anibt/theme",
+        "@anibt/button",
+        "@anibt/command",
+        "@anibt/popover"
+      ],
+      "files": [
+        {
+          "path": "registry/anibt/ui/multi-select.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "forms",
+        "overlay"
+      ]
     }
   ]
 }

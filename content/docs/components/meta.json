@@ -1,4 +1,4 @@
 {
   "title": "组件",
-  "pages": ["index", "button", "badge", "card", "dialog", "alert-dialog", "confirm-dialog", "sheet", "drawer", "popover", "hover-card", "dropdown-menu", "sonner"]
+  "pages": ["index", "button", "badge", "card", "dialog", "alert-dialog", "confirm-dialog", "sheet", "drawer", "popover", "hover-card", "dropdown-menu", "command", "searchable-select", "multi-select", "sonner"]
 }

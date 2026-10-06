@@ -1,0 +1,85 @@
+---
+title: Searchable Select
+description: 长列表的单选组合框：看起来是一个 32 高的输入框，展开是可搜索的命令列表，选中的行带粉色勾。
+---
+
+<ComponentPreview name="searchable-select-demo" />
+
+## 安装
+
+<InstallBlock name="searchable-select" />
+
+## 用法
+
+```tsx title="components/show-picker.tsx"
+import { useState } from "react"
+
+import { SearchableSelect } from "@/components/ui/searchable-select"
+
+export function ShowPicker() {
+  const [show, setShow] = useState<string>()
+  return (
+    <SearchableSelect
+      aria-label="番剧"
+      value={show}
+      onValueChange={setShow}
+      options={[
+        { value: "frieren-2", label: "葬送的芙莉莲 第二季", description: "Sousou no Frieren S2" },
+        { value: "spy-3", label: "间谍过家家 第三季", keywords: "SPY×FAMILY" },
+      ]}
+      placeholder="选择番剧"
+      searchPlaceholder="搜索番剧名或罗马字…"
+    />
+  )
+}
+```
+
+## 什么时候用
+
+选项多到要翻页（番剧、字幕组、分类）时，用它代替下拉选择：打字筛选，不用来回滚。只有几个固定选项时，用行内的 chip 或普通的选择框。
+
+## 样子
+
+- 关着时是 Button 的 `field` 材质：32 高、纸面、控件边；没有选中时显示弱色的占位文字。展开时边变成 1.5px 粉色。
+- 浮层和输入框一样宽（至少 256），里面是 [Command](/docs/components/command)：搜索行、可选的组名、带第二行说明的选项。
+- 键盘所在的行是粉色淡底；已选中的行文字加粗，行尾是粉色的勾。选了就关。
+- 触屏设备上展开时不自动聚焦搜索框，键盘不会挡住列表；想搜的时候再点搜索框。
+- `keywords` 是额外参与搜索的词（罗马字、别名），不会显示出来。
+
+## 在弹窗里
+
+[Multi Select](/docs/components/multi-select) 的第二个例子把它和多选组合框一起放在 Dialog 里。两者都建在 Radix Popover + cmdk 上，和 `@anibt/dialog`、`@anibt/sheet`、`@anibt/drawer` 是同一套浮层，在里面能正常滚动和点击。
+
+## 属性
+
+<PropsTable
+  title="SearchableSelect"
+  rows={[
+    { name: "value", type: "string | undefined", description: "选中的值" },
+    { name: "onValueChange", type: "(value: string) => void", description: "选择后调用" },
+    { name: "options", type: "SearchableSelectOption[]", description: "平铺的选项" },
+    { name: "groups", type: "{ heading?: string; options: SearchableSelectOption[] }[]", description: "分组的选项，代替 options" },
+    { name: "placeholder", type: "string", default: '"请选择"', description: "没选时框里的文字" },
+    { name: "searchPlaceholder", type: "string", default: '"搜索…"', description: "搜索框占位，也是它的读屏名称" },
+    { name: "emptyText", type: "string", default: '"没有匹配的结果"', description: "搜不到时的提示" },
+    { name: "disabled", type: "boolean", default: "false", description: "禁用" },
+    { name: "aria-label / aria-labelledby", type: "string", description: "触发器的名称：没有可见标签时必填" },
+    { name: "aria-invalid", type: "boolean", description: "校验失败时画红色轮廓" },
+    { name: "contentClassName", type: "string", description: "浮层的 class" },
+  ]}
+/>
+
+<PropsTable
+  title="SearchableSelectOption"
+  rows={[
+    { name: "value / label", type: "string", description: "值和显示文字" },
+    { name: "description", type: "string", description: "第二行弱色说明" },
+    { name: "keywords", type: "string", description: "额外的搜索词" },
+    { name: "icon", type: "ReactNode", description: "文字前的图标或头像" },
+    { name: "disabled", type: "boolean", description: "不可选" },
+  ]}
+/>
+
+<Callout title="为什么不叫 combobox">
+shadcn 现在的 `components/ui/combobox.tsx` 是基于 Base UI 的另一套组合 API。为了不覆盖它，AniBT 的两个组合框分别叫 `searchable-select`（单选）和 `multi-select`（多选）。
+</Callout>

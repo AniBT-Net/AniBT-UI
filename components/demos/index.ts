@@ -16,6 +16,8 @@ import CardWell from "./card-well"
 // U3 overlays
 import AlertDialogDemo from "./alert-dialog-demo"
 import AlertDialogSmall from "./alert-dialog-small"
+import CommandDemo from "./command-demo"
+import CommandDialogDemo from "./command-dialog"
 import ConfirmDialogDemo from "./confirm-dialog-demo"
 import ConfirmDialogPlain from "./confirm-dialog-plain"
 import DialogDemo from "./dialog-demo"
@@ -24,7 +26,10 @@ import DrawerDemo from "./drawer-demo"
 import DropdownMenuDemo from "./dropdown-menu-demo"
 import DropdownMenuOptions from "./dropdown-menu-options"
 import HoverCardDemo from "./hover-card-demo"
+import MultiSelectDemo from "./multi-select-demo"
+import MultiSelectDialog from "./multi-select-dialog"
 import PopoverDemo from "./popover-demo"
+import SearchableSelectDemo from "./searchable-select-demo"
 import SheetDemo from "./sheet-demo"
 import SheetSide from "./sheet-side"
 import SonnerDemo from "./sonner-demo"
@@ -63,6 +68,11 @@ export const demos = {
   "sheet-side": SheetSide,
   "drawer-demo": DrawerDemo,
   "sonner-demo": SonnerDemo,
+  "command-demo": CommandDemo,
+  "command-dialog": CommandDialogDemo,
+  "searchable-select-demo": SearchableSelectDemo,
+  "multi-select-demo": MultiSelectDemo,
+  "multi-select-dialog": MultiSelectDialog,
 } satisfies Record<string, ComponentType>
 
 export type DemoName = keyof typeof demos
