@@ -1,0 +1,57 @@
+---
+title: Popover
+description: 贴在触发器旁边的小浮层：纸面、1px 外边、浮层阴影，标题 14/700，说明 12 号弱色。
+---
+
+<ComponentPreview name="popover-demo" />
+
+## 安装
+
+<InstallBlock name="popover" />
+
+## 用法
+
+```tsx title="components/rss-popover.tsx"
+import { Button } from "@/components/ui/button"
+import {
+  Popover,
+  PopoverContent,
+  PopoverDescription,
+  PopoverHeader,
+  PopoverTitle,
+  PopoverTrigger,
+} from "@/components/ui/popover"
+
+<Popover>
+  <PopoverTrigger asChild>
+    <Button variant="secondary">RSS 订阅</Button>
+  </PopoverTrigger>
+  <PopoverContent align="start">
+    <PopoverHeader>
+      <PopoverTitle>订阅喵萌奶茶屋</PopoverTitle>
+      <PopoverDescription>把链接粘贴到下载工具的 RSS 订阅里。</PopoverDescription>
+    </PopoverHeader>
+    {/* 内容 */}
+  </PopoverContent>
+</Popover>
+```
+
+## 材质
+
+- 浮层（`anibt-pop`），宽 288、内边 16，子元素之间 12。宽度用 `className` 改（`w-80`）。
+- 往哪边弹出由 Radix 决定，出现时从触发器方向轻轻滑入。
+- 里面放命令列表这类要铺满的内容时，传 `className="p-0"`，见 [Searchable Select](/docs/components/searchable-select)。
+- 浮层不是唯一的入口：重要的操作在页面上也要能找到。
+
+## 属性
+
+<PropsTable
+  title="PopoverContent"
+  rows={[
+    { name: "align", type: '"start" | "center" | "end"', default: '"center"', description: "与触发器的对齐方式" },
+    { name: "sideOffset", type: "number", default: "6", description: "离触发器的距离" },
+    { name: "side", type: '"top" | "right" | "bottom" | "left"', default: '"bottom"', description: "优先弹出的方向" },
+  ]}
+/>
+
+导出名与 shadcn 一致：`Popover`、`PopoverTrigger`、`PopoverContent`、`PopoverAnchor`、`PopoverHeader`、`PopoverTitle`、`PopoverDescription`。`PopoverTrigger` 也接受 Base UI 的 `render`。

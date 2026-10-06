@@ -1,0 +1,99 @@
+---
+title: Dialog
+description: 一条记录的弹窗：浮层纸面、48 高的缝线头、安静的关闭方块，头和脚固定、中间一块滚动。
+---
+
+<ComponentPreview name="dialog-demo" />
+
+## 安装
+
+<InstallBlock name="dialog" />
+
+## 用法
+
+```tsx title="components/edit-release.tsx"
+import { Button } from "@/components/ui/button"
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
+
+export function EditRelease() {
+  return (
+    <Dialog>
+      <DialogTrigger asChild>
+        <Button variant="secondary">编辑资源</Button>
+      </DialogTrigger>
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>编辑资源</DialogTitle>
+          <DialogDescription>改动会同步到资源页和 RSS。</DialogDescription>
+        </DialogHeader>
+        {/* 表单 */}
+        <DialogFooter>
+          <DialogClose asChild>
+            <Button variant="ghost">取消</Button>
+          </DialogClose>
+          <Button>保存</Button>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
+  )
+}
+```
+
+## 材质
+
+- 弹窗是浮层（`anibt-pop`）：纸面、1px 外边、`shadow-pop`、圆角 14，铺在主题的遮罩 `--anibt-scrim` 上，打开时淡入并轻微放大。
+- `DialogHeader` 是顶上 48 高的一条，底边是虚线缝线；标题 14/700，说明 13 号次要字。右端留给关闭按钮，标题不会压到它下面。
+- 关闭按钮是 32 的安静图标方块（`anibt-icobtn-ghost`），悬停是粉色淡底。`showCloseButton={false}` 去掉它。
+- `DialogFooter` 右对齐：安静的取消在左，主操作在右。手机上竖排，主操作在最上面。`showCloseButton` 会在前面加一个安静的「关闭」。
+
+## 滚动
+
+<ComponentPreview name="dialog-scroll" />
+
+弹窗最高是视口减 32px。头和脚不动，`DialogBody` 是唯一滚动的区域；不用 `DialogBody` 时整个内容区兜底滚动，脚永远够得着。
+
+## Base UI 写法
+
+shadcn 的 `base-*` 风格用 `render` 代替 `asChild`。`DialogTrigger` 和 `DialogClose` 两种都接受：
+
+```tsx title="两种写法等价"
+<DialogTrigger asChild><Button>打开</Button></DialogTrigger>
+<DialogTrigger render={<Button />}>打开</DialogTrigger>
+```
+
+## 属性
+
+<PropsTable
+  title="DialogContent"
+  rows={[
+    { name: "showCloseButton", type: "boolean", default: "true", description: "头部右端的安静关闭方块" },
+    { name: "closeLabel", type: "string", default: '"关闭"', description: "关闭按钮的读屏名称" },
+  ]}
+/>
+
+<PropsTable
+  title="DialogFooter"
+  rows={[
+    { name: "showCloseButton", type: "boolean", default: "false", description: "在脚部最前面加一个安静的关闭按钮" },
+    { name: "closeLabel", type: "ReactNode", default: '"关闭"', description: "这个按钮的文字" },
+  ]}
+/>
+
+<PropsTable
+  title="DialogTrigger / DialogClose"
+  rows={[
+    { name: "asChild", type: "boolean", default: "false", description: "把行为交给唯一的子元素（Radix Slot）" },
+    { name: "render", type: "ReactElement", description: "Base UI 的写法，等同 asChild" },
+  ]}
+/>
+
+其余部件（`Dialog`、`DialogPortal`、`DialogOverlay`、`DialogTitle`、`DialogDescription`）的属性透传给 Radix Dialog。另外导出 `DialogBody`。导出名和 shadcn 一致，可以直接替换 `components/ui/dialog.tsx`，shadcn 的 `command` 等组件照常工作。

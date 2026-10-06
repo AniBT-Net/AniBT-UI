@@ -1,0 +1,74 @@
+---
+title: Multi Select
+description: 订阅选择器：已选的值是框里可移除的标签，展开是可搜索的勾选清单，勾选时不关闭。
+---
+
+<ComponentPreview name="multi-select-demo" />
+
+## 安装
+
+<InstallBlock name="multi-select" />
+
+## 用法
+
+```tsx title="components/group-filter.tsx"
+import { UsersIcon } from "lucide-react"
+import { useState } from "react"
+
+import { MultiSelect } from "@/components/ui/multi-select"
+
+export function GroupFilter({ groups }: { groups: { value: string; label: string }[] }) {
+  const [chosen, setChosen] = useState<string[]>([])
+  return (
+    <MultiSelect
+      aria-label="字幕组"
+      icon={<UsersIcon />}
+      value={chosen}
+      onValueChange={setChosen}
+      options={groups}
+      placeholder="全部字幕组"
+      searchPlaceholder="搜索字幕组…"
+    />
+  )
+}
+```
+
+## 什么时候用
+
+开放的长列表（字幕组、标签）用它；几个固定的选项（字幕语言、分辨率、格式）直接在行内放 chip，不用展开。
+
+## 样子
+
+- 框是 32 高的输入框材质（`anibt-field`），已选的值是 20 高的标签，每个带一个移除键；剩下的地方是展开清单的按钮。展开时框是粉色边加粉色光晕。
+- 没有选就是「全部」：框里用弱色写 `placeholder`（「全部字幕组」），清单第一行也是它。
+- 每行前面是 18px 的糖果勾选框，勾上时勾会弹一下。在勾选清单里粉色代表「已选」，所以键盘所在行用中性的下沉灰，不用菜单的粉色。
+- 勾选不会关闭清单，点行也不会把焦点从搜索框拿走，下一个字照样能筛选。底部是已选数量和「完成」键。
+- 浮层是模态的：放在 Dialog 或 Drawer 里时，清单自己能滚动、能点击。
+
+## 在弹窗里
+
+<ComponentPreview name="multi-select-dialog" />
+
+订阅设置弹窗：两个多选组合框（字幕组、标签）加一个 [Searchable Select](/docs/components/searchable-select)。
+
+## 属性
+
+<PropsTable
+  title="MultiSelect"
+  rows={[
+    { name: "value", type: "string[]", description: "已选的值；空数组表示全部" },
+    { name: "onValueChange", type: "(value: string[]) => void", description: "每次勾选、移除或选「全部」时调用" },
+    { name: "options", type: "{ value; label; keywords?; icon?; disabled? }[]", description: "选项；icon 画在清单行里（头像、图标）" },
+    { name: "placeholder", type: "string", default: '"全部"', description: "空选时的含义，也是清单第一行" },
+    { name: "showAll", type: "boolean", default: "true", description: "清单顶部的「全部」行" },
+    { name: "icon", type: "ReactNode", description: "框最前面的图标" },
+    { name: "searchPlaceholder", type: "string", default: '"搜索…"', description: "搜索框占位" },
+    { name: "emptyText", type: "string", default: '"没有匹配的结果"', description: "搜不到时的提示" },
+    { name: "noOptionsText", type: "string", default: '"暂无选项"', description: "完全没有选项时的提示" },
+    { name: "doneLabel", type: "ReactNode", default: '"完成"', description: "底部关闭键的文字" },
+    { name: "countLabel", type: "(count: number) => string", default: "已选 n 项", description: "底部的数量文字" },
+    { name: "removeLabel", type: "(label: string) => string", default: "移除 …", description: "标签移除键的读屏名称" },
+    { name: "disabled", type: "boolean", default: "false", description: "禁用" },
+    { name: "aria-label / aria-labelledby", type: "string", description: "整组的名称" },
+  ]}
+/>

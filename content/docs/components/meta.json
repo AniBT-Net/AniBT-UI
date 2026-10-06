@@ -1,4 +1,4 @@
 {
   "title": "组件",
-  "pages": ["index", "button", "badge", "card", "input", "textarea", "label", "field", "select", "checkbox", "switch", "radio-group", "segmented-control", "toggle-group", "tabs", "search-input", "password-input", "kbd", "avatar", "entity-avatar", "skeleton", "progress", "pagination", "empty", "tooltip", "separator", "alert", "accordion", "breadcrumb", "table", "page-header", "poster-card", "release-row"]
+  "pages": ["index", "button", "badge", "card", "input", "textarea", "label", "field", "select", "checkbox", "switch", "radio-group", "segmented-control", "toggle-group", "tabs", "search-input", "password-input", "kbd", "avatar", "entity-avatar", "skeleton", "progress", "pagination", "empty", "tooltip", "separator", "alert", "accordion", "breadcrumb", "table", "page-header", "poster-card", "release-row", "dialog", "alert-dialog", "confirm-dialog", "sheet", "drawer", "popover", "hover-card", "dropdown-menu", "command", "searchable-select", "multi-select", "sonner", "markdown-editor"]
 }

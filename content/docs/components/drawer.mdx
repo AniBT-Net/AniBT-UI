@@ -1,0 +1,70 @@
+---
+title: Drawer
+description: 手机上的「一条记录」容器：从底边拖出来的浮层，带拖动条，脚部避开 Home 指示条。
+---
+
+<ComponentPreview name="drawer-demo" />
+
+## 安装
+
+<InstallBlock name="drawer" />
+
+## 用法
+
+```tsx title="components/release-drawer.tsx"
+import { Button } from "@/components/ui/button"
+import {
+  Drawer,
+  DrawerBody,
+  DrawerClose,
+  DrawerContent,
+  DrawerDescription,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger,
+} from "@/components/ui/drawer"
+
+<Drawer>
+  <DrawerTrigger asChild>
+    <Button variant="secondary">资源详情</Button>
+  </DrawerTrigger>
+  <DrawerContent>
+    <DrawerHeader>
+      <DrawerTitle>药屋少女的呢喃 第三季 · 第 12 集</DrawerTitle>
+      <DrawerDescription>[喵萌奶茶屋] … [1080p][简繁内封]</DrawerDescription>
+    </DrawerHeader>
+    <DrawerBody>{/* 详情 */}</DrawerBody>
+    <DrawerFooter>
+      <Button size="lg">复制磁力链接</Button>
+      <DrawerClose asChild>
+        <Button variant="ghost">关闭</Button>
+      </DrawerClose>
+    </DrawerFooter>
+  </DrawerContent>
+</Drawer>
+```
+
+## 结构
+
+- 基于 [vaul](https://vaul.emilkowal.ski)：可以拖动关闭，`direction` 决定从哪条边出来（默认底边）。
+- 底部抽屉顶上有 36×4 的拖动条（`DrawerSwipeHandle`），最高 82% 视口，只有上面两个角是圆的。
+- `DrawerHeader` 在手机上居中、宽屏左对齐，下沿是缝线；`DrawerBody` 是唯一滚动的区域；`DrawerFooter` 竖排整宽按钮，主操作在最上面。
+- 宽屏上抽屉也会铺满宽度，内容可以像例子那样放进 `max-w-md` 的容器里居中。
+
+## 什么时候用
+
+桌面上「一条记录」用 [Dialog](/docs/components/dialog)，手机上用 Drawer。两者的头、正文、脚是同一套结构，可以按屏幕宽度二选一。
+
+## 属性
+
+<PropsTable
+  title="Drawer"
+  rows={[
+    { name: "direction", type: '"top" | "bottom" | "left" | "right"', default: '"bottom"', description: "从哪条边出来（vaul）" },
+    { name: "shouldScaleBackground", type: "boolean", default: "false", description: "打开时把页面缩小一点（vaul）" },
+    { name: "dismissible", type: "boolean", default: "true", description: "能否拖动、点遮罩或 Esc 关闭（vaul）" },
+  ]}
+/>
+
+导出名与 shadcn 一致，另加 `DrawerBody` 和 `DrawerSwipeHandle`。

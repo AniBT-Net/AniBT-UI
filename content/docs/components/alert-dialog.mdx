@@ -1,0 +1,94 @@
+---
+title: Alert Dialog
+description: 必须回答的问题：同一块浮层和缝线头，头里有 24px 的标记块，取消在左、操作在右。
+---
+
+<ComponentPreview name="alert-dialog-demo" />
+
+## 安装
+
+<InstallBlock name="alert-dialog" />
+
+## 用法
+
+```tsx title="components/delete-release.tsx"
+import { Trash2Icon } from "lucide-react"
+
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogMedia,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog"
+import { Button } from "@/components/ui/button"
+
+export function DeleteRelease() {
+  return (
+    <AlertDialog>
+      <AlertDialogTrigger asChild>
+        <Button variant="destructive">删除资源</Button>
+      </AlertDialogTrigger>
+      <AlertDialogContent>
+        <AlertDialogHeader>
+          <AlertDialogMedia tone="destructive">
+            <Trash2Icon />
+          </AlertDialogMedia>
+          <AlertDialogTitle>删除这个资源？</AlertDialogTitle>
+        </AlertDialogHeader>
+        <AlertDialogDescription>会从发布列表和 RSS 中移除。</AlertDialogDescription>
+        <AlertDialogFooter>
+          <AlertDialogCancel>取消</AlertDialogCancel>
+          <AlertDialogAction variant="destructive">删除</AlertDialogAction>
+        </AlertDialogFooter>
+      </AlertDialogContent>
+    </AlertDialog>
+  )
+}
+```
+
+只问一件事的时候，用 [Confirm Dialog](/docs/components/confirm-dialog) 更省事。
+
+## 结构
+
+- 没有关闭按钮：读者只能通过「取消」或操作离开，Esc 等同取消。
+- `AlertDialogMedia` 是 A 的弹窗标记：24px 的淡色方块放一个图标，排在标题左边。`tone`：`default`（下沉灰）、`destructive`（红）、`warning`（琥珀）、`accent`（粉）。破坏性的问题一定带红色标记。
+- 说明可以放在头里（标题下面一行），也可以放到头外当正文，像上面的例子那样。
+- 脚部顺序固定：安静的 `AlertDialogCancel` 在左，`AlertDialogAction` 在右。删除、撤销用 `variant="destructive"` 的红色键，其余用默认的糖果键。
+
+## 小尺寸
+
+<ComponentPreview name="alert-dialog-small" />
+
+`size="sm"` 是 320 宽，两个按钮并排等宽，适合一句话的问题。
+
+## 属性
+
+<PropsTable
+  title="AlertDialogContent"
+  rows={[
+    { name: "size", type: '"default" | "sm"', default: '"default"', description: "420 宽 / 320 宽、按钮并排" },
+  ]}
+/>
+
+<PropsTable
+  title="AlertDialogMedia"
+  rows={[
+    { name: "tone", type: '"default" | "destructive" | "warning" | "accent"', default: '"default"', description: "标记块的颜色" },
+  ]}
+/>
+
+<PropsTable
+  title="AlertDialogAction / AlertDialogCancel"
+  rows={[
+    { name: "variant", type: "Button 的 variant", default: 'Action "default"，Cancel "ghost"', description: "按钮材质，见 Button" },
+    { name: "size", type: "Button 的 size", default: '"default"', description: "按钮尺寸" },
+  ]}
+/>
+
+导出名和属性与 shadcn 一致（含 `AlertDialogMedia`、`AlertDialogOverlay`、`AlertDialogPortal`），`AlertDialogTrigger` 也接受 Base UI 的 `render`。

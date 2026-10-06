@@ -735,6 +735,320 @@
         "blocks",
         "display"
       ]
+    },
+    {
+      "name": "dialog",
+      "type": "registry:ui",
+      "title": "Dialog",
+      "description": "AniBT 「贴纸手账」 dialog: the floating paper over the scrim, A's 48px stitched header bar with a quiet close square, a pinned header and footer and one scrolling DialogBody.",
+      "author": "AniBT <https://anibt.net>",
+      "dependencies": [
+        "lucide-react",
+        "radix-ui"
+      ],
+      "registryDependencies": [
+        "@anibt/theme",
+        "@anibt/button"
+      ],
+      "files": [
+        {
+          "path": "registry/anibt/ui/dialog.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "overlay"
+      ]
+    },
+    {
+      "name": "alert-dialog",
+      "type": "registry:ui",
+      "title": "Alert Dialog",
+      "description": "AniBT question dialog: the stitched bar with A's 24px tinted mark (AlertDialogMedia), the quiet cancel left of a candy or red action, shadcn's size / variant props.",
+      "author": "AniBT <https://anibt.net>",
+      "dependencies": [
+        "class-variance-authority",
+        "radix-ui"
+      ],
+      "registryDependencies": [
+        "@anibt/theme",
+        "@anibt/button"
+      ],
+      "files": [
+        {
+          "path": "registry/anibt/ui/alert-dialog.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "overlay"
+      ]
+    },
+    {
+      "name": "confirm-dialog",
+      "type": "registry:ui",
+      "title": "Confirm Dialog",
+      "description": "One-call confirmation on @anibt/alert-dialog: red mark and danger key for destructive actions, and an onConfirm promise that keeps the dialog open and busy until it settles.",
+      "author": "AniBT <https://anibt.net>",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@anibt/theme",
+        "@anibt/alert-dialog",
+        "@anibt/spinner"
+      ],
+      "files": [
+        {
+          "path": "registry/anibt/ui/confirm-dialog.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "overlay"
+      ]
+    },
+    {
+      "name": "dropdown-menu",
+      "type": "registry:ui",
+      "title": "Dropdown Menu",
+      "description": "AniBT menu: the floating panel with 32px rows that take the pink wash, stitched separators, red destructive rows, pink ticks and dots, submenus and round-face shortcuts.",
+      "author": "AniBT <https://anibt.net>",
+      "dependencies": [
+        "lucide-react",
+        "radix-ui"
+      ],
+      "registryDependencies": [
+        "@anibt/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/anibt/ui/dropdown-menu.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "overlay"
+      ]
+    },
+    {
+      "name": "popover",
+      "type": "registry:ui",
+      "title": "Popover",
+      "description": "AniBT popover: the floating paper anchored to its trigger, with a 14/700 title and a muted description.",
+      "author": "AniBT <https://anibt.net>",
+      "dependencies": [
+        "radix-ui"
+      ],
+      "registryDependencies": [
+        "@anibt/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/anibt/ui/popover.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "overlay"
+      ]
+    },
+    {
+      "name": "hover-card",
+      "type": "registry:ui",
+      "title": "Hover Card",
+      "description": "AniBT preview card for a link under a resting pointer (a fansub group, a show), on the floating paper.",
+      "author": "AniBT <https://anibt.net>",
+      "dependencies": [
+        "radix-ui"
+      ],
+      "registryDependencies": [
+        "@anibt/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/anibt/ui/hover-card.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "overlay"
+      ]
+    },
+    {
+      "name": "sheet",
+      "type": "registry:ui",
+      "title": "Sheet",
+      "description": "AniBT edge panel: the floating paper sliding in from any side, a stitched header bar, one scrolling SheetBody and a stitched footer that stays reachable.",
+      "author": "AniBT <https://anibt.net>",
+      "dependencies": [
+        "lucide-react",
+        "radix-ui"
+      ],
+      "registryDependencies": [
+        "@anibt/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/anibt/ui/sheet.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "overlay"
+      ]
+    },
+    {
+      "name": "drawer",
+      "type": "registry:ui",
+      "title": "Drawer",
+      "description": "AniBT phone drawer on vaul: draggable floating paper with a grab handle, a stitched header, one scrolling DrawerBody and a footer clear of the home indicator.",
+      "author": "AniBT <https://anibt.net>",
+      "dependencies": [
+        "vaul"
+      ],
+      "registryDependencies": [
+        "@anibt/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/anibt/ui/drawer.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "overlay"
+      ]
+    },
+    {
+      "name": "sonner",
+      "type": "registry:ui",
+      "title": "Sonner (Toast)",
+      "description": "AniBT toasts on sonner: the floating panel with a 32px tinted type tile (mint, blue, amber, red, spinner), a bold title, a muted line and a quiet close square.",
+      "author": "AniBT <https://anibt.net>",
+      "dependencies": [
+        "sonner",
+        "next-themes",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@anibt/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/anibt/ui/sonner.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "feedback",
+        "overlay"
+      ]
+    },
+    {
+      "name": "command",
+      "type": "registry:ui",
+      "title": "Command",
+      "description": "AniBT command list and ⌘K palette on cmdk: a 44px stitched search row, 32px rows with the pink wash, stitched groups, and CommandDialog on @anibt/dialog.",
+      "author": "AniBT <https://anibt.net>",
+      "dependencies": [
+        "cmdk",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@anibt/theme",
+        "@anibt/dialog"
+      ],
+      "files": [
+        {
+          "path": "registry/anibt/ui/command.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "overlay"
+      ]
+    },
+    {
+      "name": "searchable-select",
+      "type": "registry:ui",
+      "title": "Searchable Select",
+      "description": "AniBT single-choice combobox: a 32px field that opens a searchable command list (groups, second lines, a pink tick on the chosen row). Radix popover + cmdk.",
+      "author": "AniBT <https://anibt.net>",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@anibt/theme",
+        "@anibt/button",
+        "@anibt/command",
+        "@anibt/popover"
+      ],
+      "files": [
+        {
+          "path": "registry/anibt/ui/searchable-select.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "forms",
+        "overlay"
+      ]
+    },
+    {
+      "name": "multi-select",
+      "type": "registry:ui",
+      "title": "Multi Select",
+      "description": "AniBT subscription picker: chosen values as removable tags in a 32px field, a searchable checklist with a 全部 row and candy tick boxes that stays open while you tick.",
+      "author": "AniBT <https://anibt.net>",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@anibt/theme",
+        "@anibt/button",
+        "@anibt/command",
+        "@anibt/popover"
+      ],
+      "files": [
+        {
+          "path": "registry/anibt/ui/multi-select.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "forms",
+        "overlay"
+      ]
+    },
+    {
+      "name": "markdown-editor",
+      "type": "registry:ui",
+      "title": "Markdown Editor",
+      "description": "AniBT Markdown field: 编写 / 分栏 / 预览, a nine-tool toolbar with Ctrl/Cmd shortcuts that undo cleanly, a react-markdown + GFM preview in A's prose, and a character count.",
+      "author": "AniBT <https://anibt.net>",
+      "dependencies": [
+        "lucide-react",
+        "radix-ui",
+        "react-markdown",
+        "remark-gfm"
+      ],
+      "registryDependencies": [
+        "@anibt/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/anibt/ui/markdown-editor.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/anibt/ui/markdown-format.ts",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "forms"
+      ]
     }
   ]
 }

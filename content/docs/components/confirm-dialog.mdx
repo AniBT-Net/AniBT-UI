@@ -1,0 +1,62 @@
+---
+title: Confirm Dialog
+description: 破坏性或不可撤销操作前的一次确认。返回 Promise 时弹窗保持打开并显示进行中，失败不关闭。
+---
+
+<ComponentPreview name="confirm-dialog-demo" />
+
+## 安装
+
+<InstallBlock name="confirm-dialog" />
+
+## 用法
+
+```tsx title="components/revoke-key.tsx"
+import { Button } from "@/components/ui/button"
+import { ConfirmDialog } from "@/components/ui/confirm-dialog"
+
+export function RevokeKey({ revoke }: { revoke: () => Promise<void> }) {
+  return (
+    <ConfirmDialog
+      destructive
+      trigger={<Button variant="destructive">撤销 API 密钥</Button>}
+      title="撤销这个 API 密钥？"
+      description="用它发布的脚本会立刻失效，撤销后不能恢复。"
+      confirmLabel="撤销"
+      onConfirm={revoke}
+    />
+  )
+}
+```
+
+## 关闭的时机
+
+- `onConfirm` 不返回东西：点确认立即关闭。
+- `onConfirm` 返回 Promise：弹窗保持打开，确认键显示转圈并拒绝再次点击；成功后关闭，失败则留在原地，读者能看到错误再试一次。
+- 调用方自己管着进行中的状态时，传 `loading`。
+
+## 非破坏性
+
+<ComponentPreview name="confirm-dialog-plain" />
+
+不传 `destructive` 时确认键是糖果主按钮；传了 `icon` 就在头里放一个粉色标记。这个例子用 `open` / `onOpenChange` 受控打开，不用 `trigger`。
+
+## 属性
+
+<PropsTable
+  title="ConfirmDialog"
+  rows={[
+    { name: "title", type: "ReactNode", description: "必填：问题本身" },
+    { name: "confirmLabel", type: "ReactNode", description: "必填：确认键的文字，写动作（「删除」「撤销」）" },
+    { name: "onConfirm", type: "() => void | Promise<unknown>", description: "必填：返回 Promise 时等它结束再关闭" },
+    { name: "description", type: "ReactNode", description: "头部标题下的一行说明" },
+    { name: "children", type: "ReactNode", description: "头和按钮之间的额外内容" },
+    { name: "destructive", type: "boolean", default: "false", description: "红色确认键和红色警示标记" },
+    { name: "icon", type: "ReactNode", description: "头部标记里的图标；破坏性时默认是警示三角" },
+    { name: "cancelLabel", type: "ReactNode", default: '"取消"', description: "取消键的文字" },
+    { name: "trigger", type: "ReactNode", description: "打开弹窗的元素（非受控用法）" },
+    { name: "open / onOpenChange", type: "boolean / (open) => void", description: "受控用法" },
+    { name: "loading", type: "boolean", default: "false", description: "外部的进行中状态" },
+    { name: "confirmDisabled", type: "boolean", default: "false", description: "禁用确认键" },
+  ]}
+/>

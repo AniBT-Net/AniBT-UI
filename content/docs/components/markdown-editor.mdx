@@ -1,0 +1,84 @@
+---
+title: Markdown Editor
+description: 收 Markdown 的唯一编辑面：编写 / 分栏 / 预览，九个格式工具和快捷键，预览用 A 的正文样式，带字数。
+---
+
+<ComponentPreview name="markdown-editor-demo" align="start" />
+
+## 安装
+
+<InstallBlock name="markdown-editor" />
+
+## 用法
+
+```tsx title="components/release-notes-field.tsx"
+import { useState } from "react"
+
+import { MarkdownEditor } from "@/components/ui/markdown-editor"
+
+export function ReleaseNotesField() {
+  const [notes, setNotes] = useState("")
+  return (
+    <>
+      <label id="notes-label" htmlFor="notes">发布说明</label>
+      <MarkdownEditor
+        id="notes"
+        aria-labelledby="notes-label"
+        value={notes}
+        onChange={setNotes}
+        maxLength={2000}
+      />
+    </>
+  )
+}
+```
+
+## 结构
+
+- **一块纸面**：控件边包住头、文本区和尾；文本区聚焦时整块吃 A 的焦点（1.5px 粉边加粉色光晕），校验失败是红边。
+- **视图**：「编写 / 预览」是分段控件。编辑器宽度 ≥720px 时多一个「分栏」并默认分栏：左边写、右边预览，预览在文本区的高度里滚动。宽度在挂载后测量，服务端和首次渲染都画窄版，不会出现水合不一致。
+- **工具栏**：加粗、斜体、标题、列表、引用、链接、图片、代码、分割线，28px 安静图标方块，悬停有提示。Ctrl/Cmd+B、I、K 是加粗、斜体、链接。每个命令都是纯文本编辑（`markdown-format.ts`），通过浏览器自己的插入生效，Ctrl/Cmd+Z 能撤销；输入法组字时不触发。
+- **预览**：默认用 `react-markdown` + GFM 渲染成 A 的正文：标题逐级变小但不小于 12、粉色链接、粉色淡底加粉色竖线的引用、缝线分割线、下沉底的代码、缝线表格。不渲染原始 HTML。
+- **高度**：文本区随内容长高，sm 120–320、md 180–440、lg 240–560，超过上限滚动，还能手动拖高。
+- **字数**：尾部右端是 `n 字`；有 `maxLength` 时是 `n / max`，接近上限变琥珀、超过变红。
+
+## 窄的编辑器
+
+<ComponentPreview name="markdown-editor-narrow" />
+
+窄于 720px 时只有「编写」和「预览」两个视图。点「预览」看渲染结果：工具栏隐藏但保留位置，切换时头部不跳；窄到工具栏要单独占一行时（约 480px 以下）它直接收起，不留一条空白。
+
+## 自己的渲染器
+
+站点已经有 Markdown 渲染器时，用 `renderPreview` 接管预览，保证预览和正式页面一致。A 的正文样式单独导出为 `markdownProseClassName`：
+
+```tsx title="接管预览"
+import { MarkdownEditor, markdownProseClassName } from "@/components/ui/markdown-editor"
+
+<MarkdownEditor
+  value={notes}
+  onChange={setNotes}
+  renderPreview={(value) => <SiteMarkdown className={markdownProseClassName} source={value} />}
+/>
+```
+
+`markdown-format.ts` 里的 `formatMarkdown(value, start, end, action)` 和 `applyMarkdownEdit(value, edit)` 是纯函数，也可以单独用在别的输入框上。
+
+## 属性
+
+<PropsTable
+  title="MarkdownEditor"
+  rows={[
+    { name: "value / onChange", type: "string / (value: string) => void", description: "受控的文本" },
+    { name: "size", type: '"sm" | "md" | "lg"', default: '"md"', description: "文本区的最低和最高高度" },
+    { name: "maxLength", type: "number", description: "最多多少字；字数显示 n / max" },
+    { name: "showCount", type: "boolean", default: "true", description: "尾部的字数" },
+    { name: "hint", type: "ReactNode", default: '"支持 Markdown"', description: "尾部左边的说明" },
+    { name: "defaultView", type: '"write" | "split" | "preview"', default: '"split"', description: "初始视图；窄的编辑器没有分栏，从编写开始" },
+    { name: "previewValue", type: "string", description: "预览这段文字而不是 value（模板的实际效果）" },
+    { name: "renderPreview", type: "(value: string) => ReactNode", description: "自己的预览渲染器" },
+    { name: "labels", type: "Partial<MarkdownEditorLabels>", description: "替换任何一段界面文字（默认中文）" },
+    { name: "placeholder / disabled / id", type: "string / boolean / string", description: "透传给文本区" },
+    { name: "aria-label / aria-labelledby / aria-describedby / aria-invalid", type: "string", description: "文本区的名称、说明和校验状态" },
+  ]}
+/>

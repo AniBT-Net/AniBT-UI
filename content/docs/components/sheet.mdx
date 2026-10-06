@@ -1,0 +1,69 @@
+---
+title: Sheet
+description: 从屏幕边缘滑入的面板：筛选、导航、手机侧栏。缝线头、一块滚动的正文、永远够得着的脚。
+---
+
+<ComponentPreview name="sheet-demo" />
+
+## 安装
+
+<InstallBlock name="sheet" />
+
+## 用法
+
+```tsx title="components/filter-sheet.tsx"
+import { Button } from "@/components/ui/button"
+import {
+  Sheet,
+  SheetBody,
+  SheetClose,
+  SheetContent,
+  SheetDescription,
+  SheetFooter,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet"
+
+<Sheet>
+  <SheetTrigger asChild>
+    <Button variant="secondary">筛选</Button>
+  </SheetTrigger>
+  <SheetContent>
+    <SheetHeader>
+      <SheetTitle>筛选资源</SheetTitle>
+      <SheetDescription>只看符合条件的发布。</SheetDescription>
+    </SheetHeader>
+    <SheetBody>{/* 条件 */}</SheetBody>
+    <SheetFooter>
+      <SheetClose asChild>
+        <Button>应用</Button>
+      </SheetClose>
+    </SheetFooter>
+  </SheetContent>
+</Sheet>
+```
+
+## 结构
+
+- 面板和弹窗同一套浮层、遮罩和关闭方块，只把远离边缘的角做圆。
+- `SheetHeader` 是 56 高的缝线头：标题 16/800，说明 12 号弱色，右端给关闭按钮让位。
+- `SheetBody` 是唯一滚动的区域；`SheetFooter` 贴底，上沿是缝线，按钮在手机上竖排、宽屏右对齐。
+- 左右两侧宽 3/4，最宽 384；上下两侧最高 80% 视口，底部面板留出 Home 指示条的安全区。
+
+## 方向
+
+<ComponentPreview name="sheet-side" />
+
+## 属性
+
+<PropsTable
+  title="SheetContent"
+  rows={[
+    { name: "side", type: '"top" | "right" | "bottom" | "left"', default: '"right"', description: "从哪条边滑入" },
+    { name: "showCloseButton", type: "boolean", default: "true", description: "右上角的安静关闭方块" },
+    { name: "closeLabel", type: "string", default: '"关闭"', description: "关闭按钮的读屏名称" },
+  ]}
+/>
+
+导出名与 shadcn 一致，另加 `SheetBody`。shadcn 的 `sidebar` 在手机上用它打开侧栏，替换后照常工作；`SheetTrigger` 和 `SheetClose` 也接受 Base UI 的 `render`。

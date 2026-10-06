@@ -1,0 +1,65 @@
+---
+title: Sonner
+description: 轻提示：浮层面板，左边 32px 的淡色类型方块，粗体标题加一行弱色说明，右端是安静的关闭键。
+---
+
+<ComponentPreview name="sonner-demo" />
+
+## 安装
+
+<InstallBlock name="sonner" />
+
+## 用法
+
+在应用根部放一个 `<Toaster />`（只放一个，否则每条提示会出现两次），然后在任何地方调用 sonner 的 `toast`：
+
+```tsx title="app/layout.tsx"
+import { Toaster } from "@/components/ui/sonner"
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <html lang="zh-CN">
+      <body>
+        {children}
+        <Toaster />
+      </body>
+    </html>
+  )
+}
+```
+
+```tsx title="components/copy-magnet.tsx"
+import { toast } from "sonner"
+
+toast.success("已复制磁力链接", { description: "粘贴到下载工具即可开始" })
+```
+
+## 类型
+
+- `toast.success`：薄荷色方块和勾。
+- `toast.info`：蓝色方块。
+- `toast.warning`：琥珀色方块和警示三角。
+- `toast.error`：红色方块和叉。
+- `toast.loading` / `toast.promise`：下沉的灰色方块里转圈，结束后换成成功或失败。
+- `toast(...)`：没有方块的普通提示。
+
+颜色只是辅助，标题本身要说清楚发生了什么。
+
+## 操作
+
+`action` 是一个小号凸起键，`cancel` 是安静键，适合「撤销」这类一步可回的操作。
+
+```tsx title="带撤销"
+toast("已删除 1 条资源", {
+  description: "药屋少女的呢喃 第三季 - 12",
+  action: { label: "撤销", onClick: restore },
+})
+```
+
+## 主题
+
+`Toaster` 从 next-themes 读取当前主题，没有 `ThemeProvider` 时跟随系统。面板颜色全部来自 `@anibt/theme` 的 token，白樱和夜樱各自正确。
+
+## 属性
+
+`Toaster` 接受 sonner 的全部属性（`position`、`expand`、`duration`、`richColors`……），默认打开 `closeButton`。
