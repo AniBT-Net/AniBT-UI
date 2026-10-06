@@ -186,7 +186,7 @@ function PosterCard({
         {sticker ? (
           <span
             data-slot="poster-card-sticker"
-            className="pointer-events-none absolute top-1.5 left-1.5 z-[25] flex [--anibt-tilt:var(--anibt-poster-tilt,-3deg)] group-hover/poster:[--anibt-tilt:calc(var(--anibt-poster-tilt,-3deg)*-1)]"
+            className="pointer-events-none absolute top-1.5 left-1.5 z-[25] flex origin-top-left [--anibt-tilt:var(--anibt-poster-tilt,-3deg)] group-hover/poster:[--anibt-tilt:calc(var(--anibt-poster-tilt,-3deg)*-1)] @max-[10rem]/poster:scale-90"
           >
             {sticker}
           </span>
@@ -334,6 +334,7 @@ function PosterCardRating({ value, className, label = "评分" }: { value: numbe
 function PosterCardStatus({
   tone = "wait",
   className,
+  children,
   ...props
 }: React.ComponentProps<"span"> & { tone?: "ok" | "run" | "next" | "wait" | "none" }) {
   return (
@@ -341,7 +342,7 @@ function PosterCardStatus({
       data-slot="poster-card-status"
       data-tone={tone}
       className={cn(
-        "inline-flex min-w-0 items-center gap-1 overflow-hidden text-[12px] leading-[18px] font-semibold text-ellipsis whitespace-nowrap",
+        "inline-flex min-w-0 items-center gap-1 text-[12px] leading-[18px] font-semibold whitespace-nowrap",
         "before:size-1.5 before:flex-none before:rounded-full before:bg-current before:content-['']",
         tone === "ok" && "text-anibt-ok",
         (tone === "run" || tone === "next") && "text-anibt-time-ink before:animate-anibt-blink",
@@ -350,7 +351,10 @@ function PosterCardStatus({
         className
       )}
       {...props}
-    />
+    >
+      {/* The word ellipsises on a narrow card; the dot never does. */}
+      <span className="anibt-ell">{children}</span>
+    </span>
   )
 }
 

@@ -264,7 +264,7 @@ function ReleaseRow({
 
       <div
         data-slot="release-row-stats"
-        className="flex min-w-0 items-center gap-3 whitespace-nowrap [grid-area:s] [&>:empty]:hidden group-data-[form=compact]/rr:w-[92px] group-data-[form=compact]/rr:flex-none group-data-[form=compact]/rr:flex-col group-data-[form=compact]/rr:items-end group-data-[form=compact]/rr:gap-0.5 @min-[760px]/rr-list:group-data-[form=wide]/rr:contents @min-[760px]/rr-list:group-data-[form=wide]/rr:[&>:empty]:block"
+        className="flex min-w-0 flex-wrap items-center gap-x-3 gap-y-1 whitespace-nowrap [grid-area:s] [&>:empty]:hidden group-data-[form=compact]/rr:w-[92px] group-data-[form=compact]/rr:flex-none group-data-[form=compact]/rr:flex-col group-data-[form=compact]/rr:items-end group-data-[form=compact]/rr:gap-0.5 @min-[760px]/rr-list:group-data-[form=wide]/rr:contents @min-[760px]/rr-list:group-data-[form=wide]/rr:[&>:empty]:block"
       >
         <span className="anibt-num text-[13px] text-foreground">{fileSize ?? ""}</span>
         {form === "compact" ? (
