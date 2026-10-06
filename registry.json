@@ -1,0 +1,99 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "anibt",
+  "homepage": "https://ui.anibt.net",
+  "include": [
+    "registry/anibt/theme/registry.json"
+  ],
+  "items": [
+    {
+      "name": "spinner",
+      "type": "registry:ui",
+      "title": "Spinner",
+      "description": "The inline AniBT loading mark: an <output role=status> with a spinning glyph that follows the surrounding ink.",
+      "author": "AniBT <https://anibt.net>",
+      "dependencies": [
+        "class-variance-authority",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@anibt/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/anibt/ui/spinner.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "feedback"
+      ]
+    },
+    {
+      "name": "button",
+      "type": "registry:ui",
+      "title": "Button",
+      "description": "AniBT 「贴纸手账」 button: candy primary with gloss and a ✦ on hover, raised secondary, quiet ghost, red danger, link and field paints on shadcn's variant and size names, with a non-resizing loading state.",
+      "author": "AniBT <https://anibt.net>",
+      "dependencies": [
+        "class-variance-authority",
+        "radix-ui"
+      ],
+      "registryDependencies": [
+        "@anibt/theme",
+        "@anibt/spinner"
+      ],
+      "files": [
+        {
+          "path": "registry/anibt/ui/button.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "actions"
+      ]
+    },
+    {
+      "name": "badge",
+      "type": "registry:ui",
+      "title": "Badge",
+      "description": "AniBT tags (neutral, resolution, language, status words), die-cut stickers (paper, candy, water), counts, plus StatusBadge (dot + word) and StatusDot.",
+      "author": "AniBT <https://anibt.net>",
+      "dependencies": [
+        "class-variance-authority",
+        "radix-ui"
+      ],
+      "registryDependencies": [
+        "@anibt/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/anibt/ui/badge.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "display"
+      ]
+    },
+    {
+      "name": "card",
+      "type": "registry:ui",
+      "title": "Card",
+      "description": "AniBT panel: paper with a 1px edge and the panel shadow (or a flat well), A's 16/12 box with a compact density, and a stitched header or footer.",
+      "author": "AniBT <https://anibt.net>",
+      "registryDependencies": [
+        "@anibt/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/anibt/ui/card.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "layout"
+      ]
+    }
+  ]
+}
