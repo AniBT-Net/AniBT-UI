@@ -82,6 +82,18 @@ type ButtonProps = React.ComponentProps<"button"> &
   VariantProps<typeof buttonVariants> & {
     /** Render the single child element (a link, say) with the button's paint. */
     asChild?: boolean
+    /**
+     * Base UI's form of `asChild`, so the components of shadcn's `base-*`
+     * styles that render a button as another element keep working:
+     * `render={<a href="…" />}`. The element takes the button's paint and
+     * props; `children` go inside it.
+     */
+    render?: React.ReactElement
+    /**
+     * Base UI compatibility: `false` when `render` is not a `<button>`. It only
+     * decides whether `type` and `disabled` are passed to the rendered element.
+     */
+    nativeButton?: boolean
     /** Busy: shows the spinner, sets `aria-busy` and blocks interaction. */
     loading?: boolean
     /**
@@ -96,6 +108,8 @@ function Button({
   variant = "default",
   size = "default",
   asChild = false,
+  render,
+  nativeButton = true,
   type = "button",
   loading = false,
   loadingText,
@@ -107,18 +121,23 @@ function Button({
   const overlaySpinner = loading && loadingText === undefined
   const classes = cn(buttonVariants({ variant, size, className }))
 
-  if (asChild) {
+  if (asChild || render) {
+    // A rendered <button> still gets its type and real `disabled`; anything
+    // else (a link) is marked `aria-disabled` instead.
+    const native = Boolean(render) && nativeButton
+    const child = render && children !== undefined ? React.cloneElement(render, undefined, children) : (render ?? children)
     return (
       <Slot.Root
         data-slot="button"
         data-variant={variant}
         data-size={size}
         aria-busy={loading || undefined}
-        aria-disabled={disabledNow || undefined}
+        aria-disabled={!native && disabledNow ? true : undefined}
         className={classes}
+        {...(native ? { type, disabled: disabledNow } : {})}
         {...props}
       >
-        {children}
+        {child}
       </Slot.Root>
     )
   }

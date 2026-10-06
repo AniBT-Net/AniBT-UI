@@ -6,6 +6,7 @@ import { CodeBlock } from "@/components/site/code-block"
 import { CommandLine } from "@/components/site/command-line"
 import { listComponentItems } from "@/lib/registry"
 import { addCommand, REGISTRIES_SNIPPET, REGISTRY_URL_TEMPLATE, SITE_URL } from "@/lib/site"
+import { source } from "@/lib/source"
 import { cn } from "@/lib/utils"
 import { Badge } from "@/registry/anibt/ui/badge"
 
@@ -73,9 +74,11 @@ export function Step({ title, children }: { title: ReactNode; children: ReactNod
   )
 }
 
-/** The component overview: one sticker card per `registry:ui` item. */
+/** The component overview: one sticker card per `registry:ui` item that has
+    its own docs page (a helper item such as `spinner` is installed as a
+    dependency and documented with the component that uses it). */
 export function ComponentGrid() {
-  const items = listComponentItems()
+  const items = listComponentItems().filter((item) => source.getPage(["components", item.name]))
   return (
     <div className="not-prose my-6 grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
       {items.map((item) => (
