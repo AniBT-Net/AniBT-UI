@@ -27,6 +27,7 @@ import HoverCardDemo from "./hover-card-demo"
 import PopoverDemo from "./popover-demo"
 import SheetDemo from "./sheet-demo"
 import SheetSide from "./sheet-side"
+import SonnerDemo from "./sonner-demo"
 
 /**
  * Every live example the docs can show. The key is the file name in this
@@ -61,6 +62,7 @@ export const demos = {
   "sheet-demo": SheetDemo,
   "sheet-side": SheetSide,
   "drawer-demo": DrawerDemo,
+  "sonner-demo": SonnerDemo,
 } satisfies Record<string, ComponentType>
 
 export type DemoName = keyof typeof demos

@@ -278,6 +278,31 @@
       "categories": [
         "overlay"
       ]
+    },
+    {
+      "name": "sonner",
+      "type": "registry:ui",
+      "title": "Sonner (Toast)",
+      "description": "AniBT toasts on sonner: the floating panel with a 32px tinted type tile (mint, blue, amber, red, spinner), a bold title, a muted line and a quiet close square.",
+      "author": "AniBT <https://anibt.net>",
+      "dependencies": [
+        "sonner",
+        "next-themes",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@anibt/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/anibt/ui/sonner.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "feedback",
+        "overlay"
+      ]
     }
   ]
 }
