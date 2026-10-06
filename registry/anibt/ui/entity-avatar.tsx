@@ -77,6 +77,9 @@ function EntityAvatar({
         <AvatarImage
           src={src}
           srcSet={srcSet}
+          // Width descriptors need the rendered width, or the browser assumes
+          // 100vw and fetches the largest file for a 32px circle.
+          sizes={srcSet ? `${SIZE_PX[resolved]}px` : undefined}
           alt={name}
           width={SIZE_PX[resolved]}
           height={SIZE_PX[resolved]}

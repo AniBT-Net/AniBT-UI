@@ -22,7 +22,8 @@ import { cn } from "@/lib/utils"
  * **Sharp covers.** Pass `src` plus `srcSet` with real widths; the browser
  * picks from `sizes` × the device pixel ratio, so a 180px card on a 3× phone
  * wants a 540w source. `sizes` defaults to `POSTER_SIZES`, which matches
- * `PosterGrid`'s 3 / 4 / 6 / 8 columns. `posterSrcSet` builds the list from a
+ * `PosterGrid`'s 3 / 4 / 6 / 8 columns — a card outside `PosterGrid` passes
+ * its own. `posterSrcSet` builds the list from a
  * URL-per-width function. Or pass your own element (`next/image`) as `image`.
  *
  * **Links.** `href` (or `link={<Link href="…" />}` for a router) makes the
@@ -51,7 +52,11 @@ type PosterCardProps = Omit<React.ComponentProps<"div">, "title"> & {
   src?: string
   /** Width descriptors (`… 400w, … 600w`); see `posterSrcSet`. */
   srcSet?: string
-  /** Defaults to `POSTER_SIZES` when `srcSet` is set. */
+  /**
+   * The card's CSS width. Defaults to `POSTER_SIZES` when `srcSet` is set,
+   * which is right only inside `PosterGrid`: a card anywhere else needs its
+   * own (`"176px"`), or a phone picks a source too small for a 3× screen.
+   */
   sizes?: string
   /** The title already names the show, so the cover is decorative by default. */
   alt?: string

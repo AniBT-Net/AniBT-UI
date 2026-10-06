@@ -21,18 +21,28 @@ import { cn } from "@/lib/utils"
  *
  * The element carries Radix's `data-orientation` and Base UI's
  * `data-horizontal` / `data-vertical`, so a shadcn `base-*` component that
- * styles either keeps working.
+ * styles either keeps working. The orientation classes are plain utilities
+ * picked from the `orientation` prop, so `cn` merges a caller's class over
+ * them (the sidebar's `mx-2 w-auto`, a `h-4` on a vertical rule).
  */
 const separatorVariants = cva("shrink-0", {
   variants: {
     variant: {
-      stitch:
-        "data-[orientation=horizontal]:h-px data-[orientation=horizontal]:w-full data-[orientation=horizontal]:bg-(image:--anibt-stitch) data-[orientation=horizontal]:bg-size-[8px_1px] data-[orientation=horizontal]:bg-repeat-x data-[orientation=vertical]:w-px data-[orientation=vertical]:self-stretch data-[orientation=vertical]:bg-(image:--anibt-stitch-y) data-[orientation=vertical]:bg-size-[1px_8px] data-[orientation=vertical]:bg-repeat-y",
-      line: "bg-border data-[orientation=horizontal]:h-px data-[orientation=horizontal]:w-full data-[orientation=vertical]:w-px data-[orientation=vertical]:self-stretch",
+      stitch: "",
+      line: "bg-border",
+    },
+    orientation: {
+      horizontal: "h-px w-full",
+      vertical: "w-px self-stretch",
     },
   },
+  compoundVariants: [
+    { variant: "stitch", orientation: "horizontal", class: "bg-(image:--anibt-stitch) bg-size-[8px_1px] bg-repeat-x" },
+    { variant: "stitch", orientation: "vertical", class: "bg-(image:--anibt-stitch-y) bg-size-[1px_8px] bg-repeat-y" },
+  ],
   defaultVariants: {
     variant: "stitch",
+    orientation: "horizontal",
   },
 })
 
@@ -54,7 +64,7 @@ function Separator({
       data-vertical={orientation === "vertical" ? "" : undefined}
       decorative={decorative}
       orientation={orientation}
-      className={cn(separatorVariants({ variant }), className)}
+      className={cn(separatorVariants({ variant, orientation }), className)}
       {...props}
     />
   )

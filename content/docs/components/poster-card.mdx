@@ -78,7 +78,7 @@ export function SeasonWall({ shows }: { shows: Show[] }) {
 
 - 只给 `src` 不够——给 `srcSet`，写出真实宽度（`… 400w, … 600w`），最大的那张至少是卡片 CSS 宽度的 3 倍。
 - `posterSrcSet((w) => url)` 按宽度函数生成列表，默认 200 / 300 / 400 / 600 / 900。
-- `sizes` 不写时用 `POSTER_SIZES`，和 `PosterGrid` 的列数对应；放在别的布局里就写你自己的。
+- `sizes` 不写时用 `POSTER_SIZES`，它只对应 `PosterGrid` 的列数。**卡片不在 `PosterGrid` 里时，一定写它自己的 `sizes`**：上面这张卡固定 176px 宽，就写 `sizes="176px"`；照搬 `POSTER_SIZES` 会让手机按 33vw ≈ 129px 去挑图，3× 屏上拿到的图不够大。
 - 首屏的几张加 `priority`（立即加载、高优先级），其余懒加载。
 - 用 `next/image` 之类的组件时，把它作为 `image` 传进来（`fill`、`sizes` 由你写）。
 
