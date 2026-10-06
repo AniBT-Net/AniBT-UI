@@ -1,0 +1,51 @@
+---
+title: Search Input
+description: 唯一的搜索框：左边放大镜，右边清除键，空着时可以显示快捷键，手机键盘出现「搜索」键。
+---
+
+<ComponentPreview name="search-input-demo" />
+
+## 安装
+
+<InstallBlock name="search-input" />
+
+## 用法
+
+```tsx title="用法"
+import { SearchInput } from "@/components/ui/search-input"
+
+const [query, setQuery] = useState("")
+
+<SearchInput value={query} onValueChange={setQuery} placeholder="搜索番剧、字幕组…" shortcut="⌘K" />
+```
+
+## 它替你做的事
+
+- `type="search"` 加 `enterKeyHint="search"`：手机键盘出现「搜索」键。浏览器自带的清除叉被隐藏，只留主题里的清除键。
+- 有内容时右端出现清除键（24px 的安静方块，悬停粉色淡底，读屏念 `clearLabel`）；清除后光标留在框里，用键盘清除也不会丢焦点。
+- `shortcut` 在框空着时显示一个键帽（`⌘K`）。它只是提示，绑定快捷键是页面的事。
+- 受控（`value` + `onValueChange`）或非受控（`defaultValue`）都行。
+
+## 状态
+
+<ComponentPreview name="search-input-states" />
+
+材质和状态与 [Input](/docs/components/input) 相同。默认 32 高；手机上需要 44px 的触控区时，给 `inputClassName="h-11 md:h-8"`。
+
+## 属性
+
+<PropsTable
+  title="SearchInput"
+  rows={[
+    { name: "value", type: "string", description: "受控的值" },
+    { name: "defaultValue", type: "string", default: '""', description: "非受控的初始值" },
+    { name: "onValueChange", type: "(value: string) => void", description: "输入或清除时调用" },
+    { name: "shortcut", type: "ReactNode", description: "框空着时右端的键帽，例如 \"⌘K\"" },
+    { name: "placeholder", type: "string", default: '"搜索"', description: "占位文字" },
+    { name: "clearLabel", type: "string", default: '"清除"', description: "清除键的可读名称" },
+    { name: "className", type: "string", description: "外层的类名，管宽度" },
+    { name: "inputClassName", type: "string", description: "输入框本身的类名" },
+  ]}
+/>
+
+其余属性（`ref`、`onKeyDown`、`autoFocus`、`aria-label`……）都交给里面的 `<input>`。
