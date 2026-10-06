@@ -156,6 +156,29 @@
       ]
     },
     {
+      "name": "select",
+      "type": "registry:ui",
+      "title": "Select",
+      "description": "AniBT select: a field-material trigger and a floating A panel whose chosen row carries the pink label and tick.",
+      "author": "AniBT <https://anibt.net>",
+      "dependencies": [
+        "lucide-react",
+        "radix-ui"
+      ],
+      "registryDependencies": [
+        "@anibt/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/anibt/ui/select.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "forms"
+      ]
+    },
+    {
       "name": "checkbox",
       "type": "registry:ui",
       "title": "Checkbox",
