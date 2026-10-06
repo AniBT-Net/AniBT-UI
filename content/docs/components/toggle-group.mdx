@@ -1,0 +1,54 @@
+---
+title: Toggle Group
+description: 按下后保持的一组按钮：下沉轨道里的贴纸拇指，或一排 28 高的筛选签，多选时选中的签露出对勾。
+---
+
+<ComponentPreview name="toggle-group-demo" />
+
+## 安装
+
+<InstallBlock name="toggle-group" />
+
+## 用法
+
+```tsx title="用法"
+import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group"
+
+<ToggleGroup type="multiple" variant="outline" defaultValue={["简中"]} aria-label="筛选">
+  <ToggleGroupItem value="简中">简中</ToggleGroupItem>
+  <ToggleGroupItem value="繁中">繁中</ToggleGroupItem>
+  <ToggleGroupItem value="内封">内封</ToggleGroupItem>
+</ToggleGroup>
+```
+
+## 两种样子
+
+<ComponentPreview name="toggle-group-track" />
+
+- `variant="default"`：分段轨道。`muted` 底的下沉轨道，项 24 高、12/600 `ink2`；按下的一项是白色贴纸拇指、墨色字、粉色图标。适合视图切换和格式工具栏。
+- `variant="outline"`：筛选签。28 高的纸面小键加一圈 `input` 色细边，悬停上跳 1px、字变粉；按下的签是粉色淡底、粉边、粉字。`type="multiple"` 时按下的签前面多一个对勾，多选从不只靠颜色。
+
+`type="single"` 的项按第二下会弹起；必须一直选着一项（表单值）时用 [Segmented Control](/docs/components/segmented-control)。
+
+## 尺寸
+
+<ComponentPreview name="toggle-group-sizes" />
+
+`sm` / `default` / `lg`：轨道里是 24 / 24 / 32 高，筛选签是 24 / 28 / 32 高。`spacing` 是项之间的间距（Tailwind 的步长），默认轨道 2px、筛选签 8px；筛选签放不下时自动换行。`orientation="vertical"` 竖排。
+
+## 属性
+
+<PropsTable
+  title="ToggleGroup"
+  rows={[
+    { name: "type", type: '"single" | "multiple"', description: "单选（可弹起）或多选；必填" },
+    { name: "variant", type: '"default" | "outline"', default: '"default"', description: "分段轨道 / 筛选签" },
+    { name: "size", type: '"sm" | "default" | "lg"', default: '"default"', description: "见上文" },
+    { name: "spacing", type: "number", default: "0.5 / 2", description: "项之间的间距，Tailwind 步长" },
+    { name: "orientation", type: '"horizontal" | "vertical"', default: '"horizontal"', description: "排列方向，也决定方向键" },
+    { name: "value / defaultValue", type: "string | string[]", description: "受控 / 非受控的值；multiple 时是数组" },
+    { name: "onValueChange", type: "(value) => void", description: "按下或弹起时调用" },
+  ]}
+/>
+
+基于 Radix `ToggleGroup`：每项是 `aria-pressed` 的按钮，方向键在项之间移动。另外导出 `toggleGroupItemVariants`。

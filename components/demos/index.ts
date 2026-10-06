@@ -35,6 +35,9 @@ import SwitchSettings from "./switch-settings"
 import SwitchStates from "./switch-states"
 import TextareaDemo from "./textarea-demo"
 import TextareaStates from "./textarea-states"
+import ToggleGroupDemo from "./toggle-group-demo"
+import ToggleGroupSizes from "./toggle-group-sizes"
+import ToggleGroupTrack from "./toggle-group-track"
 
 /**
  * Every live example the docs can show. The key is the file name in this
@@ -77,6 +80,9 @@ export const demos = {
   "radio-group-cards": RadioGroupCards,
   "segmented-control-demo": SegmentedControlDemo,
   "segmented-control-variants": SegmentedControlVariants,
+  "toggle-group-demo": ToggleGroupDemo,
+  "toggle-group-sizes": ToggleGroupSizes,
+  "toggle-group-track": ToggleGroupTrack,
 } satisfies Record<string, ComponentType>
 
 export type DemoName = keyof typeof demos
