@@ -7,12 +7,12 @@ import { MultiSelect, type MultiSelectOption } from "@/registry/anibt/ui/multi-s
 
 const GROUPS = ["喵萌奶茶屋", "LoliHouse", "北宇治字幕组", "桜都字幕组", "千夏字幕组", "ANi", "Sakurato", "黒ネズミたち"]
 
-/** A group's sticker: its first character on the pink tile with the die-cut rim. */
+/** A group's tile: its first character on the pink wash. */
 const OPTIONS: MultiSelectOption[] = GROUPS.map((name) => ({
   value: name,
   label: name,
   icon: (
-    <span className="anibt-avatar anibt-rim size-5 text-[12px]" aria-hidden="true">
+    <span className="anibt-avatar size-5 text-[12px]" aria-hidden="true">
       {name.slice(0, 1)}
     </span>
   ),

@@ -118,6 +118,7 @@ function MultiSelect({
   "aria-labelledby": ariaLabelledBy,
 }: MultiSelectProps) {
   const [open, setOpen] = React.useState(false)
+  const summaryId = React.useId()
   const isAll = value.length === 0
   const labelOf = (item: string) => options.find((option) => option.value === item)?.label ?? item
 
@@ -172,10 +173,15 @@ function MultiSelect({
               id={id}
               disabled={disabled}
               aria-haspopup="listbox"
-              aria-label={ariaLabel ? `${ariaLabel} · ${summary}` : summary}
+              // Named by the field's label plus what is chosen: 「字幕组 已选 2 项」.
+              aria-label={ariaLabelledBy ? undefined : ariaLabel ? `${ariaLabel} · ${summary}` : summary}
+              aria-labelledby={ariaLabelledBy ? `${ariaLabelledBy} ${summaryId}` : undefined}
               className="flex h-6 min-w-12 flex-1 items-center justify-between gap-2 rounded-[6px] pl-0.5 text-left text-[13px] text-muted-foreground outline-none"
             >
               <span className="anibt-ell">{isAll ? placeholder : null}</span>
+              <span id={summaryId} className="sr-only">
+                {summary}
+              </span>
               <ChevronsUpDownIcon className="size-4 shrink-0" aria-hidden="true" />
             </button>
           </PopoverTrigger>
