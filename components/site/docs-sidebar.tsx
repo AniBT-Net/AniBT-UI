@@ -32,7 +32,7 @@ export function DocsSidebar({ groups }: { groups: SidebarGroup[] }) {
 
   return (
     <>
-      <nav aria-label="文档目录" className="sticky top-[72px] hidden max-h-[calc(100dvh-88px)] overflow-y-auto pr-2 pb-8 lg:block">
+      <nav aria-label="文档目录" className="sticky top-[72px] hidden max-h-[calc(100dvh-88px)] overflow-y-auto pr-2 pb-8 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden lg:block">
         {groups.map((group) => (
           <div key={group.label} className="mb-5">
             <div className="px-3 pb-1.5 text-[12px] font-semibold text-muted-foreground">{group.label}</div>

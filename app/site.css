@@ -8,6 +8,12 @@
   html {
     scroll-padding-top: 80px;
     -webkit-text-size-adjust: 100%;
+    /* The page scrolls; the bar on the right does not show. */
+    scrollbar-width: none;
+  }
+
+  html::-webkit-scrollbar {
+    display: none;
   }
 
   /* A's body: 15 on a phone, 14 from 640 up, 1.5; CJK paragraphs 1.6. */
