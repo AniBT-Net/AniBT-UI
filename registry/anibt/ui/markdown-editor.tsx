@@ -319,7 +319,13 @@ function MarkdownEditor({
             role="toolbar"
             aria-label={labels.toolbar}
             aria-controls={textareaId}
-            className={cn("flex min-w-0 flex-wrap items-center gap-0.5", !showWrite && "invisible")}
+            className={cn(
+              "flex min-w-0 flex-wrap items-center gap-0.5",
+              // In 预览 the tools keep their place, so the head does not jump;
+              // where they wrap onto a row of their own they leave instead of
+              // leaving an empty band.
+              !showWrite && "invisible @max-[30rem]/md:hidden"
+            )}
           >
             <span className="mx-1 h-4 w-px shrink-0 bg-input @max-[28rem]/md:hidden" aria-hidden="true" />
             {TOOLS.map((tool) => (
