@@ -16,6 +16,7 @@ import type { ReactNode } from "react"
 import { CommandLine } from "@/components/site/command-line"
 import { MascotPeek } from "@/components/site/mascot-peek"
 import { SectionHead } from "@/components/site/section-head"
+import SegmentedControlDemo from "@/components/demos/segmented-control-demo"
 import { Sparkle } from "@/components/site/sparkle"
 import { addCommand, GITHUB_URL, REGISTRY_URL_TEMPLATE } from "@/lib/site"
 import { Badge, StatusBadge, StatusDot } from "@/registry/anibt/ui/badge"
@@ -312,10 +313,16 @@ export default function HomePage() {
                 </Card>
               </div>
             </KitCell>
-            <KitCell caption="即将推出">
-              <p className="text-[13px] leading-[1.7] text-anibt-ink2">
-                输入、选择、勾选、开关、页签、分段、对话框、菜单、提示、轻提示、命令面板……按 AniBT 站内的同一套配方陆续加入。
-              </p>
+            <KitCell caption="分段 · 更多组件" href="/docs/components/segmented-control">
+              <div className="flex flex-col gap-3">
+                <SegmentedControlDemo />
+                <p className="text-[13px] leading-[1.7] text-anibt-ink2">
+                  输入与表单 14 个、展示 13 个、区块 2 个、浮层 13 个，全部用 AniBT 站内的同一套配方。{" "}
+                  <Link href="/docs/components" className="font-semibold text-accent-foreground hover:underline">
+                    看全部组件
+                  </Link>
+                </p>
+              </div>
             </KitCell>
           </div>
         </div>

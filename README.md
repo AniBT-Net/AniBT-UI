@@ -6,9 +6,14 @@ AniBT 「贴纸手账」组件库：模切白边贴纸、糖果光泽按钮、�
 
 - 站点：<https://ui.anibt.net>（以 `NEXT_PUBLIC_SITE_URL` 为准）
 - 命名空间：`@anibt`
-- 现有条目：`@anibt/theme`、`@anibt/button`、`@anibt/badge`、`@anibt/card`、`@anibt/spinner`
+- 现有条目（`@anibt/` 前缀）：
+  - 主题：`theme`（白樱 / 夜樱）
+  - 操作与展示：`button`、`spinner`、`badge`、`card`、`avatar`、`entity-avatar`、`skeleton`、`progress`、`pagination`、`empty`、`tooltip`、`separator`、`alert`、`accordion`、`breadcrumb`、`table`、`page-header`
+  - 输入与表单：`input`、`textarea`、`label`、`field`、`select`、`checkbox`、`switch`、`radio-group`、`segmented-control`、`toggle-group`、`tabs`、`search-input`、`password-input`、`kbd`
+  - 浮层：`dialog`、`alert-dialog`、`confirm-dialog`、`dropdown-menu`、`popover`、`hover-card`、`sheet`、`drawer`、`sonner`、`command`、`searchable-select`、`multi-select`、`markdown-editor`
+  - 区块：`poster-card`、`release-row`
 
-> **English summary.** AniBT UI is the component library behind [anibt.net](https://anibt.net), published as a shadcn registry under the `@anibt` namespace. It ships a `registry:theme` item (light mode “Shirozakura” on `:root`, dark mode “Yozakura” on `.dark`, mapped onto the standard shadcn tokens plus `--anibt-*` extras and `anibt-*` utilities) and Radix-based components (button, badge, card, spinner) that drop into any shadcn/Tailwind v4 project. Add `"@anibt": "https://ui.anibt.net/r/{name}.json"` to the `registries` of your `components.json`, then run `npx shadcn@latest add @anibt/theme` once (it swaps the standard shadcn colours for Shirozakura/Yozakura) and add components such as `npx shadcn@latest add @anibt/button`. Code is MIT; the AniBT logo and mascot are not.
+> **English summary.** AniBT UI is the component library behind [anibt.net](https://anibt.net), published as a shadcn registry under the `@anibt` namespace. It ships a `registry:theme` item (light mode “Shirozakura” on `:root`, dark mode “Yozakura” on `.dark`, mapped onto the standard shadcn tokens plus `--anibt-*` extras and `anibt-*` utilities) and 45 Radix-based components and blocks (buttons, badges, forms, overlays, poster cards, release rows…) that drop into any shadcn/Tailwind v4 project. Add `"@anibt": "https://ui.anibt.net/r/{name}.json"` to the `registries` of your `components.json`, then run `npx shadcn@latest add @anibt/theme` once (it swaps the standard shadcn colours for Shirozakura/Yozakura) and add components such as `npx shadcn@latest add @anibt/button`. Code is MIT; the AniBT logo and mascot are not.
 
 ## 在你的项目里使用
 
@@ -74,7 +79,7 @@ public/brand/                     品牌素材（不在 MIT 许可内）
 
 ### 加一个组件
 
-1. 源码放到 `registry/anibt/ui/<name>.tsx`：从 `@/lib/utils` 引入 `cn`，同库组件用 `@/registry/anibt/ui/<x>`，材质只用 `anibt-*` 配方和 token。
+1. 源码放到 `registry/anibt/ui/<name>.tsx`：从 `@/lib/utils` 引入 `cn`，同库组件用 `@/registry/anibt/ui/<x>`，材质只用 `anibt-*` 配方和 token。给 Radix 原语传 `asChild` 时写成 `{...{ asChild: true }}`（见下方维护者备注）。
 2. 在 `registry.json` 的 `items` 里加条目：`registryDependencies` 至少有 `@anibt/theme`，npm 依赖写在 `dependencies`（`@anibt/*` 只能出现在 `registryDependencies`）。
 3. 示例放到 `components/demos/<name>-*.tsx` 并在 `components/demos/index.ts` 登记。
 4. 文档写在 `content/docs/components/<name>.mdx`，加进同目录的 `meta.json`。
@@ -127,3 +132,5 @@ public/brand/                     品牌素材（不在 MIT 许可内）
 - `base-*` 风格（现在 `init -d` 默认的 `base-nova`，Base UI）会把文件里 JSX 的 `asChild` 改写成 `render`：registry 文件里不要写 `<X asChild>` 的 JSX（组件自己声明 `asChild` 属性没问题）。
 - 安装时 `@/registry/<style>/ui/x` 改写为使用者的 `aliases.ui`，`@/lib/utils` 改写为 `aliases.utils`。
 - 现在的默认 `init` 生成 `lib/utils.ts` = `export { cn } from "cn"`，不装 `radix-ui`；装 `@anibt/button` 时 CLI 会补装 `radix-ui`。
+- **base-* 项目的安装改写（shadcn 4.21.2 实测）**：`components.json` 的 `style` 以 `base-` 开头时（`shadcn init` 的默认 `base-nova`），`shadcn add` 会删掉安装文件里每个带闭合标签的 JSX 元素上的字面 `asChild` 属性，并把子元素改写成 `render`。我们的组件基于 Radix，所以源码里一律写成展开形式 `{...{ asChild: true }}`；`scripts/check-as-child.mjs` 挂在 `typecheck` 和 `registry:build` 上，`--fix` 可自动改写。
+- **主题要单独安装**：只有直接 `add @anibt/theme` 时，CLI 才会覆盖 shadcn 的标准颜色变量；作为组件依赖带进来时只补 `--anibt-*` 和配方。stock init 在 `@theme` 里写了 `--font-sans: var(--font-sans)` 且 CLI 不覆盖已有的 `@theme` 键，所以正文字体栈放在 `:root` / `.dark`。
