@@ -4,7 +4,7 @@ import type { ReactNode } from "react"
 
 import { CodeBlock } from "@/components/site/code-block"
 import { CommandLine } from "@/components/site/command-line"
-import { listComponentItems } from "@/lib/registry"
+import { getDocsNav } from "@/lib/docs-nav"
 import { addCommand, REGISTRIES_SNIPPET, REGISTRY_URL_TEMPLATE, SITE_URL } from "@/lib/site"
 import { source } from "@/lib/source"
 import { cn } from "@/lib/utils"
@@ -74,27 +74,49 @@ export function Step({ title, children }: { title: ReactNode; children: ReactNod
   )
 }
 
-/** The component overview: one sticker card per `registry:ui` item that has
-    its own docs page (a helper item such as `spinner` is installed as a
-    dependency and documented with the component that uses it). */
+/** The component overview: the docs rail's groups (`meta.json` separators),
+    one sticker card per documented component, with the page's own Chinese
+    description. A helper item such as `spinner` has no page and is installed
+    as a dependency of the component that uses it. */
 export function ComponentGrid() {
-  const items = listComponentItems().filter((item) => source.getPage(["components", item.name]))
+  const groups = getDocsNav()
+    .map((group) => ({
+      label: group.label,
+      pages: group.items
+        .map((item) => item.url.match(/^\/docs\/components\/([^/]+)$/)?.[1])
+        .flatMap((slug) => {
+          const page = slug ? source.getPage(["components", slug]) : undefined
+          return slug && page ? [{ slug, title: page.data.title, description: page.data.description }] : []
+        }),
+    }))
+    .filter((group) => group.pages.length > 0)
+
   return (
-    <div className="not-prose my-6 grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
-      {items.map((item) => (
-        <Link
-          key={item.name}
-          href={`/docs/components/${item.name}`}
-          className="anibt-sheet group/card flex flex-col gap-2 p-4 transition-[transform,box-shadow] duration-200 ease-anibt-spring hover:-translate-y-0.5 hover:shadow-[0_0_0_1px_var(--border),var(--anibt-shadow-lift)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
-        >
-          <div className="flex items-center gap-2">
-            <span className="text-[16px] font-extrabold group-hover/card:text-accent-foreground">{item.title}</span>
-            <Badge variant="sticker" className="ml-auto" tilt={-3}>
-              @anibt/{item.name}
-            </Badge>
+    <div className="not-prose my-6 flex flex-col gap-8">
+      {groups.map((group) => (
+        <section key={group.label} aria-label={group.label} className="flex flex-col gap-3">
+          <h2 className="flex items-baseline gap-2 text-[16px] font-extrabold">
+            {group.label}
+            <span className="anibt-num text-[12px] font-semibold text-muted-foreground">{group.pages.length}</span>
+          </h2>
+          <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
+            {group.pages.map((page) => (
+              <Link
+                key={page.slug}
+                href={`/docs/components/${page.slug}`}
+                className="anibt-sheet group/card flex flex-col gap-2 p-4 transition-[transform,box-shadow] duration-200 ease-anibt-spring hover:-translate-y-0.5 hover:shadow-[0_0_0_1px_var(--border),var(--anibt-shadow-lift)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+              >
+                <div className="flex items-center gap-2">
+                  <span className="text-[16px] font-extrabold group-hover/card:text-accent-foreground">{page.title}</span>
+                  <Badge variant="sticker" className="ml-auto" tilt={-3}>
+                    @anibt/{page.slug}
+                  </Badge>
+                </div>
+                <p className="anibt-clamp2 text-[12px] text-muted-foreground">{page.description}</p>
+              </Link>
+            ))}
           </div>
-          <p className="anibt-clamp2 text-[12px] text-muted-foreground">{item.description}</p>
-        </Link>
+        </section>
       ))}
     </div>
   )

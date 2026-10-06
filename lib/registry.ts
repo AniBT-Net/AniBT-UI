@@ -30,10 +30,6 @@ export function getRegistryItem(name: string): RegistryItem {
   return item
 }
 
-export function listComponentItems() {
-  return items.filter((item) => item.type === "registry:ui" || item.type === "registry:block")
-}
-
 /** Where `shadcn add` writes a file in a default project: `registry:ui` to
     `components/ui/`, a block's `registry:component` to `components/`. */
 export function defaultTarget(file: RegistryFile) {
