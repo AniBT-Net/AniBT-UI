@@ -18,3 +18,7 @@ public/r
 # logs and OS noise
 *.log
 .DS_Store
+
+# written by `next dev` when agentRules is on
+/AGENTS.md
+/CLAUDE.md

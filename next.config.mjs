@@ -11,6 +11,8 @@ const config = {
   output: "export",
   reactStrictMode: true,
   images: { unoptimized: true },
+  // `next dev` would otherwise write AGENTS.md / CLAUDE.md into the repo root.
+  agentRules: false,
 }
 
 const withMDX = createMDX()

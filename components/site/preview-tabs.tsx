@@ -1,17 +1,18 @@
 "use client"
 
 import { CodeIcon, EyeIcon, MoonStarIcon, SunIcon } from "lucide-react"
-import { useId, useState, type ReactNode } from "react"
+import { useTheme } from "next-themes"
+import { useId, useState, useSyncExternalStore, type ReactNode } from "react"
 
 import { cn } from "@/lib/utils"
 
-type Stage = "page" | "light" | "dark"
+const subscribe = () => () => {}
 
 /**
  * Preview / Code tabs over one example. The current tab wears the washi tape
- * (`anibt-tab-on`). The stage has its own 白樱 / 夜樱 switch so both modes
- * can be compared without flipping the whole site: `.site-light` and `.dark`
- * re-declare the theme on the stage alone.
+ * (`anibt-tab-on`). The 白樱 / 夜樱 switch beside the tabs flips the whole
+ * site, not just the stage: dialogs, menus, tooltips and toasts render in a
+ * portal on <body>, so a stage-only theme would leave them in the other mode.
  */
 export function PreviewTabs({
   preview,
@@ -25,7 +26,14 @@ export function PreviewTabs({
   className?: string
 }) {
   const [tab, setTab] = useState<"preview" | "code">("preview")
-  const [stage, setStage] = useState<Stage>("page")
+  const { resolvedTheme, setTheme } = useTheme()
+  // The theme is only known after hydration (localStorage or the OS).
+  const mounted = useSyncExternalStore(
+    subscribe,
+    () => true,
+    () => false
+  )
+  const mode = mounted ? resolvedTheme : undefined
   const id = useId()
 
   const tabs = [
@@ -60,8 +68,8 @@ export function PreviewTabs({
           <div role="group" aria-label="示例的颜色模式" className="anibt-seg mb-1.5">
             <button
               type="button"
-              aria-pressed={stage === "light"}
-              onClick={() => setStage(stage === "light" ? "page" : "light")}
+              aria-pressed={mode === "light"}
+              onClick={() => setTheme("light")}
               title="在白樱下看"
             >
               <SunIcon className="size-3.5" aria-hidden="true" />
@@ -69,8 +77,8 @@ export function PreviewTabs({
             </button>
             <button
               type="button"
-              aria-pressed={stage === "dark"}
-              onClick={() => setStage(stage === "dark" ? "page" : "dark")}
+              aria-pressed={mode === "dark"}
+              onClick={() => setTheme("dark")}
               title="在夜樱下看"
             >
               <MoonStarIcon className="size-3.5" aria-hidden="true" />
@@ -87,9 +95,7 @@ export function PreviewTabs({
         hidden={tab !== "preview"}
         className={cn(
           "anibt-sheet relative flex min-h-56 w-full p-6 sm:p-10",
-          align === "center" ? "items-center justify-center" : "items-start justify-start",
-          stage === "light" && "site-light",
-          stage === "dark" && "dark"
+          align === "center" ? "items-center justify-center" : "items-start justify-start"
         )}
       >
         {preview}
