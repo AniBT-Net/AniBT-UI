@@ -22,6 +22,8 @@ import FieldCompose from "./field-compose"
 import FieldDemo from "./field-demo"
 import InputDemo from "./input-demo"
 import InputStates from "./input-states"
+import KbdDemo from "./kbd-demo"
+import KbdLegend from "./kbd-legend"
 import LabelDemo from "./label-demo"
 import PasswordInputDemo from "./password-input-demo"
 import RadioGroupCards from "./radio-group-cards"
@@ -95,6 +97,8 @@ export const demos = {
   "search-input-demo": SearchInputDemo,
   "search-input-states": SearchInputStates,
   "password-input-demo": PasswordInputDemo,
+  "kbd-demo": KbdDemo,
+  "kbd-legend": KbdLegend,
 } satisfies Record<string, ComponentType>
 
 export type DemoName = keyof typeof demos

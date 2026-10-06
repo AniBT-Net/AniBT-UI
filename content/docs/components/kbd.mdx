@@ -1,0 +1,42 @@
+---
+title: Kbd
+description: 键帽：20 高的下沉小块，底下一道 1px 的边，圆体字。
+---
+
+<ComponentPreview name="kbd-demo" />
+
+## 安装
+
+<InstallBlock name="kbd" />
+
+## 用法
+
+```tsx title="用法"
+import { Kbd, KbdGroup } from "@/components/ui/kbd"
+
+<Kbd>⌘K</Kbd>
+
+<KbdGroup>
+  <Kbd>Ctrl</Kbd>
+  <Kbd>B</Kbd>
+</KbdGroup>
+```
+
+键帽是 `muted` 底、一圈 `border` 细边，底边多一道 `input` 色的 1px，像按下去的键；字是 Fredoka 600/12。它只是提示，不可点击（`pointer-events-none`），绑定快捷键是页面自己的事。
+
+## 图例
+
+<ComponentPreview name="kbd-legend" />
+
+命令面板底部的操作说明：键帽在前，12px 的说明在后。放进提示气泡（`data-slot="tooltip-content"`）时，键帽变成深色气泡上的浅色小块。
+
+## 属性
+
+<PropsTable
+  title="Kbd"
+  rows={[
+    { name: "children", type: "ReactNode", description: "键名：⌘K、esc、↵，或一个 16px 以下的图标" },
+  ]}
+/>
+
+`KbdGroup` 把几个键帽排成一行，间距 4px。两者都透传 `<kbd>` 的属性。
