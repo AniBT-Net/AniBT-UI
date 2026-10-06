@@ -233,6 +233,51 @@
       "categories": [
         "overlay"
       ]
+    },
+    {
+      "name": "sheet",
+      "type": "registry:ui",
+      "title": "Sheet",
+      "description": "AniBT edge panel: the floating paper sliding in from any side, a stitched header bar, one scrolling SheetBody and a stitched footer that stays reachable.",
+      "author": "AniBT <https://anibt.net>",
+      "dependencies": [
+        "lucide-react",
+        "radix-ui"
+      ],
+      "registryDependencies": [
+        "@anibt/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/anibt/ui/sheet.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "overlay"
+      ]
+    },
+    {
+      "name": "drawer",
+      "type": "registry:ui",
+      "title": "Drawer",
+      "description": "AniBT phone drawer on vaul: draggable floating paper with a grab handle, a stitched header, one scrolling DrawerBody and a footer clear of the home indicator.",
+      "author": "AniBT <https://anibt.net>",
+      "dependencies": [
+        "vaul"
+      ],
+      "registryDependencies": [
+        "@anibt/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/anibt/ui/drawer.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "overlay"
+      ]
     }
   ]
 }
