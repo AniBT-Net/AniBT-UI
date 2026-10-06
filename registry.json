@@ -293,6 +293,30 @@
       ]
     },
     {
+      "name": "toggle-group",
+      "type": "registry:ui",
+      "title": "Toggle Group",
+      "description": "AniBT toggle group: the segmented track with sticker thumbs, or a row of 28px filter chips that turn pink and show a tick when pressed.",
+      "author": "AniBT <https://anibt.net>",
+      "dependencies": [
+        "class-variance-authority",
+        "lucide-react",
+        "radix-ui"
+      ],
+      "registryDependencies": [
+        "@anibt/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/anibt/ui/toggle-group.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "forms"
+      ]
+    },
+    {
       "name": "kbd",
       "type": "registry:ui",
       "title": "Kbd",
