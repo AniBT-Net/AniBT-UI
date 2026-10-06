@@ -23,6 +23,7 @@ import FieldDemo from "./field-demo"
 import InputDemo from "./input-demo"
 import InputStates from "./input-states"
 import LabelDemo from "./label-demo"
+import PasswordInputDemo from "./password-input-demo"
 import RadioGroupCards from "./radio-group-cards"
 import RadioGroupDemo from "./radio-group-demo"
 import SearchInputDemo from "./search-input-demo"
@@ -93,6 +94,7 @@ export const demos = {
   "tabs-overflow": TabsOverflow,
   "search-input-demo": SearchInputDemo,
   "search-input-states": SearchInputStates,
+  "password-input-demo": PasswordInputDemo,
 } satisfies Record<string, ComponentType>
 
 export type DemoName = keyof typeof demos
