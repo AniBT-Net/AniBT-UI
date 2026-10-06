@@ -1,0 +1,41 @@
+---
+title: Textarea
+description: 多行文本框，材质和状态与 Input 相同，随内容长高。
+---
+
+<ComponentPreview name="textarea-demo" />
+
+## 安装
+
+<InstallBlock name="textarea" />
+
+## 用法
+
+```tsx title="用法"
+import { Label } from "@/components/ui/label"
+import { Textarea } from "@/components/ui/textarea"
+
+<Label htmlFor="notes">发布说明</Label>
+<Textarea id="notes" placeholder="片源、字幕、修正了什么" />
+```
+
+## 状态
+
+<ComponentPreview name="textarea-states" />
+
+材质、悬停、聚焦、出错、只读、禁用都和 [Input](/docs/components/input) 一样。不同的只有高度：`field-sizing-content` 让文本框从两行起随内容长高，用户还能往下拖高。需要固定高度时给 `className="h-40 field-sizing-fixed"`。
+
+收 Markdown 的地方用 Markdown 编辑器；公开页按纯文本显示的简介（番剧简介、字幕组简介）用普通文本框。
+
+## 属性
+
+<PropsTable
+  title="Textarea"
+  rows={[
+    { name: "aria-invalid", type: "boolean", description: "出错：红边红光晕" },
+    { name: "readOnly", type: "boolean", description: "只读：下沉的浅底" },
+    { name: "disabled", type: "boolean", description: "禁用：浅底弱字，不用透明度" },
+  ]}
+/>
+
+`Textarea` 就是一个 `<textarea>`：其余原生属性和 `ref` 原样透传。

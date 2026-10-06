@@ -16,6 +16,8 @@ import CardWell from "./card-well"
 // U1: inputs and forms.
 import InputDemo from "./input-demo"
 import InputStates from "./input-states"
+import TextareaDemo from "./textarea-demo"
+import TextareaStates from "./textarea-states"
 
 /**
  * Every live example the docs can show. The key is the file name in this
@@ -39,6 +41,8 @@ export const demos = {
   // U1: inputs and forms.
   "input-demo": InputDemo,
   "input-states": InputStates,
+  "textarea-demo": TextareaDemo,
+  "textarea-states": TextareaStates,
 } satisfies Record<string, ComponentType>
 
 export type DemoName = keyof typeof demos
