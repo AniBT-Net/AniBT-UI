@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 600" width="400" height="600">
+  <title>Candy Magic — AniBT UI demo cover (original placeholder art)</title>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffd6e6"/>
+      <stop offset="1" stop-color="#ff8fb4"/>
+    </linearGradient>
+    <pattern id="dots" width="36" height="36" patternUnits="userSpaceOnUse">
+      <circle cx="9" cy="9" r="4" fill="#fff" opacity="0.55"/>
+      <circle cx="27" cy="27" r="4" fill="#fff" opacity="0.55"/>
+    </pattern>
+    <linearGradient id="star" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fff59c"/>
+      <stop offset="1" stop-color="#ffb938"/>
+    </linearGradient>
+    <linearGradient id="gloss" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fff" stop-opacity="0.85"/>
+      <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+    <path id="heart" d="M0 8C-10 0-14-6-10-11c3-4 8-3 10 1 2-4 7-5 10-1 4 5 0 11-10 19Z"/>
+  </defs>
+  <rect width="400" height="600" fill="url(#bg)"/>
+  <rect width="400" height="600" fill="url(#dots)"/>
+  <g transform="translate(200 250) rotate(-8)">
+    <path d="M0-130l36 76 84 10-62 58 16 84L0 56l-74 42 16-84-62-58 84-10Z" fill="#fff" transform="scale(1.08)"/>
+    <path d="M0-130l36 76 84 10-62 58 16 84L0 56l-74 42 16-84-62-58 84-10Z" fill="url(#star)"/>
+    <path d="M0-112l28 60 66 8-38 32c-30-14-60-14-96 0l-38-32 66-8Z" fill="url(#gloss)" opacity="0.7"/>
+    <circle cx="-30" cy="-6" r="7" fill="#5a3a2a"/>
+    <circle cx="30" cy="-6" r="7" fill="#5a3a2a"/>
+    <circle cx="-27" cy="-9" r="2.4" fill="#fff"/>
+    <circle cx="33" cy="-9" r="2.4" fill="#fff"/>
+    <path d="M-12 14q12 12 24 0" fill="none" stroke="#5a3a2a" stroke-width="5" stroke-linecap="round"/>
+    <ellipse cx="-50" cy="14" rx="12" ry="7" fill="#ff8fb4" opacity="0.6"/>
+    <ellipse cx="50" cy="14" rx="12" ry="7" fill="#ff8fb4" opacity="0.6"/>
+  </g>
+  <g fill="#fff">
+    <use href="#heart" transform="translate(70 110) rotate(-14) scale(1.4)"/>
+    <use href="#heart" transform="translate(340 420) rotate(12) scale(1.2)"/>
+  </g>
+  <g fill="#e2447c">
+    <use href="#heart" transform="translate(330 110) rotate(10)"/>
+    <use href="#heart" transform="translate(60 420) rotate(-10) scale(0.9)"/>
+  </g>
+  <path d="M-10 470c60-30 120-30 180 0s120 30 180 0 50-14 60-10v150H-10Z" fill="#fff" opacity="0.92"/>
+  <path d="M-10 470c60-30 120-30 180 0s120 30 180 0" fill="none" stroke="#ff6c9b" stroke-width="6" stroke-dasharray="1 14" stroke-linecap="round"/>
+  <g fill="#d63e74" font-family="ui-rounded, 'Segoe UI', Arial, sans-serif" text-anchor="middle">
+    <text x="200" y="548" font-size="30" font-weight="700" letter-spacing="6">CANDY MAGIC</text>
+    <text x="200" y="574" font-size="11" letter-spacing="5" opacity="0.8">SEASON 2 · SUGAR RUSH</text>
+  </g>
+</svg>

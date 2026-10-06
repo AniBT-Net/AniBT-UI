@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 600" width="400" height="600">
+  <title>Forest Song — AniBT UI demo cover (original placeholder art)</title>
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#e9f7d9"/>
+      <stop offset="1" stop-color="#9fd6a4"/>
+    </linearGradient>
+    <radialGradient id="fly" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#fffbc4"/>
+      <stop offset="1" stop-color="#fffbc4" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="400" height="600" fill="url(#sky)"/>
+  <circle cx="110" cy="130" r="54" fill="#fff" opacity="0.7"/>
+  <path d="M0 250c50-40 90-60 140-40s80 50 130 30 90-50 130-30v390H0Z" fill="#79c08a"/>
+  <path d="M0 300c60-30 110-26 160 4s110 30 160 0 60-20 80-14v310H0Z" fill="#4fa36f"/>
+  <g fill="#2f7d55">
+    <path d="M60 330l34-110 34 110Z"/><path d="M110 340l26-86 26 86Z"/><path d="M300 330l30-100 30 100Z"/>
+    <path d="M250 346l24-80 24 80Z"/><path d="M350 350l22-70 22 70Z"/>
+  </g>
+  <path d="M0 380c70-20 140-16 200 6s130 26 200 4v210H0Z" fill="#2f7d55"/>
+  <g transform="translate(200 360)">
+    <rect x="-56" y="-62" width="112" height="12" rx="3" fill="#e5533d"/>
+    <rect x="-66" y="-74" width="132" height="12" rx="6" fill="#e5533d"/>
+    <rect x="-44" y="-50" width="10" height="82" fill="#e5533d"/>
+    <rect x="34" y="-50" width="10" height="82" fill="#e5533d"/>
+    <rect x="-46" y="-40" width="92" height="8" fill="#c23f2c"/>
+  </g>
+  <path d="M0 440c70-14 140-10 200 8s130 22 200 6v146H0Z" fill="#205c3f"/>
+  <g>
+    <circle cx="90" cy="420" r="12" fill="url(#fly)"/><circle cx="90" cy="420" r="2.5" fill="#fffbc4"/>
+    <circle cx="300" cy="400" r="14" fill="url(#fly)"/><circle cx="300" cy="400" r="3" fill="#fffbc4"/>
+    <circle cx="160" cy="460" r="10" fill="url(#fly)"/><circle cx="160" cy="460" r="2" fill="#fffbc4"/>
+    <circle cx="340" cy="470" r="10" fill="url(#fly)"/><circle cx="340" cy="470" r="2" fill="#fffbc4"/>
+    <circle cx="240" cy="300" r="10" fill="url(#fly)"/><circle cx="240" cy="300" r="2" fill="#fffbc4"/>
+  </g>
+  <g fill="#f3ffe9" font-family="ui-rounded, 'Segoe UI', Arial, sans-serif" text-anchor="middle">
+    <text x="200" y="548" font-size="30" font-weight="700" letter-spacing="6">FOREST SONG</text>
+    <text x="200" y="574" font-size="11" letter-spacing="5" opacity="0.8">THE SHRINE AT THE EDGE</text>
+  </g>
+</svg>
