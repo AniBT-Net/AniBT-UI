@@ -96,28 +96,6 @@
       ]
     },
     {
-      "name": "label",
-      "type": "registry:ui",
-      "title": "Label",
-      "description": "AniBT field label: 13/600 in ink2 above its control; a disabled control greys it instead of fading it.",
-      "author": "AniBT <https://anibt.net>",
-      "dependencies": [
-        "radix-ui"
-      ],
-      "registryDependencies": [
-        "@anibt/theme"
-      ],
-      "files": [
-        {
-          "path": "registry/anibt/ui/label.tsx",
-          "type": "registry:ui"
-        }
-      ],
-      "categories": [
-        "forms"
-      ]
-    },
-    {
       "name": "input",
       "type": "registry:ui",
       "title": "Input",
@@ -148,6 +126,51 @@
       "files": [
         {
           "path": "registry/anibt/ui/textarea.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "forms"
+      ]
+    },
+    {
+      "name": "label",
+      "type": "registry:ui",
+      "title": "Label",
+      "description": "AniBT field label: 13/600 in ink2 above its control; a disabled control greys it instead of fading it.",
+      "author": "AniBT <https://anibt.net>",
+      "dependencies": [
+        "radix-ui"
+      ],
+      "registryDependencies": [
+        "@anibt/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/anibt/ui/label.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "forms"
+      ]
+    },
+    {
+      "name": "checkbox",
+      "type": "registry:ui",
+      "title": "Checkbox",
+      "description": "AniBT candy checkbox: an 18px box that turns candy with a white tick that pops in; indeterminate shows a dash.",
+      "author": "AniBT <https://anibt.net>",
+      "dependencies": [
+        "lucide-react",
+        "radix-ui"
+      ],
+      "registryDependencies": [
+        "@anibt/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/anibt/ui/checkbox.tsx",
           "type": "registry:ui"
         }
       ],
