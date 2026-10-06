@@ -26,6 +26,8 @@ import DrawerDemo from "./drawer-demo"
 import DropdownMenuDemo from "./dropdown-menu-demo"
 import DropdownMenuOptions from "./dropdown-menu-options"
 import HoverCardDemo from "./hover-card-demo"
+import MarkdownEditorDemo from "./markdown-editor-demo"
+import MarkdownEditorNarrow from "./markdown-editor-narrow"
 import MultiSelectDemo from "./multi-select-demo"
 import MultiSelectDialog from "./multi-select-dialog"
 import PopoverDemo from "./popover-demo"
@@ -73,6 +75,8 @@ export const demos = {
   "searchable-select-demo": SearchableSelectDemo,
   "multi-select-demo": MultiSelectDemo,
   "multi-select-dialog": MultiSelectDialog,
+  "markdown-editor-demo": MarkdownEditorDemo,
+  "markdown-editor-narrow": MarkdownEditorNarrow,
 } satisfies Record<string, ComponentType>
 
 export type DemoName = keyof typeof demos

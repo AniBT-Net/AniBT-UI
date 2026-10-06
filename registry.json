@@ -379,6 +379,35 @@
         "forms",
         "overlay"
       ]
+    },
+    {
+      "name": "markdown-editor",
+      "type": "registry:ui",
+      "title": "Markdown Editor",
+      "description": "AniBT Markdown field: 编写 / 分栏 / 预览, a nine-tool toolbar with Ctrl/Cmd shortcuts that undo cleanly, a react-markdown + GFM preview in A's prose, and a character count.",
+      "author": "AniBT <https://anibt.net>",
+      "dependencies": [
+        "lucide-react",
+        "radix-ui",
+        "react-markdown",
+        "remark-gfm"
+      ],
+      "registryDependencies": [
+        "@anibt/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/anibt/ui/markdown-editor.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/anibt/ui/markdown-format.ts",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "forms"
+      ]
     }
   ]
 }
