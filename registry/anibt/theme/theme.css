@@ -34,10 +34,12 @@
 @import "@fontsource/fredoka/700.css";
 
 @theme inline {
-  /* Body: the platform CJK stack. Figures, English labels, tags, stickers and
-     key caps: Fredoka (Latin only); every Han character falls through to the
-     platform family after it. */
-  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC", "Noto Sans SC", sans-serif;
+  /* Figures, English labels, tags, stickers and key caps: Fredoka (Latin
+     only); every Han character falls through to the platform family after it.
+     The body stack (`--font-sans`) is set on :root below, not here: stock
+     `shadcn init` already writes `--font-sans: var(--font-sans)` into
+     @theme, and the CLI keeps an existing @theme key, so only a :root value
+     reaches a consumer project. */
   --font-anibt-display: "Fredoka", ui-rounded, -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC", "Noto Sans SC", sans-serif;
 
   /* Motion: springy for anything that moves, calm for colour. */
@@ -83,6 +85,8 @@
 }
 
 :root {
+  /* Body: the platform CJK stack (no web font for Han characters). */
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC", "Noto Sans SC", sans-serif;
   color-scheme: light;
 
   /* ── 白樱 — neutrals: cool, with the faintest lilac ─────────────────────── */
@@ -180,6 +184,8 @@
 }
 
 .dark {
+  /* Same body stack as 白樱 (the CLI writes light and dark vars as pairs). */
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC", "Noto Sans SC", sans-serif;
   color-scheme: dark;
 
   /* ── 夜樱 — the same names; the tints are opaque so a pinned cell can

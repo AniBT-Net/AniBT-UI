@@ -20,19 +20,25 @@ export function InstallBlock({ name }: { name: string }) {
     <div className="not-prose my-6 flex flex-col gap-3">
       <CommandLine command={addCommand(name)} />
       <p className="text-[12px] text-muted-foreground">
-        CLI 会一并装好{" "}
-        {["@anibt/theme", ...anibtDeps].map((dep, index) => (
-          <span key={dep}>
-            {index > 0 ? "、" : null}
-            <code className="font-mono">{dep}</code>
-          </span>
-        ))}
-        。第一次用之前，先在 <code className="font-mono">components.json</code> 里登记{" "}
-        <code className="font-mono">@anibt</code>（见
+        第一次用之前：在 <code className="font-mono">components.json</code> 里登记{" "}
+        <code className="font-mono">@anibt</code>，再单独运行一次{" "}
+        <code className="font-mono">{addCommand("theme")}</code>（见
         <Link href="/docs" className="text-accent-foreground hover:underline">
           快速开始
         </Link>
-        ）。
+        ）。只有单独安装主题时，CLI 才会把 shadcn 的标准颜色换成白樱 / 夜樱；随组件带进来的主题只补上 AniBT 自己的变量和配方。
+        {anibtDeps.length ? (
+          <>
+            {" "}CLI 会一并装好{" "}
+            {anibtDeps.map((dep, index) => (
+              <span key={dep}>
+                {index > 0 ? "、" : null}
+                <code className="font-mono">{dep}</code>
+              </span>
+            ))}
+            。
+          </>
+        ) : null}
       </p>
 
       <details className="group anibt-well bg-card">

@@ -12,7 +12,6 @@
       ],
       "cssVars": {
         "theme": {
-          "font-sans": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", \"PingFang SC\", \"Hiragino Sans GB\", \"Microsoft YaHei\", \"Noto Sans CJK SC\", \"Noto Sans SC\", sans-serif",
           "font-anibt-display": "\"Fredoka\", ui-rounded, -apple-system, BlinkMacSystemFont, \"Segoe UI\", \"PingFang SC\", \"Hiragino Sans GB\", \"Microsoft YaHei\", \"Noto Sans CJK SC\", \"Noto Sans SC\", sans-serif",
           "ease-anibt-spring": "cubic-bezier(0.34, 1.56, 0.64, 1)",
           "ease-anibt-out": "cubic-bezier(0.2, 0.7, 0.2, 1)",
@@ -52,6 +51,7 @@
           "color-anibt-scrim": "var(--anibt-scrim)"
         },
         "light": {
+          "font-sans": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", \"PingFang SC\", \"Hiragino Sans GB\", \"Microsoft YaHei\", \"Noto Sans CJK SC\", \"Noto Sans SC\", sans-serif",
           "radius": "0.625rem",
           "background": "#f7f5fa",
           "foreground": "#1f1c28",
@@ -135,6 +135,7 @@
           "anibt-ring-danger": "0 0 0 4px rgba(229, 83, 61, 0.14)"
         },
         "dark": {
+          "font-sans": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", \"PingFang SC\", \"Hiragino Sans GB\", \"Microsoft YaHei\", \"Noto Sans CJK SC\", \"Noto Sans SC\", sans-serif",
           "background": "#13111a",
           "foreground": "#f3f0f8",
           "card": "#1c1926",

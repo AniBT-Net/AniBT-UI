@@ -2,6 +2,7 @@
 /* Site-only: 白樱 on a class, for a block that must stay light inside a 夜樱 page. */
 .site-light {
   color-scheme: light;
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC", "Noto Sans SC", sans-serif;
   --radius: 0.625rem;
   --background: #f7f5fa;
   --foreground: #1f1c28;

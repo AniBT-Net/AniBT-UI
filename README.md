@@ -8,7 +8,7 @@ AniBT 「贴纸手账」组件库：模切白边贴纸、糖果光泽按钮、�
 - 命名空间：`@anibt`
 - 现有条目：`@anibt/theme`、`@anibt/button`、`@anibt/badge`、`@anibt/card`、`@anibt/spinner`
 
-> **English summary.** AniBT UI is the component library behind [anibt.net](https://anibt.net), published as a shadcn registry under the `@anibt` namespace. It ships a `registry:theme` item (light mode “Shirozakura” on `:root`, dark mode “Yozakura” on `.dark`, mapped onto the standard shadcn tokens plus `--anibt-*` extras and `anibt-*` utilities) and Radix-based components (button, badge, card, spinner) that drop into any shadcn/Tailwind v4 project. Add `"@anibt": "https://ui.anibt.net/r/{name}.json"` to the `registries` of your `components.json`, then run `npx shadcn@latest add @anibt/theme @anibt/button`. Code is MIT; the AniBT logo and mascot are not.
+> **English summary.** AniBT UI is the component library behind [anibt.net](https://anibt.net), published as a shadcn registry under the `@anibt` namespace. It ships a `registry:theme` item (light mode “Shirozakura” on `:root`, dark mode “Yozakura” on `.dark`, mapped onto the standard shadcn tokens plus `--anibt-*` extras and `anibt-*` utilities) and Radix-based components (button, badge, card, spinner) that drop into any shadcn/Tailwind v4 project. Add `"@anibt": "https://ui.anibt.net/r/{name}.json"` to the `registries` of your `components.json`, then run `npx shadcn@latest add @anibt/theme` once (it swaps the standard shadcn colours for Shirozakura/Yozakura) and add components such as `npx shadcn@latest add @anibt/button`. Code is MIT; the AniBT logo and mascot are not.
 
 ## 在你的项目里使用
 
