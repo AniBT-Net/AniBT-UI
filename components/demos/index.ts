@@ -20,6 +20,10 @@ import ConfirmDialogDemo from "./confirm-dialog-demo"
 import ConfirmDialogPlain from "./confirm-dialog-plain"
 import DialogDemo from "./dialog-demo"
 import DialogScroll from "./dialog-scroll"
+import DropdownMenuDemo from "./dropdown-menu-demo"
+import DropdownMenuOptions from "./dropdown-menu-options"
+import HoverCardDemo from "./hover-card-demo"
+import PopoverDemo from "./popover-demo"
 
 /**
  * Every live example the docs can show. The key is the file name in this
@@ -47,6 +51,10 @@ export const demos = {
   "alert-dialog-small": AlertDialogSmall,
   "confirm-dialog-demo": ConfirmDialogDemo,
   "confirm-dialog-plain": ConfirmDialogPlain,
+  "dropdown-menu-demo": DropdownMenuDemo,
+  "dropdown-menu-options": DropdownMenuOptions,
+  "popover-demo": PopoverDemo,
+  "hover-card-demo": HoverCardDemo,
 } satisfies Record<string, ComponentType>
 
 export type DemoName = keyof typeof demos

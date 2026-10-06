@@ -1,0 +1,47 @@
+---
+title: Hover Card
+description: 指针停在链接上时弹出的预览卡，比如字幕组或番剧的简介。只是预览，不是唯一入口。
+---
+
+<ComponentPreview name="hover-card-demo" />
+
+## 安装
+
+<InstallBlock name="hover-card" />
+
+## 用法
+
+```tsx title="components/group-link.tsx"
+import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card"
+
+<HoverCard>
+  <HoverCardTrigger asChild>
+    <a href="/group/mmnc">@喵萌奶茶屋</a>
+  </HoverCardTrigger>
+  <HoverCardContent>{/* 头像、简介、数字 */}</HoverCardContent>
+</HoverCard>
+```
+
+## 什么时候用
+
+- 触发器必须是真的链接：触屏和键盘用户直接点进去看完整页面，悬停卡只给有指针的人省一次跳转。
+- 停 300ms 打开、离开 150ms 关闭，划过页面时不会闪。用 `openDelay` / `closeDelay` 调整。
+- 卡片是浮层（`anibt-pop`），宽 256、内边 16。例子里的头像是 `anibt-avatar anibt-rim` 的模切贴纸方块，数字用圆体，底部用缝线隔开。
+
+## 属性
+
+<PropsTable
+  title="HoverCard"
+  rows={[
+    { name: "openDelay", type: "number", default: "300", description: "停留多久打开（毫秒）" },
+    { name: "closeDelay", type: "number", default: "150", description: "离开多久关闭（毫秒）" },
+  ]}
+/>
+
+<PropsTable
+  title="HoverCardContent"
+  rows={[
+    { name: "align", type: '"start" | "center" | "end"', default: '"center"', description: "与触发器的对齐方式" },
+    { name: "sideOffset", type: "number", default: "6", description: "离触发器的距离" },
+  ]}
+/>

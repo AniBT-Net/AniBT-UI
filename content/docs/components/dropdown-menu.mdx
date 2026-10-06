@@ -1,0 +1,81 @@
+---
+title: Dropdown Menu
+description: 浮层菜单：32 高的行，指针或键盘所在行是粉色淡底，分组之间是缝线，危险行是红色。
+---
+
+<ComponentPreview name="dropdown-menu-demo" />
+
+## 安装
+
+<InstallBlock name="dropdown-menu" />
+
+## 用法
+
+```tsx title="components/release-actions.tsx"
+import { FlagIcon, MagnetIcon, MoreHorizontalIcon } from "lucide-react"
+
+import { Button } from "@/components/ui/button"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuShortcut,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+
+<DropdownMenu>
+  <DropdownMenuTrigger asChild>
+    <Button variant="secondary" size="icon" aria-label="更多操作">
+      <MoreHorizontalIcon />
+    </Button>
+  </DropdownMenuTrigger>
+  <DropdownMenuContent align="end">
+    <DropdownMenuItem>
+      <MagnetIcon />
+      复制磁力链接
+      <DropdownMenuShortcut>M</DropdownMenuShortcut>
+    </DropdownMenuItem>
+    <DropdownMenuSeparator />
+    <DropdownMenuItem variant="destructive">
+      <FlagIcon />
+      举报资源
+    </DropdownMenuItem>
+  </DropdownMenuContent>
+</DropdownMenu>
+```
+
+## 行的样子
+
+- 面板是浮层（`anibt-pop`），内边 4。行高 32、圆角 10、13 号字，图标是弱色。
+- 指针或键盘所在的行：粉色淡底（`accent`）、粉字、粉色图标。
+- `variant="destructive"`：红字红图标，选中时是红色淡底。
+- 禁用的行降成弱色字，不是半透明。
+- `DropdownMenuLabel` 是 12/600 的弱色组名；`DropdownMenuSeparator` 是虚线缝线。
+- `DropdownMenuShortcut` 放在行尾，圆体。
+
+## 勾选、单选与子菜单
+
+<ComponentPreview name="dropdown-menu-options" />
+
+`DropdownMenuCheckboxItem` 前面是粉色的勾，`DropdownMenuRadioItem` 前面是粉色的点；行的文字自动缩进到对齐。想勾选后菜单不关，在 `onSelect` 里 `event.preventDefault()`。`DropdownMenuSub` 打开时触发行保持粉色淡底。
+
+## 属性
+
+<PropsTable
+  title="DropdownMenuItem"
+  rows={[
+    { name: "variant", type: '"default" | "destructive"', default: '"default"', description: "危险行是红色" },
+    { name: "inset", type: "boolean", default: "false", description: "缩进到和勾选行对齐" },
+  ]}
+/>
+
+<PropsTable
+  title="DropdownMenuContent"
+  rows={[
+    { name: "sideOffset", type: "number", default: "6", description: "离触发器的距离" },
+    { name: "align", type: '"start" | "center" | "end"', default: '"center"', description: "对齐方式（Radix）" },
+  ]}
+/>
+
+导出名和属性与 shadcn 一致（`DropdownMenuPortal`、`Group`、`CheckboxItem`、`RadioGroup`、`RadioItem`、`Label`、`Separator`、`Shortcut`、`Sub`、`SubTrigger`、`SubContent`），`DropdownMenuTrigger` 也接受 Base UI 的 `render`。
