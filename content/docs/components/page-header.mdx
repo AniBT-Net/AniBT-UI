@@ -1,0 +1,60 @@
+---
+title: Page Header
+description: 一行的页头：倾斜的贴纸记号、20/800 的标题、圆体的数字、省略的说明，右边是这一页的工具组。
+---
+
+<ComponentPreview name="page-header-demo" />
+
+## 安装
+
+<InstallBlock name="page-header" />
+
+## 用法
+
+```tsx title="用法"
+import { SparklesIcon } from "lucide-react"
+
+import { Button } from "@/components/ui/button"
+import { PageHeader } from "@/components/ui/page-header"
+
+<PageHeader
+  icon={SparklesIcon}
+  title="番剧"
+  meta="2,184 部"
+  description="按季度浏览全部番剧。"
+  actions={<Button variant="secondary">订阅 RSS</Button>}
+/>
+```
+
+从左到右：可选的小节记号（一枚倾斜 −4° 的白色贴纸，图标是粉色，指针放上去会翻向另一边）→ 20/800 的标题 → 圆体的数字 → 12 号弱色说明（和标题同一行，放不下就省略，`lg` 以下隐藏）→ 推到右边的工具组：这一页自己的页签 `tabs`、控件 `toolbar`、按钮 `actions`。
+
+标题那一簇从不换行。`md` 以下，工具组单独占一行并横向滚动（右缘渐隐），而不是折成好几行——页头下面不会出现一大块空白。
+
+`iconTone="time"` 把记号染成蓝色，给时间表、今日放送这类「时间」的页。
+
+## 紧凑
+
+<ComponentPreview name="page-header-compact" />
+
+`compact` 是工作台里更密的页头：18 号标题、24px 记号、更小的下边距。外壳已经有 `h1` 时，用 `headingLevel="h2"` 保持标题层级正确。
+
+## 属性
+
+<PropsTable
+  title="PageHeader"
+  rows={[
+    { name: "title", type: "ReactNode", description: "必填：标题" },
+    { name: "icon", type: "ComponentType | ReactNode", description: "小节记号：lucide 图标组件或任意节点" },
+    { name: "iconTone", type: '"mark" | "time"', default: '"mark"', description: "粉色 / 蓝色记号" },
+    { name: "meta", type: "ReactNode", description: "标题旁的数字：2,184 部" },
+    { name: "description", type: "ReactNode", description: "一行说明，放不下就省略" },
+    { name: "tabs", type: "ReactNode", description: "这一页的页签，在工具组最左" },
+    { name: "toolbar", type: "ReactNode", description: "搜索、筛选、排序" },
+    { name: "actions", type: "ReactNode", description: "按钮，在最右；一页最多一个糖果主按钮" },
+    { name: "compact", type: "boolean", default: "false", description: "工作台的紧凑页头" },
+    { name: "headingLevel", type: '"h1" | "h2" | "h3"', default: '"h1"', description: "标题元素" },
+    { name: "children", type: "ReactNode", description: "页头下面另起一行的内容" },
+  ]}
+/>
+
+另外导出 `PageHeaderMark`，卡片头里需要同一枚记号时单独用。

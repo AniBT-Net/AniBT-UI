@@ -49,7 +49,8 @@
           "color-anibt-sticker-edge": "var(--anibt-sticker-edge)",
           "color-anibt-candy-edge": "var(--anibt-candy-edge)",
           "color-anibt-candy-ink": "var(--anibt-candy-ink)",
-          "color-anibt-scrim": "var(--anibt-scrim)"
+          "color-anibt-scrim": "var(--anibt-scrim)",
+          "animate-anibt-indeterminate": "anibt-indeterminate 1.4s cubic-bezier(0.2, 0.7, 0.2, 1) infinite"
         },
         "light": {
           "radius": "0.625rem",
@@ -1216,6 +1217,14 @@
           "font-size": "12px",
           "line-height": "16px",
           "box-shadow": "var(--anibt-shadow-sticker)"
+        },
+        "@keyframes anibt-indeterminate": {
+          "from": {
+            "transform": "translateX(-100%)"
+          },
+          "to": {
+            "transform": "translateX(250%)"
+          }
         },
         "@layer base": {
           ":root": {

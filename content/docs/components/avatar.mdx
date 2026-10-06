@@ -1,0 +1,56 @@
+---
+title: Avatar
+description: 模切白边的头像贴纸：人是圆的，字幕组和机构是圆角方的；没有图时是粉色淡底上的圆体首字。
+---
+
+<ComponentPreview name="avatar-demo" />
+
+## 安装
+
+<InstallBlock name="avatar" />
+
+## 用法
+
+```tsx title="用法"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+
+<Avatar shape="rounded">
+  <AvatarImage src="/logos/nekomoe.png" alt="喵萌奶茶屋" />
+  <AvatarFallback>喵</AvatarFallback>
+</Avatar>
+```
+
+每个头像都贴着 2px 的模切白边和贴纸阴影（`anibt-rim`），`rim={false}` 可以去掉。图片加载完成前和加载失败时显示 `AvatarFallback`：粉色淡底、粉色圆体字。
+
+只想传名字和图片地址、让组件自己决定首字，用 [Entity Avatar](/docs/components/entity-avatar)。
+
+## 形状与尺寸
+
+- `shape="circle"`（默认）给人，`shape="rounded"`（28% 圆角）给字幕组、机构。A 用形状区分两者。
+- 尺寸：`xs` 20（名字旁的小图）、`sm` 24、`default` 32、`lg` 40、`xl` 64（资料页头）。`sm` / `default` / `lg` 与 shadcn 同名，可以直接替换 `components/ui/avatar.tsx`。
+
+## 组与角标
+
+<ComponentPreview name="avatar-group" />
+
+`AvatarGroup` 让头像互相压住一点，白边自然把它们分开；`AvatarGroupCount` 是末尾的「+N」，一枚安静的计数贴纸。`AvatarBadge` 是右下角的小点（在线、直播中、有新内容），颜色只是记号，旁边要有文字说明状态。
+
+## 属性
+
+<PropsTable
+  title="Avatar"
+  rows={[
+    { name: "size", type: '"xs" | "sm" | "default" | "lg" | "xl"', default: '"default"', description: "20 / 24 / 32 / 40 / 64" },
+    { name: "shape", type: '"circle" | "rounded"', default: '"circle"', description: "人用圆形，字幕组和机构用圆角方形" },
+    { name: "rim", type: "boolean", default: "true", description: "模切白边与贴纸阴影" },
+  ]}
+/>
+
+<PropsTable
+  title="AvatarBadge"
+  rows={[
+    { name: "tone", type: '"mark" | "ok" | "time" | "warn" | "mute"', default: '"mark"', description: "粉 / 薄荷 / 蓝 / 琥珀 / 灰" },
+  ]}
+/>
+
+`AvatarImage`、`AvatarFallback` 是 Radix Avatar 的 `Image` / `Fallback`，属性原样透传；`AvatarGroup`、`AvatarGroupCount` 透传给 `div`。

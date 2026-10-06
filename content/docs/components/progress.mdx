@@ -1,0 +1,50 @@
+---
+title: Progress
+description: 下沉的轨道和带光泽的填充：蓝色是进行中，糖果粉是你自己的目标，薄荷是已完成。
+---
+
+<ComponentPreview name="progress-demo" />
+
+## 安装
+
+<InstallBlock name="progress" />
+
+## 用法
+
+```tsx title="用法"
+import { Progress } from "@/components/ui/progress"
+
+<Progress value={62} aria-label="上传进度" />
+```
+
+一种颜色一种职责：`tone="water"`（默认）是蓝色，表示进行中；`tone="candy"` 给读者自己在填的目标（本月发布、追番进度）；`tone="ok"` 表示已经完成。`size` 有 `compact`（6 高，放在行里）、`default`（10 高）和 `lg`（14 高）。
+
+## 标签与数值
+
+<ComponentPreview name="progress-label" />
+
+有子元素时，进度条变成 Base UI 的样子：上面一行是 `ProgressLabel` 和 `ProgressValue`，下面是轨道。`ProgressValue` 不写内容时自己算：`max` 是 100 时显示百分比，否则显示 `3 / 5`；`format` 可以强制其中一种。
+
+`value={null}`（或不传）是不确定进度：一小段填充沿着轨道来回滑动，减少动态效果时停住。
+
+## 属性
+
+<PropsTable
+  title="Progress"
+  rows={[
+    { name: "value", type: "number | null", default: "null", description: "当前值；null 为不确定进度" },
+    { name: "max", type: "number", default: "100", description: "最大值" },
+    { name: "tone", type: '"water" | "candy" | "ok"', default: '"water"', description: "进行中 / 你的目标 / 已完成" },
+    { name: "size", type: '"compact" | "default" | "lg"', default: '"default"', description: "6 / 10 / 14 高" },
+    { name: "trackClassName", type: "string", description: "有标签行时，轨道自己的 class" },
+  ]}
+/>
+
+<PropsTable
+  title="ProgressValue"
+  rows={[
+    { name: "format", type: '"fraction" | "percent"', description: "不写时 max 为 100 显示百分比，否则显示分数" },
+  ]}
+/>
+
+为了和 shadcn 对齐，还导出 `ProgressIndicator`、`ProgressTrack`、`ProgressLabel`。

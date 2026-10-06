@@ -1,0 +1,73 @@
+---
+title: Empty
+description: 空状态：面板里的分组框，或者 A 的倾斜便签——你的图片从便签上沿探出头，两颗 ✦ 在旁边闪。
+---
+
+<ComponentPreview name="empty-demo" />
+
+## 安装
+
+<InstallBlock name="empty" />
+
+## 用法
+
+```tsx title="components/no-subscriptions.tsx"
+import { Button } from "@/components/ui/button"
+import {
+  Empty,
+  EmptyContent,
+  EmptyDescription,
+  EmptyHeader,
+  EmptyMedia,
+  EmptyTitle,
+} from "@/components/ui/empty"
+
+export function NoSubscriptions() {
+  return (
+    <Empty variant="note">
+      <EmptyHeader>
+        <EmptyMedia variant="peek">
+          <img src="/mascot.webp" alt="" width={112} height={112} />
+        </EmptyMedia>
+        <EmptyTitle>还没有追的番</EmptyTitle>
+        <EmptyDescription>订阅之后，新的一集会出现在这里。</EmptyDescription>
+      </EmptyHeader>
+      <EmptyContent>
+        <Button>去挑番</Button>
+      </EmptyContent>
+    </Empty>
+  )
+}
+```
+
+`variant="note"` 是一页里那个最大的空：一张倾斜 −1° 的纸便签，浮层阴影，指针放上去会摆正。`EmptyMedia variant="peek"` 把你的图片立在便签上沿，下面 28px 藏在便签后面，并且隔几秒探一下头；两颗 ✦ 和一颗小心是装饰，`sparkles={false}` 可以去掉。
+
+组件只画框，不带图：吉祥物、插画都是你自己的。示例里的看板娘是 AniBT 的品牌素材，不随组件分发。
+
+## 分组框
+
+<ComponentPreview name="empty-well" />
+
+默认的 `variant="well"` 是面板里的一个分组：1px 边、圆角 10、内容居中，`size="sm"` 收紧上下留白。`EmptyMedia variant="icon"` 是 A 的小节记号：一枚倾斜的白色贴纸，图标是粉色。`variant="plain"` 不画框，给本身已经有框的地方。
+
+文案说清楚「这里为什么空」和「下一步做什么」；按钮最多一个糖果主按钮。
+
+## 属性
+
+<PropsTable
+  title="Empty"
+  rows={[
+    { name: "variant", type: '"well" | "note" | "plain"', default: '"well"', description: "分组框 / 倾斜便签 / 不画框" },
+    { name: "size", type: '"default" | "sm"', default: '"default"', description: "上下留白" },
+  ]}
+/>
+
+<PropsTable
+  title="EmptyMedia"
+  rows={[
+    { name: "variant", type: '"default" | "icon" | "image" | "peek"', default: '"default"', description: "图标 / 贴纸图标 / 图片 / 从便签上沿探头的图片" },
+    { name: "sparkles", type: "boolean", default: "peek 时为 true", description: "两颗 ✦ 和一颗小心" },
+  ]}
+/>
+
+`EmptyHeader`、`EmptyTitle`、`EmptyDescription`、`EmptyContent` 与 shadcn 同名，属性透传给 `div`。

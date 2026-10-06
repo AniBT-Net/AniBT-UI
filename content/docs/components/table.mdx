@@ -1,0 +1,80 @@
+---
+title: Table
+description: 真正的 table：36 高的弱色表头、至少 48 高的行，行与行之间是缝线；选中的行是粉色淡底，数字用圆体右对齐。
+---
+
+<ComponentPreview name="table-demo" />
+
+## 安装
+
+<InstallBlock name="table" />
+
+## 用法
+
+```tsx title="用法"
+import { Card, CardContent } from "@/components/ui/card"
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
+
+<Card className="overflow-hidden py-0">
+  <Table>
+    <TableHeader>
+      <TableRow>
+        <TableHead>字幕组</TableHead>
+        <TableHead numeric>资源</TableHead>
+      </TableRow>
+    </TableHeader>
+    <TableBody>
+      <TableRow>
+        <TableCell>喵萌奶茶屋</TableCell>
+        <TableCell numeric>1,284</TableCell>
+      </TableRow>
+    </TableBody>
+  </Table>
+</Card>
+```
+
+表格自己不画框：它直接坐在所在的面板上，放进 `Card` 并去掉卡片的内边距即可。表头是 12/600 的弱色字，下面一条缝线；行至少 48 高，行间缝线，指针下压成下沉色，`data-state="selected"` 的行是粉色淡底。首列和末列多留 4px，和卡片边对齐。
+
+数字列在表头和单元格上都写 `numeric`：右对齐、圆体、等宽数字，竖着扫一列不会跳。
+
+`TableIdentity` 是实体行的第一格：可选的图片、一行名字、一行弱色说明，始终 32 高，没有说明的行也不会变矮。
+
+## 吸顶表头
+
+<ComponentPreview name="table-sticky" />
+
+给表格容器一个最大高度（`containerClassName="max-h-72"`），`TableHeader sticky` 就会钉在顶上；钉住的表头用卡片的纸色，下面滚过的行不会透出来。`TableFooter` 是合计行：下沉色、上缘一条缝线。
+
+## 属性
+
+<PropsTable
+  title="Table"
+  rows={[
+    { name: "containerClassName", type: "string", description: "滚动容器的 class：限高、圆角" },
+  ]}
+/>
+
+<PropsTable
+  title="TableHeader"
+  rows={[
+    { name: "sticky", type: "boolean", default: "false", description: "钉在滚动容器的顶上" },
+  ]}
+/>
+
+<PropsTable
+  title="TableHead · TableCell"
+  rows={[
+    { name: "numeric", type: "boolean", default: "false", description: "右对齐、圆体、等宽数字" },
+  ]}
+/>
+
+<PropsTable
+  title="TableIdentity"
+  rows={[
+    { name: "title", type: "ReactNode", description: "必填：一行名字" },
+    { name: "meta", type: "ReactNode", description: "名字下的弱色说明" },
+    { name: "media", type: "ReactNode", description: "左边的图片，常用 EntityAvatar" },
+  ]}
+/>
+
+其余部分与 shadcn 同名，属性透传给对应的表格元素。

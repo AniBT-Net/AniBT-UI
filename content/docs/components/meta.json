@@ -1,4 +1,4 @@
 {
   "title": "组件",
-  "pages": ["index", "button", "badge", "card"]
+  "pages": ["index", "button", "badge", "card", "avatar", "entity-avatar", "skeleton", "progress", "pagination", "empty", "tooltip", "separator", "alert", "accordion", "breadcrumb", "table", "page-header"]
 }

@@ -1,0 +1,46 @@
+---
+title: Entity Avatar
+description: 一个东西的唯一图像——字幕组的 logo、用户的头像——和唯一的兜底规则：有图显示图，没图显示按文字类型取的首字。
+---
+
+<ComponentPreview name="entity-avatar-demo" />
+
+## 安装
+
+<InstallBlock name="entity-avatar" />
+
+## 用法
+
+```tsx title="用法"
+import { EntityAvatar } from "@/components/ui/entity-avatar"
+
+<EntityAvatar name="喵萌奶茶屋" src={group.logoUrl} shape="rounded" />
+<EntityAvatar name={user.name} src={user.image} size="lg" />
+```
+
+## 兜底规则
+
+- **有图就显示图**，加载中和加载失败时才显示首字；不会在已有的 logo 上再画首字，也不会用哈希渐变当头像。
+- **首字按文字类型取**：拉丁字母取两个（`LoliHouse` → `LO`），在任何尺寸都放得下；汉字、假名、谚文和字一样宽，`xs` / `sm` / `default` 只放一个（「北」），`lg` / `xl` 放两个（「北宇」）。
+- `initials` 可以直接指定（一个字母、一个 emoji）。
+- 屏幕阅读器读到的是完整的 `name`，不是首字。
+
+图片会按尺寸写好 `width` / `height`；要在 3× 屏上也锐利，给 `srcSet` 一张至少三倍尺寸的图（32px 头像要 96w 以上）。首屏的头像加 `priority`。
+
+## 属性
+
+<PropsTable
+  title="EntityAvatar"
+  rows={[
+    { name: "name", type: "string", description: "必填：名字，也是 alt 文本和首字来源" },
+    { name: "src", type: "string | null", description: "图片地址；为空时显示首字" },
+    { name: "srcSet", type: "string", description: "多倍图，3× 屏也锐利" },
+    { name: "initials", type: "string", description: "覆盖自动取的首字" },
+    { name: "priority", type: "boolean", default: "false", description: "首屏图片：立即加载、高优先级" },
+    { name: "size", type: '"xs" | "sm" | "default" | "lg" | "xl"', default: '"default"', description: "同 Avatar" },
+    { name: "shape", type: '"circle" | "rounded"', default: '"circle"', description: "同 Avatar" },
+    { name: "fallbackClassName", type: "string", description: "首字底色、字号的覆盖" },
+  ]}
+/>
+
+另外导出 `getEntityInitials(name, wideGlyphs)`，表格、提示里需要同一套首字规则时直接用。

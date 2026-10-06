@@ -1,0 +1,38 @@
+---
+title: Skeleton
+description: 加载中的占位：比输入框深一档的底色、圆角 10、慢慢地呼吸，没有流光渐变。
+---
+
+<ComponentPreview name="skeleton-demo" />
+
+## 安装
+
+<InstallBlock name="skeleton" />
+
+## 用法
+
+```tsx title="用法"
+import { Skeleton } from "@/components/ui/skeleton"
+
+<div aria-busy="true" aria-label="正在加载订阅">
+  <Skeleton className="aspect-[2/3] w-full" />
+  <Skeleton shape="line" className="mt-2 w-4/5" />
+</div>
+```
+
+照着它要替代的东西定尺寸：2:3 的封面、14 号字高的标题行、20 高的标签。骨架本身是 `aria-hidden` 的——一串灰块对屏幕阅读器没有意义；在正在加载的区域上写 `aria-busy` 和一句说明。
+
+切换筛选或页签时，旧内容留到新结果到达；骨架只给第一次加载用。海报墙和资源行各有同高的骨架：[`PosterCardSkeleton`](/docs/components/poster-card)、[`ReleaseRowSkeleton`](/docs/components/release-row)。
+
+减少动态效果（`prefers-reduced-motion`）时，呼吸停止。
+
+## 属性
+
+<PropsTable
+  title="Skeleton"
+  rows={[
+    { name: "shape", type: '"box" | "line" | "pill" | "circle"', default: '"box"', description: "圆角 10 的块 / 圆角 6、14 高的文字行 / 胶囊 / 圆" },
+  ]}
+/>
+
+其余属性透传给 `div`，尺寸用 `className` 给。
