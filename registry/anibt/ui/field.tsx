@@ -131,7 +131,7 @@ const fieldVariants = cva("group/field w-full min-w-0", {
       vertical: "grid content-start gap-1.5 *:data-[slot=select-trigger]:w-full",
       // A choice row: the control, then its option text (13/400 ink).
       horizontal:
-        "flex flex-row items-center gap-2 has-[>[data-slot=field-content]]:items-start *:data-[slot=field-label]:flex-auto *:data-[slot=field-label]:font-normal *:data-[slot=field-label]:text-foreground has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px",
+        "flex flex-row items-center gap-2 has-[>[data-slot=field-content]]:items-start *:data-[slot=field-label]:flex-auto *:data-[slot=field-label]:font-normal *:data-[slot=field-label]:text-foreground has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px has-[>:disabled]:*:data-[slot=field-label]:text-muted-foreground data-[disabled=true]:*:data-[slot=field-label]:text-muted-foreground",
       // Stacked in a narrow group, label beside the control from 28rem.
       responsive:
         "flex flex-col gap-1.5 *:w-full @md/field-group:flex-row @md/field-group:items-center @md/field-group:gap-3 @md/field-group:*:w-auto @md/field-group:has-[>[data-slot=field-content]]:items-start @md/field-group:*:data-[slot=field-label]:flex-auto [&>.sr-only]:w-auto",
@@ -206,14 +206,18 @@ function Field({
     [controlId, hasHint, hasError, labelFor]
   )
 
+  // The one-call form puts the label above the control (or, horizontal,
+  // beside a choice); "responsive" is for shadcn's composition only.
+  const layout = label !== undefined && label !== null && orientation === "responsive" ? "vertical" : orientation
+
   const shell = (body: React.ReactNode) => (
     <FieldContext.Provider value={context}>
       <div
         role="group"
         data-slot="field"
-        data-orientation={orientation}
+        data-orientation={layout}
         data-invalid={hasError || undefined}
-        className={cn(fieldVariants({ orientation }), className)}
+        className={cn(fieldVariants({ orientation: layout }), className)}
         {...props}
       >
         {body}
