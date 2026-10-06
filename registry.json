@@ -156,6 +156,31 @@
       ]
     },
     {
+      "name": "field",
+      "type": "registry:ui",
+      "title": "Field",
+      "description": "AniBT form grammar on shadcn's field names: label above the control, tags and meta on the label row, a hint or an error under it, choice rows and cards, container-query field rows and stitched field-group cards.",
+      "author": "AniBT <https://anibt.net>",
+      "dependencies": [
+        "class-variance-authority",
+        "lucide-react",
+        "radix-ui"
+      ],
+      "registryDependencies": [
+        "@anibt/theme",
+        "@anibt/label"
+      ],
+      "files": [
+        {
+          "path": "registry/anibt/ui/field.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "forms"
+      ]
+    },
+    {
       "name": "select",
       "type": "registry:ui",
       "title": "Select",
