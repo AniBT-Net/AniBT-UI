@@ -340,6 +340,30 @@
       ]
     },
     {
+      "name": "search-input",
+      "type": "registry:ui",
+      "title": "Search Input",
+      "description": "AniBT search box: an input with the magnifier, a clear key that keeps focus, a key-cap shortcut hint and the phone keyboard's search key.",
+      "author": "AniBT <https://anibt.net>",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@anibt/theme",
+        "@anibt/input",
+        "@anibt/kbd"
+      ],
+      "files": [
+        {
+          "path": "registry/anibt/ui/search-input.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "forms"
+      ]
+    },
+    {
       "name": "kbd",
       "type": "registry:ui",
       "title": "Kbd",
