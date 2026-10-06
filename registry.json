@@ -94,6 +94,28 @@
       "categories": [
         "layout"
       ]
+    },
+    {
+      "name": "label",
+      "type": "registry:ui",
+      "title": "Label",
+      "description": "AniBT field label: 13/600 in ink2 above its control; a disabled control greys it instead of fading it.",
+      "author": "AniBT <https://anibt.net>",
+      "dependencies": [
+        "radix-ui"
+      ],
+      "registryDependencies": [
+        "@anibt/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/anibt/ui/label.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "forms"
+      ]
     }
   ]
 }
