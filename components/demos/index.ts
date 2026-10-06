@@ -28,8 +28,13 @@ import PageHeaderCompact from "./page-header-compact"
 import PageHeaderDemo from "./page-header-demo"
 import PaginationDemo from "./pagination-demo"
 import PaginationParts from "./pagination-parts"
+import PosterCardDemo from "./poster-card-demo"
+import PosterCardSrcSet from "./poster-card-srcset"
+import PosterCardStates from "./poster-card-states"
 import ProgressDemo from "./progress-demo"
 import ProgressLabelDemo from "./progress-label"
+import ReleaseRowDemo from "./release-row-demo"
+import ReleaseRowForms from "./release-row-forms"
 import SeparatorDemo from "./separator-demo"
 import SkeletonDemo from "./skeleton-demo"
 import TableDemo from "./table-demo"
@@ -79,6 +84,11 @@ export const demos = {
   "table-sticky": TableSticky,
   "page-header-demo": PageHeaderDemo,
   "page-header-compact": PageHeaderCompact,
+  "poster-card-demo": PosterCardDemo,
+  "poster-card-states": PosterCardStates,
+  "poster-card-srcset": PosterCardSrcSet,
+  "release-row-demo": ReleaseRowDemo,
+  "release-row-forms": ReleaseRowForms,
 } satisfies Record<string, ComponentType>
 
 export type DemoName = keyof typeof demos

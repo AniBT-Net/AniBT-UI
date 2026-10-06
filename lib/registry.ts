@@ -31,12 +31,15 @@ export function getRegistryItem(name: string): RegistryItem {
 }
 
 export function listComponentItems() {
-  return items.filter((item) => item.type === "registry:ui")
+  return items.filter((item) => item.type === "registry:ui" || item.type === "registry:block")
 }
 
-/** Where `shadcn add` writes a `registry:ui` file in a default project. */
+/** Where `shadcn add` writes a file in a default project: `registry:ui` to
+    `components/ui/`, a block's `registry:component` to `components/`. */
 export function defaultTarget(file: RegistryFile) {
-  return file.target ?? `components/ui/${path.basename(file.path)}`
+  if (file.target) return file.target
+  const dir = file.type === "registry:component" ? "components" : "components/ui"
+  return `${dir}/${path.basename(file.path)}`
 }
 
 /** A registry file's source as a consumer receives it (imports rewritten to
@@ -46,7 +49,9 @@ export function readItemSource(file: RegistryFile) {
 }
 
 export function toConsumerImports(code: string) {
-  return code.replaceAll("@/registry/anibt/ui/", "@/components/ui/")
+  return code
+    .replaceAll("@/registry/anibt/ui/", "@/components/ui/")
+    .replace(/@\/registry\/anibt\/blocks\/[^/"']+\//g, "@/components/")
 }
 
 type CssVars = { theme: Record<string, string>; light: Record<string, string>; dark: Record<string, string> }

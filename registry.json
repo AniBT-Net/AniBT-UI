@@ -376,6 +376,55 @@
       "categories": [
         "layout"
       ]
+    },
+    {
+      "name": "poster-card",
+      "type": "registry:block",
+      "title": "Poster Card",
+      "description": "AniBT collectible poster card: a 2:3 cover in a glossy sleeve with a sheen on hover, a tilted airtime sticker, corner badges and a subscribe key; fixed height with a two-line title; srcSet / sizes for sharp covers; PosterGrid, rating, status and skeleton.",
+      "author": "AniBT <https://anibt.net>",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@anibt/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/anibt/blocks/poster-card/poster-card.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "blocks",
+        "display"
+      ]
+    },
+    {
+      "name": "release-row",
+      "type": "registry:block",
+      "title": "Release Row",
+      "description": "AniBT release row: a die-cut cover, the full title over the publisher, episode and three coloured tags, then size, swarm and age columns and always-visible icon squares; wide, stacked and compact forms by container width.",
+      "author": "AniBT <https://anibt.net>",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@anibt/theme",
+        "@anibt/badge",
+        "@anibt/button",
+        "@anibt/tooltip"
+      ],
+      "files": [
+        {
+          "path": "registry/anibt/blocks/release-row/release-row.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "blocks",
+        "display"
+      ]
     }
   ]
 }

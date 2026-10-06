@@ -1,0 +1,108 @@
+---
+title: Release Row
+description: 一条资源一行：模切白边的小封面、完整换行的标题、粉色发布者和最多三个彩色标签，然后是大小、做种、时间三列和一直可见的图标方块。
+---
+
+<ComponentPreview name="release-row-demo" />
+
+## 安装
+
+<InstallBlock name="release-row" />
+
+这是一个区块（`registry:block`），CLI 会把它写到 `components/release-row.tsx`，并一并装好 `@anibt/badge`、`@anibt/button`、`@anibt/tooltip`。
+
+## 用法
+
+```tsx title="components/latest-releases.tsx"
+import Link from "next/link"
+
+import { ReleaseRow, ReleaseRowDateRule, ReleaseRowList } from "@/components/release-row"
+
+export function LatestReleases({ releases }: { releases: Release[] }) {
+  return (
+    <ReleaseRowList>
+      <ReleaseRowDateRule label="今天" />
+      {releases.map((release) => (
+        <ReleaseRow
+          key={release.id}
+          link={<Link href={`/release/${release.id}`} />}
+          cover={release.coverUrl}
+          title={release.title}
+          publisher={{ name: release.group.name, link: <Link href={`/group/${release.group.slug}`} /> }}
+          episode={`第 ${release.episode} 集`}
+          resolution="1080p"
+          languages={["简", "繁"]}
+          subtitleType="内封字幕"
+          specs={["HEVC", "10bit", "WebRip", "MKV"]}
+          fileSize={release.sizeLabel}
+          seeders={release.seeders}
+          leechers={release.leechers}
+          time={release.ageLabel}
+          dateTime={release.publishedAt}
+          magnet={release.magnet}
+          torrentHref={release.torrentUrl}
+          onMagnetCopied={() => toast.success("已复制磁力链接")}
+        />
+      ))}
+    </ReleaseRowList>
+  )
+}
+```
+
+行什么都不取、什么都不格式化：大小、时间、做种数都由你算好传进来。时间放在 `<time dateTime>` 里，并且 `suppressHydrationWarning`——相对时间在服务端和浏览器上可能不同。
+
+## 版式
+
+- **宽版**：`ReleaseRowList` 至少 760px 宽时（容器查询，看的是列表自己的宽度，不是窗口）。40×56 的封面贴纸（指针下会歪一下）、标题和事实行，然后是大小 / 做种 / 时间三列，最后是 32px 的图标方块。
+- **标题完整换行，从不截断**——读者靠标题挑版本。指针下标题变粉，整行都能点开（标题链接铺满整行），发布者链接和方块浮在上面。
+- **事实行**：粉色的发布者，第 N 集，最多三个彩色标签——分辨率（蓝）、语言合成一个（粉）、字幕类型（中性）——其余规格是 768px 起才出现的弱色纯文字。
+- **做种**：↑ 做种（测到活跃时是薄荷色）↓ 下载中；`null` 表示还没测到，画短横，从不画一个没测过的 0。
+- **图标方块一直可见**，不靠悬停露出。`magnet` 画复制磁力的方块（复制后变成薄荷色的勾和「已复制」），`torrentHref` 画下载种子的方块；值为 `null` 时画禁用的方块，让一列里每行一样宽。`actions` 可以换成你自己的 `ReleaseRowAction`。
+
+## 窄栏与紧凑
+
+<ComponentPreview name="release-row-forms" />
+
+- 列表窄于 760px 时是手机版式：封面在标题旁，下面一行数字，末尾是 40px 的方块（44px 触控区）。`form="stacked"` 在任何宽度都保持这个版式，给抽屉、侧栏这类窄栏。
+- `form="compact"` 是面板里的密行：没有封面、没有发布者（面板已经写了），从 1024 起标题一行省略，大小和时间叠成 92px 的一列。
+
+`ReleaseRowList plain` 去掉面板，给已经在卡片里的列表；行与行之间的缝线还在。`ReleaseRowDateRule` 是列表里的日期：一枚蓝色的小日期贴纸、一条缝线、末尾可选的贴纸。
+
+## 属性
+
+<PropsTable
+  title="ReleaseRow"
+  rows={[
+    { name: "title", type: "ReactNode", description: "必填：完整标题，从不截断" },
+    { name: "href · link", type: "string · ReactElement", description: "打开这条资源，铺满整行" },
+    { name: "cover", type: "string | { src, srcSet?, alt? } | null", description: "40×56 的封面；3× 屏给 120w 以上" },
+    { name: "publisher", type: "string | { name, href?, link? }", description: "粉色的发布者" },
+    { name: "category", type: "ReactNode", description: "集数前的分类标签（合集、剧场版）" },
+    { name: "episode", type: "ReactNode", description: "第 N 集，圆体" },
+    { name: "resolution", type: "string", description: "蓝色标签" },
+    { name: "languages", type: "string[]", description: "合成一个粉色标签：简·繁" },
+    { name: "subtitleType", type: "string", description: "中性标签：内封字幕" },
+    { name: "specs", type: "string[]", description: "其余规格，768px 起的弱色纯文字" },
+    { name: "fileSize", type: "string", description: "格式化好的大小" },
+    { name: "seeders · leechers", type: "number | null", description: "null 显示短横" },
+    { name: "time · dateTime", type: "ReactNode · string", description: "格式化好的时间和它的 ISO 值" },
+    { name: "magnet", type: "string | null", description: "复制磁力的方块；null 为禁用" },
+    { name: "torrentHref", type: "string | null", description: "下载种子的方块；null 为禁用" },
+    { name: "onMagnetCopied", type: "() => void", description: "复制成功后（在这里弹 toast）" },
+    { name: "actions", type: "ReactNode", description: "自己的方块，替代磁力 / 种子两个" },
+    { name: "form", type: '"wide" | "stacked" | "compact"', default: '"wide"', description: "随列表宽度 / 始终手机版式 / 面板密行" },
+    { name: "priority", type: "boolean", default: "false", description: "首屏：封面立即加载" },
+  ]}
+/>
+
+<PropsTable
+  title="ReleaseRowAction"
+  rows={[
+    { name: "label", type: "string", description: "必填：提示和无障碍名称" },
+    { name: "href", type: "string", description: "有则是链接，否则是按钮" },
+    { name: "download", type: "boolean | string", description: "链接下载文件" },
+    { name: "disabled", type: "boolean", default: "false", description: "禁用的方块（不显示提示）" },
+  ]}
+/>
+
+还导出 `ReleaseRowList`（`plain`）、`ReleaseRowDateRule`（`label`、`trailing`）、`ReleaseRowCopyAction`、`ReleaseRowPeers` 和 `ReleaseRowSkeleton`。
