@@ -1,0 +1,14 @@
+{
+  // Static export only. This file is what stops `wrangler deploy` from
+  // detecting Next.js and installing the OpenNext adapter. `out/` is
+  // gitignored; Workers Builds must run `pnpm build` before deploy.
+  // The `name` must match the Worker in the Cloudflare dashboard.
+  "name": "anibt-ui",
+  "compatibility_date": "2026-10-06",
+  "assets": {
+    "directory": "./out",
+    // Next writes `page.html`, not `page/index.html`.
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "404-page"
+  }
+}

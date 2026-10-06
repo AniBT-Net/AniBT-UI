@@ -2,7 +2,7 @@
 
 AniBT 「贴纸手账」组件库：模切白边贴纸、糖果光泽按钮、和纸胶带标记当前位置、缝线分隔的面板。两套颜色模式：**白樱**（亮色）与**夜樱**（暗色）。
 
-它是一个 [shadcn registry](https://ui.shadcn.com/docs/registry)，不是 npm 包：`shadcn` CLI 把组件源码直接写进你的项目。站点与 registry 在同一个仓库，静态导出后部署在 Cloudflare Pages。
+它是一个 [shadcn registry](https://ui.shadcn.com/docs/registry)，不是 npm 包：`shadcn` CLI 把组件源码直接写进你的项目。站点与 registry 在同一个仓库，静态导出后由 Cloudflare Workers 的静态资源托管。
 
 - 站点：<https://ui.anibt.net>（以 `NEXT_PUBLIC_SITE_URL` 为准）
 - 命名空间：`@anibt`
@@ -85,22 +85,30 @@ public/brand/                     品牌素材（不在 MIT 许可内）
 4. 文档写在 `content/docs/components/<name>.mdx`，加进同目录的 `meta.json`。
 5. 需要新配方或 token 时只改 `theme.css`，然后 `pnpm registry:theme`。
 
-## 部署到 Cloudflare Pages
+## 部署到 Cloudflare Workers
 
-站点是纯静态导出，仓库里不跑 wrangler，由站长在 Pages 面板里配置：
+站点是纯静态导出。根目录的 `wrangler.jsonc` 把 `out/` 作为 Worker `anibt-ui` 的静态资源，没有 Worker 脚本。这份文件在仓库里时，`npx wrangler deploy` 会直接上传 `out/`，不会再检测 Next.js、也不会安装 OpenNext。
+
+`out/` 在 `.gitignore` 里。Workers Builds 不执行 `wrangler.jsonc` 里的自定义构建，所以面板上的构建命令必须先生成 `out/`。
+
+在已连接的 Worker 里打开 **Settings → Build**，保存以下设置后再重试。重试使用的是保存之后的设置。
 
 | 设置 | 值 |
 | --- | --- |
-| Framework preset | None（或 Next.js (Static HTML Export)） |
 | Build command | `pnpm build` |
-| Build output directory | `out` |
-| Node.js 版本 | 22（仓库里的 `.node-version`；也可设环境变量 `NODE_VERSION=22`）。Next.js 16 要求 ≥ 20.9 |
-| `PNPM_VERSION` | `10.34.5`（v3 构建镜像默认 10.11.1，且不会从 lockfile 推断版本） |
+| Deploy command | `npx wrangler deploy` |
+| 生产分支 | `main` |
+| Node.js | 22。仓库 `.node-version` 已写明；也可设 `NODE_VERSION=22`。Next.js 16 要求 ≥ 20.9 |
+| `PNPM_VERSION` | `10.34.5`（构建镜像默认的 pnpm 更旧，且不会从 lockfile 推断版本） |
 | `NEXT_PUBLIC_SITE_URL` | 站点的正式域名，默认 `https://ui.anibt.net` |
 
-**`NEXT_PUBLIC_SITE_URL` 必须和 Pages 实际绑定的域名一致。** 它决定 `registry.json` 的 `homepage`、站内所有安装命令和 `components.json` 示例里的地址；不一致时，用户复制的命令会指向错误的地址。构建时 `registry:theme` 会按它改写 `registry.json` 的 `homepage`。
+面板里的 Worker 名称必须是 `anibt-ui`，与 `wrangler.jsonc` 的 `name` 一致。名称不一致时，构建失败。
 
-`public/_headers` 给 `/r/*` 加了 `Access-Control-Allow-Origin: *`，方便浏览器里的工具读取 registry JSON。
+构建命令留空时，部署阶段找不到 `out/`，上传失败。删掉 `wrangler.jsonc` 后再跑 `npx wrangler deploy`，Wrangler 会把项目改成 OpenNext；静态导出没有 `.next/standalone`，会在 `next build` 成功之后失败。
+
+**`NEXT_PUBLIC_SITE_URL` 必须和 Worker 实际绑定的域名一致。** 它决定 `registry.json` 的 `homepage`、站内所有安装命令和 `components.json` 示例里的地址。不一致时，用户复制的命令会指向错误的地址。构建时 `registry:theme` 会按它改写 `registry.json` 的 `homepage`。自定义域名还没绑定时，把这个变量设成当前的 `*.workers.dev` 地址，或者先绑定域名再构建。
+
+`public/_headers` 会进入 `out/`。Workers 解析这个文件，不把它当作页面。`/r/*` 带 `Access-Control-Allow-Origin: *`，浏览器里的工具可以读取 registry JSON。未知路径返回 `out/404.html`，状态码 404。`docs/components/button.html` 对应地址 `/docs/components/button`。
 
 ## 许可
 

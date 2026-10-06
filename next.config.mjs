@@ -2,8 +2,8 @@ import { createMDX } from "fumadocs-mdx/next"
 
 /**
  * Static export: `next build` writes the whole site to `out/`, including the
- * registry JSON that `shadcn build` put in `public/r/`. Cloudflare Pages
- * serves `out/` as-is.
+ * registry JSON that `shadcn build` put in `public/r/`. `wrangler.jsonc`
+ * uploads `out/` as a Workers static-asset site.
  *
  * @type {import("next").NextConfig}
  */
