@@ -1,0 +1,56 @@
+---
+title: 主题
+description: 白樱是亮色、夜樱是暗色。AniBT 的数值落在 shadcn 的标准 token 上，再加一组 --anibt-* 扩展和 anibt-* 配方。
+---
+
+## 一种颜色一种职责
+
+粉色负责操作、选中和「你在这里」；蓝色负责时间、今天、现在、进行中；薄荷是完成、做种；红色是危险、失败；其余一切是墨色。中性色偏冷、带一点极淡的紫，不发棕。
+
+两套模式用同样的名字：白樱写在 `:root`，夜樱写在 `.dark`。下面每个色块都在它自己的模式里绘制，切换站点的颜色模式不会影响对照。
+
+## 标准 token
+
+shadcn 组件读的就是这些名字。AniBT 的取值有两处和直觉不同：`accent` 是选中、悬停的**粉色淡底**，粉色字在 `accent-foreground`；`input` 是控件的**边色**。
+
+<TokenTable groups="standard" />
+
+`--radius` 是 `10px`（只写在白樱里）：shadcn 的倍数刻度正好给出 AniBT 的三档圆角，`rounded-sm` 6、`rounded-lg` 10、`rounded-xl` 14。
+
+## AniBT 扩展
+
+标准名字之外的部分都带 `anibt-` 前缀。颜色类的扩展同时是 Tailwind 颜色，可以写 `text-anibt-time-ink`、`bg-anibt-ok-wash`。
+
+<TokenTable groups="extras" />
+
+## Tailwind 主题键
+
+主题在 `@theme inline` 里加的键：两套字体、两条缓动曲线、`animate-anibt-*` 动画。
+
+<ThemeKeysTable />
+
+## 配方
+
+材质只在配方里出现一次，组件和页面都用配方，不在调用处重写颜色、阴影、渐变和圆角。
+
+| 配方 | 样子 |
+| --- | --- |
+| `anibt-sheet` / `anibt-pop` / `anibt-well` | 面板（纸面、1px 外边、面板阴影、圆角 14）/ 浮层 / 面板里的分组 |
+| `anibt-btn` + `-primary` `-raised` `-ghost` `-danger` `-on` `-sm` `-lg` | 糖果主按钮、凸起次按钮、安静按钮、危险按钮 |
+| `anibt-icobtn` `-sm` `-ghost` | 32 / 28 图标方块，悬停时图标摆动 |
+| `anibt-field` / `anibt-input` / `anibt-label` / `anibt-kbd` | 32 高输入框、字段标签、键帽 |
+| `anibt-tabs` / `anibt-tab` / `anibt-tab-on` | 缝线上的页签，当前页签贴一条倾斜的胶带 |
+| `anibt-seg` / `anibt-chip` | 分段控件（白色贴纸拇指）/ 28 高筛选 chip |
+| `anibt-tag` `-res` `-lang` `-ok` `-warn` `-danger` | 20 高事实标签 |
+| `anibt-sticker` `-candy` `-water` | 模切贴纸，`--anibt-tilt` 控制倾斜 |
+| `anibt-count` / `anibt-status` / `anibt-dot` | 计数胶囊 / 带点和字的状态 / 6px 点 |
+| `anibt-stitch` `-under` `-over` `-side` | 虚线缝线 |
+| `anibt-tape` / `anibt-tape-y` | 和纸胶带：唯一的「你在这里」 |
+| `anibt-check` / `anibt-switch` / `anibt-pager-item` / `anibt-tip` / `anibt-menu-item` | 勾选、开关、分页格、提示、菜单项 |
+| `anibt-ground` / `anibt-num` / `anibt-ell` / `anibt-clamp2-fixed` | 点点底纹 / 圆体数字 / 单行省略 / 固定两行高 |
+
+`prefers-reduced-motion: reduce` 下，所有 `anibt-*` 的动效都会停下。
+
+## 改颜色
+
+主题装好以后，token 就在你自己的全局 CSS 里，直接改值即可。只改 `:root` 或 `.dark` 里的一处，就只影响那个模式。

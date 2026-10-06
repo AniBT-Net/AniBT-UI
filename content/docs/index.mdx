@@ -1,0 +1,92 @@
+---
+title: 快速开始
+description: 在一个已经 shadcn init 的项目里，登记 @anibt 命名空间、装上白樱 / 夜樱主题，再按需添加组件。
+---
+
+AniBT UI 不是一个 npm 包，而是一个 [shadcn registry](https://ui.shadcn.com/docs/registry)：`shadcn` CLI 把组件的源码直接写进你的项目，之后就是你的代码。
+
+## 前提
+
+- 一个已经跑过 `npx shadcn@latest init` 的 React 项目（Next.js、Vite、React Router 等 shadcn 支持的框架都行）。
+- Tailwind CSS v4。
+
+<Steps>
+<Step title="登记 @anibt 命名空间">
+
+在 `components.json` 的 `registries` 里加上 `@anibt`，CLI 就会把 `@anibt/<名字>` 解析成这个站点上的 JSON：
+
+<RegistriesSnippet />
+
+也可以让 CLI 替你写：
+
+<RegistryAddCommand />
+
+</Step>
+<Step title="装上主题">
+
+<AddCommand names={["theme"]} />
+
+`@anibt/theme` 会改写你的全局 CSS（`components.json` 里 `tailwind.css` 指向的那个文件）：
+
+- `:root` 写入白樱、`.dark` 写入夜樱。值落在 shadcn 的标准名字上（`--background`、`--primary`、`--accent` …），所以 shadcn 自带的组件也会换上 AniBT 的颜色。
+- `--anibt-*` 扩展 token：时间蓝、状态色、糖果渐变、胶带、缝线、点点底纹、四档阴影。
+- `@theme inline` 里的 `font-sans`（系统中文黑体栈）、`font-anibt-display`（Fredoka）、`ease-anibt-*`、`animate-anibt-*`。
+- `anibt-*` 配方（`@utility`）和关键帧：组件只用它们画材质。
+- `@fontsource/fredoka` 的 500 / 600 / 700。
+
+</Step>
+<Step title="按需添加组件">
+
+<AddCommand names={["button", "badge", "card"]} />
+
+组件会自动带上它依赖的 `@anibt/theme`。代码落在 `components/ui/` 下，随便改。
+
+</Step>
+<Step title="铺上点点底纹（可选）">
+
+在 `<body>` 上加 `anibt-ground`，就是 AniBT 站点的点点底纹，夜樱下是星空：
+
+```tsx title="app/layout.tsx"
+<body className="anibt-ground">{children}</body>
+```
+
+</Step>
+</Steps>
+
+## 白樱 / 夜樱切换
+
+夜樱就是 `<html>` 上的 `.dark`，和 shadcn 的约定一样。用 `next-themes` 的话：
+
+```tsx title="app/layout.tsx"
+import { ThemeProvider } from "next-themes"
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <html lang="zh-CN" suppressHydrationWarning>
+      <body className="anibt-ground">
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          {children}
+        </ThemeProvider>
+      </body>
+    </html>
+  )
+}
+```
+
+`.dark` 也可以只加在页面的某一块上：那一块就单独换成夜樱。
+
+## 字体
+
+- 正文用系统中文黑体（`--font-sans`）。主题会把 `--font-sans` 换成这套字体栈；`create-next-app` 自带的 Geist 变量可以删掉。
+- 数字、英文小标签、标签、贴纸、计数用 Fredoka（`font-anibt-display`、`anibt-num`），来自 `@fontsource/fredoka`，主题在 CSS 里直接 `@import`。汉字回落到系统字体，registry 里不分发任何字体文件。
+
+## 和 shadcn 一起用
+
+- **Radix**：组件基于 `radix-ui`。shadcn 现在默认的 `base-nova`（Base UI）项目也能用，CLI 会补装 `radix-ui`。
+- **按钮直接替换**：`@anibt/button` 写到 `components/ui/button.tsx`，变体和尺寸沿用 shadcn 的名字（`default`、`secondary`、`outline`、`ghost`、`destructive`、`link`；`xs` … `icon-lg`），也导出 `buttonVariants`，其他 shadcn 组件照常编译。
+- **不碰你的 `cn`**：组件从 `@/lib/utils` 引入 `cn`，CLI 会改写成你项目里的路径；registry 不会覆盖 `lib/utils.ts`。
+- **类名都带前缀**：配方是 `anibt-btn-primary`、`anibt-tag`、`anibt-sheet` 这样的名字，不会和你的类名撞车；Tailwind 只输出你用到的配方和关键帧。
+
+<Callout type="warn" title="组件之间按命名空间互相引用">
+组件的依赖写成 `@anibt/theme`、`@anibt/spinner` 这样的地址，所以请先完成第一步登记命名空间。只想看看某个条目，可以直接打开 <ItemUrl name="button" />。
+</Callout>

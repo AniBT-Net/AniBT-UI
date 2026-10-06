@@ -1,0 +1,63 @@
+/*
+ * Site-only styles: the docs body type, code highlighting and the few
+ * shapes Tailwind classes cannot express. Components and recipes come from
+ * `@anibt/theme`; nothing here restyles a registry component.
+ */
+
+@layer base {
+  html {
+    scroll-padding-top: 80px;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  /* A's body: 15 on a phone, 14 from 640 up, 1.5; CJK paragraphs 1.6. */
+  body {
+    font-size: 0.9375rem;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  @media (min-width: 640px) {
+    body {
+      font-size: 0.875rem;
+    }
+  }
+
+  :lang(zh) :is(p, li, dd) {
+    line-height: 1.6;
+  }
+
+  ::selection {
+    background-color: var(--anibt-wash2);
+    color: var(--foreground);
+  }
+}
+
+/* Shiki dual themes: the highlighter emits --shiki-light / --shiki-dark on
+   every token (`defaultColor: false`); the panel colour is ours. */
+.shiki,
+.shiki span {
+  color: var(--shiki-light);
+}
+
+.dark .shiki,
+.dark .shiki span {
+  color: var(--shiki-dark);
+}
+
+.shiki {
+  background: transparent !important;
+}
+
+/* Horizontal scrollers fade at the right edge instead of showing a bar. */
+@utility site-scroll-x {
+  overflow-x: auto;
+  scrollbar-width: none;
+  -webkit-mask-image: linear-gradient(90deg, #000 calc(100% - 20px), transparent);
+  mask-image: linear-gradient(90deg, #000 calc(100% - 20px), transparent);
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}

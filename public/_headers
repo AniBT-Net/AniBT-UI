@@ -1,0 +1,5 @@
+# Cloudflare Pages headers. The registry JSON is public and read by the shadcn
+# CLI, v0 and other tools; allow cross-origin reads and keep it fresh.
+/r/*
+  Access-Control-Allow-Origin: *
+  Cache-Control: public, max-age=300, must-revalidate

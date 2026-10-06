@@ -1,0 +1,74 @@
+---
+title: Card
+description: AniBT 的面板：纸面、1px 外边、面板阴影、圆角 14，带缝线的头和脚；面板里的分组用 well。
+---
+
+<ComponentPreview name="card-demo" />
+
+## 安装
+
+<InstallBlock name="card" />
+
+## 用法
+
+```tsx title="components/subscription-card.tsx"
+import { Button } from "@/components/ui/button"
+import {
+  Card,
+  CardAction,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
+
+export function SubscriptionCard() {
+  return (
+    <Card>
+      <CardHeader stitched>
+        <CardTitle>我的订阅</CardTitle>
+        <CardDescription>喵萌奶茶屋 · 简繁内封</CardDescription>
+        <CardAction>…</CardAction>
+      </CardHeader>
+      <CardContent>…</CardContent>
+      <CardFooter stitched className="justify-end">
+        <Button>保存</Button>
+      </CardFooter>
+    </Card>
+  )
+}
+```
+
+`CardHeader stitched` 在头下面缝一条虚线，`CardFooter stitched` 在脚上面缝一条，都从卡片一边通到另一边。标题是 16/800，说明是 12 号弱字，`CardAction` 放在头的右端。
+
+## 分组
+
+<ComponentPreview name="card-well" />
+
+面板里的面板用 `variant="well"`：只留 1px 边，圆角 10，不再抬起。不要在面板里再叠一层带阴影的面板。
+
+## 密度
+
+<ComponentPreview name="card-density" />
+
+默认的盒子是 16px 内边距、12px 的块间距；`density="compact"` 收紧到 12 / 8，给后台和工作台的密集卡用。垂直内边距和间距是 `--card-py` / `--card-gap` 变量，调用处的 `py-0`、`gap-0` 依然能覆盖。
+
+## 属性
+
+<PropsTable
+  title="Card"
+  rows={[
+    { name: "variant", type: '"panel" | "well"', default: '"panel"', description: "panel 是带阴影的面板（anibt-sheet）；well 是面板里的分组（anibt-well）" },
+    { name: "density", type: '"default" | "compact"', default: '"default"', description: "16 / 12 或 12 / 8 的内边距与间距" },
+  ]}
+/>
+
+<PropsTable
+  title="CardHeader · CardFooter"
+  rows={[
+    { name: "stitched", type: "boolean", default: "false", description: "头的下边 / 脚的上边缝一条虚线" },
+  ]}
+/>
+
+`CardTitle`、`CardDescription`、`CardAction`、`CardContent` 没有额外属性，其余属性都透传给 `div`。

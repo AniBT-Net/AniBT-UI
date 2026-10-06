@@ -1,0 +1,81 @@
+---
+title: Badge
+description: 20 高的事实标签、模切白边贴纸、计数胶囊，以及带点和字的状态。
+---
+
+<ComponentPreview name="badge-demo" />
+
+## 安装
+
+<InstallBlock name="badge" />
+
+## 用法
+
+```tsx title="用法"
+import { Badge, StatusBadge, StatusDot } from "@/components/ui/badge"
+
+<Badge variant="res">1080p</Badge>
+<Badge variant="candy" tilt={-3}>✦ NEW</Badge>
+<StatusBadge tone="ok">已同步</StatusBadge>
+```
+
+## 标签
+
+<ComponentPreview name="badge-tags" />
+
+标签说的是这条记录的事实：规格、分类、语言。
+
+- `default`：中性，下沉底加一圈细边。
+- `res`：蓝色，用于分辨率、格式、时间，圆体。
+- `lang`：粉色，用于语言、字幕。
+- `success` / `warning` / `destructive`：薄荷 / 琥珀 / 红色的状态词，没有点。带点的状态用 `StatusBadge`。
+
+`face` 默认是 `"spec"`：拉丁字母和数字用 Fredoka 圆体。标签写的是中文词时用 `face="text"`。`size="lg"` 是表头里用的 24 高。
+
+## 贴纸
+
+<ComponentPreview name="badge-stickers" />
+
+贴纸是贴上去的标签：2px 模切白边、一点阴影，`tilt` 控制倾斜角度（A 常用 −4° 到 4°）。`candy` 和 `water` 是实心的糖果粉、水蓝。少用，一屏两三个就够。
+
+## 计数
+
+<ComponentPreview name="badge-counts" />
+
+`count` 是 20 高的糖果胶囊，带贴纸白边，适合贴在图标按钮角上；`count-quiet` 是中性的计数，用在侧栏这类安静的位置。
+
+## 状态
+
+<ComponentPreview name="badge-status" />
+
+`StatusBadge` 是一个淡底里放 6px 的点和一个词：`ok` 完成（薄荷）、`run` 进行中（蓝，点会闪）、`fail` 失败（红）、`warn` 需要注意（琥珀）、`mute` 关闭（灰）、`on` 启用 / 订阅中（粉）。**必须有字**，颜色从不单独表达状态。
+
+`StatusDot` 只画点，给已经写明状态的文字配一个记号（图例、侧栏计数）。它是 `aria-hidden` 的。
+
+## 属性
+
+<PropsTable
+  title="Badge"
+  rows={[
+    { name: "variant", type: '"default" | "res" | "lang" | "success" | "warning" | "destructive" | "sticker" | "candy" | "water" | "count" | "count-quiet" | "secondary" | "outline"', default: '"default"', description: "secondary、outline 等同 default，只为兼容 shadcn" },
+    { name: "face", type: '"spec" | "text"', default: '"spec"', description: "spec 用圆体写规格和数字，text 用正文字体写词" },
+    { name: "size", type: '"default" | "lg"', default: '"default"', description: "20 高 / 24 高" },
+    { name: "tilt", type: "number", description: "贴纸的倾斜角度（度），写进 --anibt-tilt" },
+    { name: "asChild", type: "boolean", default: "false", description: "把样式交给唯一的子元素" },
+  ]}
+/>
+
+<PropsTable
+  title="StatusBadge"
+  rows={[
+    { name: "tone", type: '"ok" | "run" | "fail" | "warn" | "mute" | "on"', default: '"mute"', description: "状态色" },
+    { name: "children", type: "ReactNode", description: "必填：状态的文字" },
+  ]}
+/>
+
+<PropsTable
+  title="StatusDot"
+  rows={[
+    { name: "variant", type: '"default" | "ok" | "warn" | "danger" | "time" | "hollow" | "mute"', default: '"default"', description: "default 是粉色笔画；hollow 是空心圈" },
+  ]}
+/>

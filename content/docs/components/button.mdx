@@ -1,0 +1,79 @@
+---
+title: Button
+description: 糖果主按钮、凸起次按钮、安静按钮和危险按钮。变体与尺寸沿用 shadcn 的名字，可以直接替换 components/ui/button.tsx。
+---
+
+<ComponentPreview name="button-demo" />
+
+## 安装
+
+<InstallBlock name="button" />
+
+## 用法
+
+```tsx title="components/publish-bar.tsx"
+import { Button } from "@/components/ui/button"
+
+export function PublishBar() {
+  return (
+    <div className="flex gap-2">
+      <Button variant="ghost">取消</Button>
+      <Button>发布资源</Button>
+    </div>
+  )
+}
+```
+
+一屏只放一个糖果主按钮（`default`）；其余操作用 `secondary` 或 `ghost`。
+
+## 变体
+
+<ComponentPreview name="button-variants" />
+
+- `default`：糖果。粉色渐变、白字、上半高光、深一档的底边；悬停上浮 1px 并冒出一颗 ✦，按下压回底边。
+- `secondary` / `outline`：凸起。纸面加一圈边和 1.5px 底边；悬停上浮，字和边变粉。两者相同，`outline` 只为兼容 shadcn 的写法。
+- `ghost`：安静。静止时没有边和底，指针放上去才出现粉色淡底。
+- `destructive`：危险。红色淡底、红字、红边，抬起和按下同凸起一档。
+- `link`：粉色文字，悬停出现下划线。
+- `field`：打开选择器的按钮（组合框的触发器），长得像输入框而不是按键。
+
+## 尺寸
+
+<ComponentPreview name="button-sizes" />
+
+控件高 32（`default`）、28（`sm`）、36（`lg`），图标方块是对应的 `icon` 32、`icon-sm` 28、`icon-lg` 36。`xs` 和 `icon-xs`（24）只为对齐 shadcn。手机上需要 44px 触控区时，在调用处自己加高。
+
+## 加载中
+
+<ComponentPreview name="button-loading" />
+
+`loading` 会设置 `aria-busy` 并禁用按钮，但不会把按钮变灰：进行中的操作保留自己的颜色。
+
+- 不给 `loadingText`：标签保留原来的宽度，转圈叠在上面，按钮不会变宽变窄。
+- 给 `loadingText`：文字换成它，转圈放在旁边。
+
+## 作为链接
+
+<ComponentPreview name="button-as-child" />
+
+`asChild` 把样式交给唯一的子元素（链接、路由的 `Link`）。禁用时会给子元素加上 `aria-disabled`。
+
+## 属性
+
+<PropsTable
+  title="Button"
+  rows={[
+    { name: "variant", type: '"default" | "secondary" | "outline" | "ghost" | "destructive" | "link" | "field"', default: '"default"', description: "材质，见上文" },
+    { name: "size", type: '"default" | "xs" | "sm" | "lg" | "icon" | "icon-xs" | "icon-sm" | "icon-lg"', default: '"default"', description: "控件高 32 / 24 / 28 / 36，icon 系列是方块" },
+    { name: "loading", type: "boolean", default: "false", description: "进行中：显示转圈、设置 aria-busy、阻止交互" },
+    { name: "loadingText", type: "ReactNode", description: "进行中替换标签的文字；不给则保留标签宽度、转圈叠在上面" },
+    { name: "asChild", type: "boolean", default: "false", description: "把样式和属性交给唯一的子元素（Radix Slot）" },
+    { name: "type", type: '"button" | "submit" | "reset"', default: '"button"', description: "默认是 button，不会意外提交表单" },
+  ]}
+/>
+
+其余属性透传给 `<button>`。另外导出 `buttonVariants(...)`，给需要按钮样子的其他元素用。
+
+## 状态
+
+焦点是一圈 2px 的 `ring` 色轮廓，外偏 2px，不会盖掉按钮自己的底边。禁用是平的 `muted` 底和弱字。所有颜色都来自 token，白樱和夜樱里是同一套状态。
