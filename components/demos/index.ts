@@ -13,6 +13,13 @@ import ButtonVariants from "./button-variants"
 import CardDemo from "./card-demo"
 import CardDensity from "./card-density"
 import CardWell from "./card-well"
+// U3 overlays
+import AlertDialogDemo from "./alert-dialog-demo"
+import AlertDialogSmall from "./alert-dialog-small"
+import ConfirmDialogDemo from "./confirm-dialog-demo"
+import ConfirmDialogPlain from "./confirm-dialog-plain"
+import DialogDemo from "./dialog-demo"
+import DialogScroll from "./dialog-scroll"
 
 /**
  * Every live example the docs can show. The key is the file name in this
@@ -33,6 +40,13 @@ export const demos = {
   "card-demo": CardDemo,
   "card-well": CardWell,
   "card-density": CardDensity,
+  // U3 overlays
+  "dialog-demo": DialogDemo,
+  "dialog-scroll": DialogScroll,
+  "alert-dialog-demo": AlertDialogDemo,
+  "alert-dialog-small": AlertDialogSmall,
+  "confirm-dialog-demo": ConfirmDialogDemo,
+  "confirm-dialog-plain": ConfirmDialogPlain,
 } satisfies Record<string, ComponentType>
 
 export type DemoName = keyof typeof demos

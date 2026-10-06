@@ -94,6 +94,78 @@
       "categories": [
         "layout"
       ]
+    },
+    {
+      "name": "dialog",
+      "type": "registry:ui",
+      "title": "Dialog",
+      "description": "AniBT 「贴纸手账」 dialog: the floating paper over the scrim, A's 48px stitched header bar with a quiet close square, a pinned header and footer and one scrolling DialogBody.",
+      "author": "AniBT <https://anibt.net>",
+      "dependencies": [
+        "lucide-react",
+        "radix-ui"
+      ],
+      "registryDependencies": [
+        "@anibt/theme",
+        "@anibt/button"
+      ],
+      "files": [
+        {
+          "path": "registry/anibt/ui/dialog.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "overlay"
+      ]
+    },
+    {
+      "name": "alert-dialog",
+      "type": "registry:ui",
+      "title": "Alert Dialog",
+      "description": "AniBT question dialog: the stitched bar with A's 24px tinted mark (AlertDialogMedia), the quiet cancel left of a candy or red action, shadcn's size / variant props.",
+      "author": "AniBT <https://anibt.net>",
+      "dependencies": [
+        "class-variance-authority",
+        "radix-ui"
+      ],
+      "registryDependencies": [
+        "@anibt/theme",
+        "@anibt/button"
+      ],
+      "files": [
+        {
+          "path": "registry/anibt/ui/alert-dialog.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "overlay"
+      ]
+    },
+    {
+      "name": "confirm-dialog",
+      "type": "registry:ui",
+      "title": "Confirm Dialog",
+      "description": "One-call confirmation on @anibt/alert-dialog: red mark and danger key for destructive actions, and an onConfirm promise that keeps the dialog open and busy until it settles.",
+      "author": "AniBT <https://anibt.net>",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@anibt/theme",
+        "@anibt/alert-dialog",
+        "@anibt/spinner"
+      ],
+      "files": [
+        {
+          "path": "registry/anibt/ui/confirm-dialog.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "overlay"
+      ]
     }
   ]
 }
