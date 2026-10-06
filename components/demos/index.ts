@@ -26,6 +26,9 @@ import LabelDemo from "./label-demo"
 import SelectDemo from "./select-demo"
 import SelectGroups from "./select-groups"
 import SelectStates from "./select-states"
+import SwitchDemo from "./switch-demo"
+import SwitchSettings from "./switch-settings"
+import SwitchStates from "./switch-states"
 import TextareaDemo from "./textarea-demo"
 import TextareaStates from "./textarea-states"
 
@@ -63,6 +66,9 @@ export const demos = {
   "checkbox-demo": CheckboxDemo,
   "checkbox-select-all": CheckboxSelectAll,
   "checkbox-states": CheckboxStates,
+  "switch-demo": SwitchDemo,
+  "switch-settings": SwitchSettings,
+  "switch-states": SwitchStates,
 } satisfies Record<string, ComponentType>
 
 export type DemoName = keyof typeof demos

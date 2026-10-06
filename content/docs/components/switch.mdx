@@ -1,0 +1,55 @@
+---
+title: Switch
+description: 36×20 的糖果开关：关是下沉的轨道，开是糖果粉，16px 的白色旋钮弹簧般滑过去。
+---
+
+<ComponentPreview name="switch-demo" />
+
+## 安装
+
+<InstallBlock name="switch" />
+
+## 用法
+
+```tsx title="用法"
+import { Field, FieldLabel } from "@/components/ui/field"
+import { Switch } from "@/components/ui/switch"
+
+<Field orientation="horizontal">
+  <Switch id="auto-push" />
+  <FieldLabel htmlFor="auto-push">新剧集自动推送到下载器</FieldLabel>
+</Field>
+```
+
+开关用于立即生效的设置；要点「保存」才生效的选项用勾选框。
+
+## 状态
+
+<ComponentPreview name="switch-states" />
+
+- 关：`muted` 底的下沉轨道、1.5px `input` 色内边；悬停边变粉。
+- 开：糖果渐变加深一档的底边；白色旋钮带贴纸阴影，弹簧曲线滑过去。
+- `size="sm"`：28×16 的轨道、12px 的旋钮，放进紧凑的行。
+- 焦点是 2px `ring` 色轮廓；出错是同样的红色轮廓。
+- 禁用：开和关都是下沉的轨道，旋钮变灰，但位置仍然看得出开关。
+
+## 设置列表
+
+<ComponentPreview name="switch-settings" />
+
+每条设置是一张井：标题 13/600、说明 12px，开关在右端。写法是 `FieldLabel` 包住横排的 `Field`，整张卡都能点。开着的设置仍是纸面——粉色淡底只留给「选中」。
+
+## 属性
+
+<PropsTable
+  title="Switch"
+  rows={[
+    { name: "size", type: '"default" | "sm"', default: '"default"', description: "36×20 / 28×16" },
+    { name: "checked", type: "boolean", description: "受控的开关状态" },
+    { name: "defaultChecked", type: "boolean", description: "非受控的初始状态" },
+    { name: "onCheckedChange", type: "(checked: boolean) => void", description: "切换时调用" },
+    { name: "disabled", type: "boolean", description: "禁用：轨道下沉、旋钮变灰" },
+  ]}
+/>
+
+基于 Radix `Switch`，渲染成 `button role="switch"`。
