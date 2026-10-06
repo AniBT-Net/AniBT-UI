@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     template: `%s`,
   },
   description: SITE_DESCRIPTION,
-  icons: { icon: "/brand/mascot.webp" },
+  icons: { icon: "/brand/anibt-logo@2x.webp" },
   openGraph: {
     title: SITE_NAME,
     description: SITE_DESCRIPTION,
