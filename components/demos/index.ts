@@ -23,6 +23,8 @@ import FieldDemo from "./field-demo"
 import InputDemo from "./input-demo"
 import InputStates from "./input-states"
 import LabelDemo from "./label-demo"
+import RadioGroupCards from "./radio-group-cards"
+import RadioGroupDemo from "./radio-group-demo"
 import SelectDemo from "./select-demo"
 import SelectGroups from "./select-groups"
 import SelectStates from "./select-states"
@@ -69,6 +71,8 @@ export const demos = {
   "switch-demo": SwitchDemo,
   "switch-settings": SwitchSettings,
   "switch-states": SwitchStates,
+  "radio-group-demo": RadioGroupDemo,
+  "radio-group-cards": RadioGroupCards,
 } satisfies Record<string, ComponentType>
 
 export type DemoName = keyof typeof demos
