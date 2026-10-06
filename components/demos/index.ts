@@ -13,6 +13,9 @@ import ButtonVariants from "./button-variants"
 import CardDemo from "./card-demo"
 import CardDensity from "./card-density"
 import CardWell from "./card-well"
+// U1: inputs and forms.
+import InputDemo from "./input-demo"
+import InputStates from "./input-states"
 
 /**
  * Every live example the docs can show. The key is the file name in this
@@ -33,6 +36,9 @@ export const demos = {
   "card-demo": CardDemo,
   "card-well": CardWell,
   "card-density": CardDensity,
+  // U1: inputs and forms.
+  "input-demo": InputDemo,
+  "input-states": InputStates,
 } satisfies Record<string, ComponentType>
 
 export type DemoName = keyof typeof demos
