@@ -20,12 +20,13 @@ export function InstallBlock({ name }: { name: string }) {
     <div className="not-prose my-6 flex flex-col gap-3">
       <CommandLine command={addCommand(name)} />
       <p className="text-[12px] text-muted-foreground">
-        CLI 会一并装好 <code className="font-mono">@anibt/theme</code>
-        {anibtDeps.length ? (
-          <>
-            {" "}和 {anibtDeps.map((dep) => <code key={dep} className="font-mono">{dep} </code>)}
-          </>
-        ) : null}
+        CLI 会一并装好{" "}
+        {["@anibt/theme", ...anibtDeps].map((dep, index) => (
+          <span key={dep}>
+            {index > 0 ? "、" : null}
+            <code className="font-mono">{dep}</code>
+          </span>
+        ))}
         。第一次用之前，先在 <code className="font-mono">components.json</code> 里登记{" "}
         <code className="font-mono">@anibt</code>（见
         <Link href="/docs" className="text-accent-foreground hover:underline">

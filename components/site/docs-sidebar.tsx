@@ -2,6 +2,7 @@
 
 import Link from "next/link"
 import { usePathname } from "next/navigation"
+import { useEffect, useRef } from "react"
 
 import { cn } from "@/lib/utils"
 
@@ -17,6 +18,17 @@ const trim = (pathname: string) => pathname.replace(/\/+$/, "") || "/"
  */
 export function DocsSidebar({ groups }: { groups: SidebarGroup[] }) {
   const pathname = trim(usePathname() ?? "/")
+  const row = useRef<HTMLElement>(null)
+
+  // Keep the current page visible in the phone row: scroll the row itself
+  // (never the page) so the taped tab sits in view.
+  useEffect(() => {
+    const container = row.current
+    const current = container?.querySelector<HTMLElement>("[aria-current=page]")
+    if (!container || !current) return
+    const left = current.offsetLeft - (container.clientWidth - current.offsetWidth) / 2
+    container.scrollLeft = Math.max(0, left)
+  }, [pathname])
 
   return (
     <>
@@ -50,7 +62,7 @@ export function DocsSidebar({ groups }: { groups: SidebarGroup[] }) {
         ))}
       </nav>
 
-      <nav aria-label="文档目录" className="site-scroll-x -mx-1 px-1 lg:hidden">
+      <nav ref={row} aria-label="文档目录" className="site-scroll-x relative -mx-1 px-1 lg:hidden">
         <div className="anibt-tabs w-max min-w-full">
           {groups.flatMap((group) => group.items).map((item) => {
             const current = trim(item.url) === pathname

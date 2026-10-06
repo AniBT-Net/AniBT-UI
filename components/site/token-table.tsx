@@ -158,6 +158,9 @@ function swatchStyle(name: string, value: string): { kind: string; style: CSSPro
   if (name === "anibt-dots") return { kind: "image", style: { backgroundImage: ref, backgroundSize: "12px 12px", backgroundPosition: "0 0, 6px 6px" } }
   if (name === "anibt-stitch") return { kind: "image", style: { backgroundImage: ref, backgroundSize: "8px 1px", backgroundRepeat: "repeat-x", backgroundPosition: "0 50%" } }
   if (name === "anibt-stitch-y") return { kind: "image", style: { backgroundImage: ref, backgroundSize: "1px 8px", backgroundRepeat: "repeat-y", backgroundPosition: "50% 0" } }
+  // White-on-transparent highlights only read on the candy they sit on.
+  if (["anibt-gloss", "anibt-sheen", "anibt-sleeve"].includes(name))
+    return { kind: "image", style: { backgroundImage: `${ref}, var(--anibt-candy)` } }
   if (value.includes("gradient(")) return { kind: "image", style: { backgroundImage: ref } }
   return { kind: "color", style: { backgroundColor: ref } }
 }

@@ -117,7 +117,7 @@ export default function HomePage() {
   return (
     <div className="mx-auto w-full max-w-[1440px] px-[clamp(16px,3vw,32px)]">
       {/* ── Hero ─────────────────────────────────────────────────────────── */}
-      <section className="grid items-center gap-10 pt-8 pb-14 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] lg:gap-16 lg:pt-10">
+      <section className="grid items-start gap-10 pt-8 pb-14 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] lg:gap-16 lg:pt-10">
         <div className="relative">
           <Badge variant="candy" tilt={-3} face="text" className="mb-4">
             <SparklesIcon aria-hidden="true" />
