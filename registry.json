@@ -154,6 +154,25 @@
       "categories": [
         "forms"
       ]
+    },
+    {
+      "name": "kbd",
+      "type": "registry:ui",
+      "title": "Kbd",
+      "description": "AniBT key cap: a sunk 20px cap with a 1px floor in the round face, and KbdGroup for a chord.",
+      "author": "AniBT <https://anibt.net>",
+      "registryDependencies": [
+        "@anibt/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/anibt/ui/kbd.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "display"
+      ]
     }
   ]
 }
