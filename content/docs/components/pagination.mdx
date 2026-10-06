@@ -1,0 +1,71 @@
+---
+title: Pagination
+description: 圆体的 32 高分页格：指针下是粉色淡底，当前页加一圈粉边；手机上每格 44 的触控区。
+---
+
+<ComponentPreview name="pagination-demo" />
+
+## 安装
+
+<InstallBlock name="pagination" />
+
+## 用法
+
+最省事的是 `Pager`：给它当前页和总页数，它画出整行 `‹ 1 2 [3] 4 … 12 ›`。
+
+```tsx title="用法"
+import { Pager } from "@/components/ui/pagination"
+
+// 链接：每一页一个地址
+<Pager page={page} pageCount={48} getHref={(p) => `/magnets?page=${p}`} />
+
+// 按钮：由状态或游标驱动
+<Pager page={page} pageCount={12} onPageChange={setPage} />
+```
+
+只有一页时 `Pager` 什么都不画——短列表不分页。`siblings` 控制当前页两边各留几页，`boundaries` 控制两端各留几页；只隔一页的空档直接画出那一页，不画省略号。
+
+## 自己拼
+
+<ComponentPreview name="pagination-parts" />
+
+各部分和 shadcn 同名：`Pagination`、`PaginationContent`、`PaginationItem`、`PaginationLink`、`PaginationPrevious`、`PaginationNext`、`PaginationEllipsis`。文字默认是中文（「上一页」「下一页」「更多页」），用 `text` / `label` 改。
+
+`PaginationLink` 有 `href` 时是 `<a>`，没有时是 `<button>`——没有地址的分页也得能用 Tab 走到。路由链接用 `asChild`。到头的「上一页」用 `disabled`，链接会变成 `aria-disabled`。
+
+## 属性
+
+<PropsTable
+  title="Pager"
+  rows={[
+    { name: "page", type: "number", description: "必填：当前页，从 1 开始" },
+    { name: "pageCount", type: "number", description: "必填：总页数" },
+    { name: "getHref", type: "(page: number) => string", description: "每页的地址；不给时画按钮" },
+    { name: "onPageChange", type: "(page: number) => void", description: "读者点了哪一页" },
+    { name: "siblings", type: "number", default: "1", description: "当前页两边各留几页" },
+    { name: "boundaries", type: "number", default: "1", description: "两端各留几页" },
+    { name: "showText", type: "boolean", default: "false", description: "从 sm 起在箭头旁写「上一页」「下一页」" },
+    { name: "pageLabel", type: "(page: number) => string", default: "第 N 页", description: "每格的无障碍名称" },
+  ]}
+/>
+
+<PropsTable
+  title="PaginationLink"
+  rows={[
+    { name: "isActive", type: "boolean", default: "false", description: "当前页：粉边与 aria-current=page" },
+    { name: "href", type: "string", description: "有则渲染 a，无则渲染 button" },
+    { name: "asChild", type: "boolean", default: "false", description: "把样式交给唯一的子元素（路由链接）" },
+    { name: "disabled", type: "boolean", default: "false", description: "到头了" },
+    { name: "size", type: "shadcn 的按钮尺寸名", default: '"icon"', description: "icon 系列是方格，其余左右留白" },
+  ]}
+/>
+
+<PropsTable
+  title="PaginationPrevious · PaginationNext"
+  rows={[
+    { name: "text", type: "string", default: '"上一页" / "下一页"', description: "箭头旁的字（sm 以下隐藏），也是无障碍名称" },
+    { name: "iconOnly", type: "boolean", default: "false", description: "任何宽度都只画箭头" },
+  ]}
+/>
+
+还导出 `getPageWindow(page, pageCount, siblings, boundaries)`，返回要画的页码和 `"ellipsis"`。

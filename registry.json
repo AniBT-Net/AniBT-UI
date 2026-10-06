@@ -404,6 +404,337 @@
       "categories": [
         "display"
       ]
+    },
+    {
+      "name": "avatar",
+      "type": "registry:ui",
+      "title": "Avatar",
+      "description": "AniBT die-cut avatar: the white sticker rim and shadow, round for people and rounded-square for groups, initials in the round face on the pink wash, plus shadcn's AvatarBadge, AvatarGroup and AvatarGroupCount.",
+      "author": "AniBT <https://anibt.net>",
+      "dependencies": [
+        "class-variance-authority",
+        "radix-ui"
+      ],
+      "registryDependencies": [
+        "@anibt/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/anibt/ui/avatar.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "display"
+      ]
+    },
+    {
+      "name": "entity-avatar",
+      "type": "registry:ui",
+      "title": "Entity Avatar",
+      "description": "One picture of a thing — a subtitle group's logo or a user's portrait — with the one fallback rule: the real image, else script-aware initials in the same die-cut sticker.",
+      "author": "AniBT <https://anibt.net>",
+      "registryDependencies": [
+        "@anibt/theme",
+        "@anibt/avatar"
+      ],
+      "files": [
+        {
+          "path": "registry/anibt/ui/entity-avatar.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "display"
+      ]
+    },
+    {
+      "name": "skeleton",
+      "type": "registry:ui",
+      "title": "Skeleton",
+      "description": "AniBT loading placeholder: one step deeper than a field, radius 10, a slow pulse and nothing else; box, line, pill and circle shapes.",
+      "author": "AniBT <https://anibt.net>",
+      "registryDependencies": [
+        "@anibt/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/anibt/ui/skeleton.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "feedback"
+      ]
+    },
+    {
+      "name": "progress",
+      "type": "registry:ui",
+      "title": "Progress",
+      "description": "AniBT progress bar: a sunk track with a glossy water (in progress), candy (your goal) or mint (done) fill, an indeterminate slide, and Base UI's label / value row.",
+      "author": "AniBT <https://anibt.net>",
+      "dependencies": [
+        "class-variance-authority",
+        "radix-ui"
+      ],
+      "registryDependencies": [
+        "@anibt/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/anibt/ui/progress.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "feedback"
+      ]
+    },
+    {
+      "name": "pagination",
+      "type": "registry:ui",
+      "title": "Pagination",
+      "description": "AniBT pager: quiet 32px cells in the round face, the current page washed pink with a ring, 44px touch targets, shadcn's parts with Chinese defaults, and a Pager that draws the whole row from page and pageCount.",
+      "author": "AniBT <https://anibt.net>",
+      "dependencies": [
+        "lucide-react",
+        "radix-ui"
+      ],
+      "registryDependencies": [
+        "@anibt/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/anibt/ui/pagination.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "navigation"
+      ]
+    },
+    {
+      "name": "empty",
+      "type": "registry:ui",
+      "title": "Empty",
+      "description": "AniBT empty state: a framed well, or A's tilted paper note with your picture peeking over its edge between twinkling sparkles; icon, image and peek media slots.",
+      "author": "AniBT <https://anibt.net>",
+      "dependencies": [
+        "class-variance-authority",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@anibt/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/anibt/ui/empty.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "feedback"
+      ]
+    },
+    {
+      "name": "tooltip",
+      "type": "registry:ui",
+      "title": "Tooltip",
+      "description": "AniBT hint bubble: the dark tip (light in 夜樱) with a tail in its own colour, Radix behaviour, a self-providing root, and Base UI's render / delay props for shadcn's base-* sidebar.",
+      "author": "AniBT <https://anibt.net>",
+      "dependencies": [
+        "radix-ui"
+      ],
+      "registryDependencies": [
+        "@anibt/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/anibt/ui/tooltip.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "overlay"
+      ]
+    },
+    {
+      "name": "separator",
+      "type": "registry:ui",
+      "title": "Separator",
+      "description": "AniBT rule: the dashed stitch (horizontal or vertical) or the solid 1px edge, with Radix and Base UI orientation attributes.",
+      "author": "AniBT <https://anibt.net>",
+      "dependencies": [
+        "class-variance-authority",
+        "radix-ui"
+      ],
+      "registryDependencies": [
+        "@anibt/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/anibt/ui/separator.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "layout"
+      ]
+    },
+    {
+      "name": "alert",
+      "type": "registry:ui",
+      "title": "Alert",
+      "description": "AniBT notice: a note on the state's wash (info blue, success mint, warning amber, destructive red) with the icon in the state's ink, or the inline row form with a leading dot; AlertAction for a retry.",
+      "author": "AniBT <https://anibt.net>",
+      "dependencies": [
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "@anibt/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/anibt/ui/alert.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "feedback"
+      ]
+    },
+    {
+      "name": "accordion",
+      "type": "registry:ui",
+      "title": "Accordion",
+      "description": "AniBT folding sections: stitched rows or separate wells, 14/700 triggers that turn pink, a chevron that flips pink when open; single and collapsible by default.",
+      "author": "AniBT <https://anibt.net>",
+      "dependencies": [
+        "lucide-react",
+        "radix-ui"
+      ],
+      "registryDependencies": [
+        "@anibt/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/anibt/ui/accordion.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "display"
+      ]
+    },
+    {
+      "name": "breadcrumb",
+      "type": "registry:ui",
+      "title": "Breadcrumb",
+      "description": "AniBT trail: 13px muted steps, links that turn pink, the current page in ink, small chevrons; asChild or Base UI render for router links.",
+      "author": "AniBT <https://anibt.net>",
+      "dependencies": [
+        "lucide-react",
+        "radix-ui"
+      ],
+      "registryDependencies": [
+        "@anibt/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/anibt/ui/breadcrumb.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "navigation"
+      ]
+    },
+    {
+      "name": "table",
+      "type": "registry:ui",
+      "title": "Table",
+      "description": "AniBT data table on a real <table>: 36px head of muted labels, 48px rows parted by the stitch, pink-washed selected rows, numeric cells in the round face, an optional sticky head and a two-line identity cell.",
+      "author": "AniBT <https://anibt.net>",
+      "registryDependencies": [
+        "@anibt/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/anibt/ui/table.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "display"
+      ]
+    },
+    {
+      "name": "page-header",
+      "type": "registry:ui",
+      "title": "Page Header",
+      "description": "AniBT section head in one compact row: a tilted sticker mark, the 20/800 title, a figure in the round face, an ellipsised description and the page's tool group.",
+      "author": "AniBT <https://anibt.net>",
+      "registryDependencies": [
+        "@anibt/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/anibt/ui/page-header.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "layout"
+      ]
+    },
+    {
+      "name": "poster-card",
+      "type": "registry:block",
+      "title": "Poster Card",
+      "description": "AniBT collectible poster card: a 2:3 cover in a glossy sleeve with a sheen on hover, a tilted airtime sticker, corner badges and a subscribe key; fixed height with a two-line title; srcSet / sizes for sharp covers; PosterGrid, rating, status and skeleton.",
+      "author": "AniBT <https://anibt.net>",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@anibt/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/anibt/blocks/poster-card/poster-card.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "blocks",
+        "display"
+      ]
+    },
+    {
+      "name": "release-row",
+      "type": "registry:block",
+      "title": "Release Row",
+      "description": "AniBT release row: a die-cut cover, the full title over the publisher, episode and three coloured tags, then size, swarm and age columns and always-visible icon squares; wide, stacked and compact forms by container width.",
+      "author": "AniBT <https://anibt.net>",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@anibt/theme",
+        "@anibt/badge",
+        "@anibt/button",
+        "@anibt/tooltip"
+      ],
+      "files": [
+        {
+          "path": "registry/anibt/blocks/release-row/release-row.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "blocks",
+        "display"
+      ]
     }
   ]
 }

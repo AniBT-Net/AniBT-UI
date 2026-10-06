@@ -1,0 +1,148 @@
+---
+title: Poster Card
+description: 卡套里的收藏卡：2:3 封面带卡套反光、悬停扫光，倾斜的放送时间贴纸；卡片定高，标题最多两行；封面用 srcSet 保持锐利。
+---
+
+<ComponentPreview name="poster-card-demo" />
+
+## 安装
+
+<InstallBlock name="poster-card" />
+
+这是一个区块（`registry:block`），CLI 会把它写到 `components/poster-card.tsx`。
+
+## 用法
+
+```tsx title="components/season-wall.tsx"
+import { RssIcon } from "lucide-react"
+
+import { Badge } from "@/components/ui/badge"
+import {
+  PosterCard,
+  PosterCardAction,
+  PosterCardRating,
+  PosterCardSep,
+  PosterCardStatus,
+  PosterGrid,
+  posterSrcSet,
+} from "@/components/poster-card"
+
+export function SeasonWall({ shows }: { shows: Show[] }) {
+  return (
+    <PosterGrid>
+      {shows.map((show, index) => (
+        <PosterCard
+          key={show.id}
+          href={`/anime/${show.id}`}
+          src={show.cover(400)}
+          srcSet={posterSrcSet(show.cover)}
+          priority={index < 6}
+          title={show.title}
+          subtitle={show.romaji}
+          sticker={<Badge variant="sticker">{show.airtime}</Badge>}
+          coverAction={
+            <PosterCardAction aria-label="订阅 RSS" pressed={show.subscribed}>
+              <RssIcon />
+            </PosterCardAction>
+          }
+          meta={
+            <>
+              第 {show.episode} 集
+              <PosterCardSep />
+              <PosterCardRating value={show.score} />
+            </>
+          }
+          status={<PosterCardStatus tone="ok">已更新</PosterCardStatus>}
+        />
+      ))}
+    </PosterGrid>
+  )
+}
+```
+
+## 定高
+
+同一行的卡片永远一样高，无论内容多少：
+
+- 标题最多两行，并且**始终预留两行**的高度；完整标题放在 `title=` 里（标题是字符串时自动带上）。
+- 副标题一行，没有也留着这一行；卡片窄于 160px 时（手机三列）整行去掉。
+- 事实行（`meta`，从不换行）和状态行（`status`）贴在卡片底部。
+
+`PosterGrid` 按它**自己的宽度**排列：600px 以下 3 列，600 起 4 列，960 起 6 列，1360 起 8 列；轨道都是 `1fr`，最后一行不足时卡片留在左边。它还按位置给每张卡的贴纸一个倾斜角度，一排看上去像手贴的。
+
+## 锐利的封面
+
+<ComponentPreview name="poster-card-srcset" />
+
+封面糊，几乎都是因为浏览器拿到的图太小。浏览器按 `sizes` × 屏幕像素比来挑 `srcSet` 里的图：手机三列时一张卡约 120px 宽，在 3× 屏上需要 **360w 以上**的图；桌面 8 列约 176px，在 2× 屏上需要 352w，在 3× 屏上需要 528w。
+
+- 只给 `src` 不够——给 `srcSet`，写出真实宽度（`… 400w, … 600w`），最大的那张至少是卡片 CSS 宽度的 3 倍。
+- `posterSrcSet((w) => url)` 按宽度函数生成列表，默认 200 / 300 / 400 / 600 / 900。
+- `sizes` 不写时用 `POSTER_SIZES`，它只对应 `PosterGrid` 的列数。**卡片不在 `PosterGrid` 里时，一定写它自己的 `sizes`**：上面这张卡固定 176px 宽，就写 `sizes="176px"`；照搬 `POSTER_SIZES` 会让手机按 33vw ≈ 129px 去挑图，3× 屏上拿到的图不够大。
+- 首屏的几张加 `priority`（立即加载、高优先级），其余懒加载。
+- 用 `next/image` 之类的组件时，把它作为 `image` 传进来（`fill`、`sizes` 由你写）。
+
+封面下面始终垫着点点占位：加载中、没有封面、加载失败时都露出它。`imageFallback` 可以换成你自己的占位。
+
+示例里的封面都是矢量 SVG（`public/demo/covers/`），任何缩放都是清晰的。
+
+## 状态
+
+<ComponentPreview name="poster-card-states" />
+
+- `tone="next"` / `"airing"`：蓝色的卡（A 里蓝色是时间），给下一个放送、正在放送的那一格。
+- `selected`：粉色的环，给可以展开的墙上当前打开的那张。
+- `PosterCardBadge`：封面上角的方形纸贴纸（格式、数量）；封面窄于 140px 时，右边那枚自动落到左边那枚下面。
+- `PosterCardStatus`：一个点和一个词。`ok` 薄荷（有种子）、`run` / `next` 蓝色闪点（放送中、下一集）、`wait` 墨色、`none` 空心灰点。**必须有字**。
+- `children` 画在卡片最底下，比如后台海报墙上一直显示的「编辑」命令行。
+- `PosterCardSkeleton` 是同样高度的骨架。
+
+`href`（或路由用的 `link={<Link href="…" />}`）让标题成为铺满整张卡的链接，`coverAction` 仍是一个独立的按钮，浮在链接上面——不要把整张卡包进 `<a>` 再在里面放按钮。
+
+## 属性
+
+<PropsTable
+  title="PosterCard"
+  rows={[
+    { name: "title", type: "ReactNode", description: "必填：最多两行，始终预留两行" },
+    { name: "src", type: "string", description: "封面地址" },
+    { name: "srcSet", type: "string", description: "带宽度描述的多张图；最大的至少 3 倍卡宽" },
+    { name: "sizes", type: "string", default: "POSTER_SIZES（有 srcSet 时）", description: "卡片的 CSS 宽度" },
+    { name: "alt", type: "string", default: '""', description: "标题已经说了番名，封面默认是装饰" },
+    { name: "priority", type: "boolean", default: "false", description: "首屏：立即加载、高优先级" },
+    { name: "image", type: "ReactNode", description: "自己的图片元素，替代 src" },
+    { name: "imageFallback", type: "ReactNode", description: "封面下的占位，替代默认的点点" },
+    { name: "sticker", type: "ReactNode", description: "左上角倾斜的模切贴纸（放送时间）" },
+    { name: "badges", type: "ReactNode", description: "PosterCardBadge" },
+    { name: "coverAction", type: "ReactNode", description: "右下角的 PosterCardAction" },
+    { name: "coverOverlay", type: "ReactNode", description: "盖在整张封面上的东西" },
+    { name: "subtitle", type: "ReactNode", description: "一行别名" },
+    { name: "meta", type: "ReactNode", description: "一行事实，从不换行" },
+    { name: "status", type: "ReactNode", description: "PosterCardStatus" },
+    { name: "href · link", type: "string · ReactElement", description: "让整张卡成为链接（从标题铺开）" },
+    { name: "tone", type: '"next" | "airing"', description: "蓝色的卡" },
+    { name: "selected", type: "boolean", default: "false", description: "粉色的环" },
+    { name: "titleTooltip", type: "string", description: "完整标题；标题是字符串时默认就是它" },
+    { name: "titleLang", type: "string", description: "标题的 lang（日文名写 ja）" },
+    { name: "headingLevel", type: '"h2" | "h3" | "h4"', default: '"h3"', description: "标题元素" },
+  ]}
+/>
+
+<PropsTable
+  title="PosterCardAction"
+  rows={[
+    { name: "pressed", type: "boolean", description: "已订阅：粉色淡底，不是糖果填充" },
+    { name: "aria-label", type: "string", description: "必填：按钮的名字" },
+  ]}
+/>
+
+<PropsTable
+  title="PosterCardStatus · PosterCardRating · PosterCardBadge"
+  rows={[
+    { name: "tone", type: '"ok" | "run" | "next" | "wait" | "none"', default: '"wait"', description: "PosterCardStatus 的状态色" },
+    { name: "value", type: "number | null", description: "PosterCardRating 的分数；null 显示短横" },
+    { name: "corner", type: '"start" | "end"', default: '"start"', description: "PosterCardBadge 贴在哪个角" },
+  ]}
+/>
+
+还导出 `PosterGrid`、`PosterCardSep`（事实之间的小圆点）、`PosterCardSkeleton`、`PosterCardPlaceholder`、`POSTER_SIZES` 和 `posterSrcSet`。

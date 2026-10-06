@@ -1,0 +1,68 @@
+---
+title: Tooltip
+description: 深色提示气泡（夜樱里是浅色），带同色的小尾巴，给只有图标的按钮报名字。
+---
+
+<ComponentPreview name="tooltip-demo" />
+
+## 安装
+
+<InstallBlock name="tooltip" />
+
+## 用法
+
+```tsx title="用法"
+import { Button } from "@/components/ui/button"
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip"
+
+<Tooltip>
+  <TooltipTrigger asChild>
+    <Button variant="secondary" size="icon" aria-label="复制磁力链接">
+      <MagnetIcon />
+    </Button>
+  </TooltipTrigger>
+  <TooltipContent>复制磁力链接</TooltipContent>
+</Tooltip>
+```
+
+提示只说一句短话：给图标按钮报名字，或者补一个事实。更长的内容放进弹层。按钮自己也要有 `aria-label`——提示不是唯一的名字来源。
+
+`Tooltip` 不需要外层的 `TooltipProvider` 也能用（它会自己带一个）；一整个列表的提示共用一个 provider，延迟才一致。
+
+## 方向与键帽
+
+<ComponentPreview name="tooltip-sides" />
+
+`side`、`align`、`sideOffset` 都是 Radix 的。提示里的键帽（`data-slot="kbd"`）会自动换成气泡的颜色。
+
+## 与 shadcn 的兼容
+
+- `TooltipTrigger` 同时接受 Radix 的 `asChild` 和 Base UI 的 `render={<button … />}`，`base-*` 风格的 sidebar 不用改。
+- `TooltipProvider` / `Tooltip` 同时接受 `delayDuration`（Radix）和 `delay`（Base UI）。
+
+## 属性
+
+<PropsTable
+  title="TooltipContent"
+  rows={[
+    { name: "side", type: '"top" | "right" | "bottom" | "left"', default: '"top"', description: "气泡在哪一边" },
+    { name: "sideOffset", type: "number", default: "6", description: "离控件的距离" },
+    { name: "align", type: '"start" | "center" | "end"', default: '"center"', description: "沿边对齐" },
+  ]}
+/>
+
+<PropsTable
+  title="TooltipTrigger"
+  rows={[
+    { name: "asChild", type: "boolean", default: "false", description: "把触发器交给唯一的子元素" },
+    { name: "render", type: "ReactElement", description: "Base UI 的写法：渲染成这个元素" },
+  ]}
+/>
+
+<PropsTable
+  title="TooltipProvider · Tooltip"
+  rows={[
+    { name: "delayDuration", type: "number", default: "0", description: "多久后打开（毫秒）" },
+    { name: "delay", type: "number", description: "Base UI 对 delayDuration 的叫法" },
+  ]}
+/>

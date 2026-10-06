@@ -1,0 +1,39 @@
+---
+title: Separator
+description: A 的分隔是一条虚线缝线：4px 线、4px 空，1px 粗；也可以是 1px 的实线。
+---
+
+<ComponentPreview name="separator-demo" />
+
+## 安装
+
+<InstallBlock name="separator" />
+
+## 用法
+
+```tsx title="用法"
+import { Separator } from "@/components/ui/separator"
+
+<Separator />
+<Separator orientation="vertical" />
+<Separator variant="line" />
+```
+
+行与行、节与节之间用缝线（默认的 `variant="stitch"`），颜色是控件边色。`variant="line"` 是面板边那种 1px 实线，只在缝线读起来像纸上的接缝、而不是分隔时用。
+
+竖线会撑满所在行的高度（`self-stretch`），所以放在 `flex` 行里；也可以用 `className="h-4"` 定高。
+
+默认是装饰性的，屏幕阅读器会跳过；它分开的是两组读者应该分开听的内容时，写 `decorative={false}`。
+
+元素同时带 Radix 的 `data-orientation` 和 Base UI 的 `data-horizontal` / `data-vertical`，shadcn 里按任一种写样式的组件都能继续用。
+
+## 属性
+
+<PropsTable
+  title="Separator"
+  rows={[
+    { name: "variant", type: '"stitch" | "line"', default: '"stitch"', description: "虚线缝线 / 1px 实线" },
+    { name: "orientation", type: '"horizontal" | "vertical"', default: '"horizontal"', description: "横 / 竖" },
+    { name: "decorative", type: "boolean", default: "true", description: "false 时以 role=separator 暴露给辅助技术" },
+  ]}
+/>

@@ -1,0 +1,49 @@
+---
+title: Alert
+description: 状态淡底上的提示：蓝色进行中、薄荷成功、琥珀注意、红色失败；也可以是表单里一行带点的提示。
+---
+
+<ComponentPreview name="alert-demo" />
+
+## 安装
+
+<InstallBlock name="alert" />
+
+## 用法
+
+```tsx title="用法"
+import { InfoIcon } from "lucide-react"
+
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
+
+<Alert variant="info" role="status">
+  <InfoIcon />
+  <AlertTitle>正在同步到 4 个外站</AlertTitle>
+  <AlertDescription>完成后会在资源页显示每个站点的链接。</AlertDescription>
+</Alert>
+```
+
+一种颜色一种职责：`info` 蓝（时间、进行中）、`success` 薄荷、`warning` 琥珀、`destructive` 红，`default` 是中性的。粉色从不用来提示——粉色是操作。
+
+第一个子元素是 `svg` 时（和 shadcn 一样），它会放在左边一列，染成状态的颜色；标题也用状态的颜色。`AlertAction` 把一个按钮放在右上角（重试、关闭）。
+
+`role` 默认是 `alert`，会被立即播报；不紧急的提示写 `role="status"`。
+
+## 行内
+
+<ComponentPreview name="alert-inline" />
+
+`inline` 是站内表单和列表里的写法：不铺底色，上下各一条 1px 线，行首一个 6px 的状态点。点是 `aria-hidden` 的，**文字必须自己说清状态**，颜色从不单独表达意思。几条行内提示叠在一起时，给后面的加 `border-t-0`。
+
+## 属性
+
+<PropsTable
+  title="Alert"
+  rows={[
+    { name: "variant", type: '"default" | "info" | "success" | "warning" | "destructive"', default: '"default"', description: "状态" },
+    { name: "inline", type: "boolean", default: "false", description: "行内版式：无底色、上下细线、行首状态点" },
+    { name: "role", type: "string", default: '"alert"', description: "不紧急时用 status" },
+  ]}
+/>
+
+`AlertTitle`、`AlertDescription`、`AlertAction` 与 shadcn 同名，属性透传给 `div`。

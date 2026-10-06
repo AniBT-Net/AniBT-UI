@@ -1,0 +1,48 @@
+---
+title: Accordion
+description: 折叠的段落：缝线分开的行，或一张张分组卡；指针下标题变粉，展开的那节箭头翻转成粉色。
+---
+
+<ComponentPreview name="accordion-demo" />
+
+## 安装
+
+<InstallBlock name="accordion" />
+
+## 用法
+
+```tsx title="用法"
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
+
+<Accordion defaultValue="rss">
+  <AccordionItem value="rss">
+    <AccordionTrigger>怎么用 RSS 订阅一部番？</AccordionTrigger>
+    <AccordionContent>在番剧页点「订阅 RSS」……</AccordionContent>
+  </AccordionItem>
+</Accordion>
+```
+
+默认一次只开一节，并且可以全部收起——不用再写 `type="single" collapsible`。`type="multiple"`（或 Base UI 的 `multiple`）允许同时展开几节，`collapsible={false}` 让一节始终开着。
+
+标题是 14/700，指针放上去变粉；展开的那节，右端的箭头翻转并变成粉色。标题里的图标（第一个 `svg`）是弱色的 16px。键盘、`aria-expanded` 和高度动画都来自 Radix 与 `tw-animate-css`。
+
+## 分组卡
+
+<ComponentPreview name="accordion-cards" />
+
+`variant="cards"` 让每一节成为一个 well（1px 边、圆角 10），节与节之间 8px，展开的那节换成粉色的边。
+
+## 属性
+
+<PropsTable
+  title="Accordion"
+  rows={[
+    { name: "variant", type: '"default" | "cards"', default: '"default"', description: "缝线分隔的行 / 一节一张分组卡" },
+    { name: "type", type: '"single" | "multiple"', default: '"single"', description: "一次开一节 / 可以开几节" },
+    { name: "multiple", type: "boolean", default: "false", description: "Base UI 的写法，等同 type=multiple" },
+    { name: "collapsible", type: "boolean", default: "true", description: "single 时能否全部收起" },
+    { name: "defaultValue · value · onValueChange", type: "Radix", description: "single 时是 string，multiple 时是 string[]" },
+  ]}
+/>
+
+`AccordionItem`、`AccordionTrigger`、`AccordionContent` 是 Radix 的对应部分，属性原样透传。

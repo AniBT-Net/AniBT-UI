@@ -1,0 +1,64 @@
+---
+title: Breadcrumb
+description: 13 号弱色的路径：链接指针下变粉，当前页是墨色 600，分隔是一个小箭头。
+---
+
+<ComponentPreview name="breadcrumb-demo" />
+
+## 安装
+
+<InstallBlock name="breadcrumb" />
+
+## 用法
+
+```tsx title="用法"
+import Link from "next/link"
+
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb"
+
+<Breadcrumb>
+  <BreadcrumbList>
+    <BreadcrumbItem>
+      <BreadcrumbLink asChild>
+        <Link href="/anime">番剧</Link>
+      </BreadcrumbLink>
+    </BreadcrumbItem>
+    <BreadcrumbSeparator />
+    <BreadcrumbItem>
+      <BreadcrumbPage>夜樱终电</BreadcrumbPage>
+    </BreadcrumbItem>
+  </BreadcrumbList>
+</Breadcrumb>
+```
+
+路径换行，不横滚；保持三四步，中间的折进 `BreadcrumbEllipsis`。当前页不是链接，太长时省略。
+
+这里不贴和纸胶带：胶带是主导航里唯一的「你在这里」，同一页上再贴一条会和它抢。
+
+路由链接用 `asChild`（Radix 写法）或 `render={<Link href="…" />}`（Base UI 写法）。
+
+## 属性
+
+<PropsTable
+  title="BreadcrumbLink"
+  rows={[
+    { name: "asChild", type: "boolean", default: "false", description: "把样式交给唯一的子元素" },
+    { name: "render", type: "ReactElement", description: "Base UI 的写法：渲染成这个元素" },
+  ]}
+/>
+
+<PropsTable
+  title="BreadcrumbEllipsis"
+  rows={[
+    { name: "label", type: "string", default: '"更多"', description: "给屏幕阅读器的文字" },
+  ]}
+/>
+
+`Breadcrumb` 的 `aria-label` 默认是「面包屑」。其余部分与 shadcn 同名，属性透传。

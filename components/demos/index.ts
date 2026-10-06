@@ -46,6 +46,34 @@ import TextareaStates from "./textarea-states"
 import ToggleGroupDemo from "./toggle-group-demo"
 import ToggleGroupSizes from "./toggle-group-sizes"
 import ToggleGroupTrack from "./toggle-group-track"
+// U2: display + blocks
+import AccordionCards from "./accordion-cards"
+import AccordionDemo from "./accordion-demo"
+import AlertDemo from "./alert-demo"
+import AlertInline from "./alert-inline"
+import AvatarDemo from "./avatar-demo"
+import AvatarGroupDemo from "./avatar-group"
+import BreadcrumbDemo from "./breadcrumb-demo"
+import EmptyDemo from "./empty-demo"
+import EmptyWell from "./empty-well"
+import EntityAvatarDemo from "./entity-avatar-demo"
+import PageHeaderCompact from "./page-header-compact"
+import PageHeaderDemo from "./page-header-demo"
+import PaginationDemo from "./pagination-demo"
+import PaginationParts from "./pagination-parts"
+import PosterCardDemo from "./poster-card-demo"
+import PosterCardSrcSet from "./poster-card-srcset"
+import PosterCardStates from "./poster-card-states"
+import ProgressDemo from "./progress-demo"
+import ProgressLabelDemo from "./progress-label"
+import ReleaseRowDemo from "./release-row-demo"
+import ReleaseRowForms from "./release-row-forms"
+import SeparatorDemo from "./separator-demo"
+import SkeletonDemo from "./skeleton-demo"
+import TableDemo from "./table-demo"
+import TableSticky from "./table-sticky"
+import TooltipDemo from "./tooltip-demo"
+import TooltipSides from "./tooltip-sides"
 
 /**
  * Every live example the docs can show. The key is the file name in this
@@ -99,6 +127,34 @@ export const demos = {
   "password-input-demo": PasswordInputDemo,
   "kbd-demo": KbdDemo,
   "kbd-legend": KbdLegend,
+  // U2: display + blocks
+  "avatar-demo": AvatarDemo,
+  "avatar-group": AvatarGroupDemo,
+  "entity-avatar-demo": EntityAvatarDemo,
+  "skeleton-demo": SkeletonDemo,
+  "progress-demo": ProgressDemo,
+  "progress-label": ProgressLabelDemo,
+  "pagination-demo": PaginationDemo,
+  "pagination-parts": PaginationParts,
+  "empty-demo": EmptyDemo,
+  "empty-well": EmptyWell,
+  "tooltip-demo": TooltipDemo,
+  "tooltip-sides": TooltipSides,
+  "separator-demo": SeparatorDemo,
+  "alert-demo": AlertDemo,
+  "alert-inline": AlertInline,
+  "accordion-demo": AccordionDemo,
+  "accordion-cards": AccordionCards,
+  "breadcrumb-demo": BreadcrumbDemo,
+  "table-demo": TableDemo,
+  "table-sticky": TableSticky,
+  "page-header-demo": PageHeaderDemo,
+  "page-header-compact": PageHeaderCompact,
+  "poster-card-demo": PosterCardDemo,
+  "poster-card-states": PosterCardStates,
+  "poster-card-srcset": PosterCardSrcSet,
+  "release-row-demo": ReleaseRowDemo,
+  "release-row-forms": ReleaseRowForms,
 } satisfies Record<string, ComponentType>
 
 export type DemoName = keyof typeof demos
