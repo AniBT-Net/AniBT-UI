@@ -364,6 +364,29 @@
       ]
     },
     {
+      "name": "password-input",
+      "type": "registry:ui",
+      "title": "Password Input",
+      "description": "AniBT password field: an input with a named show / hide key that reports its state.",
+      "author": "AniBT <https://anibt.net>",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@anibt/theme",
+        "@anibt/input"
+      ],
+      "files": [
+        {
+          "path": "registry/anibt/ui/password-input.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "forms"
+      ]
+    },
+    {
       "name": "kbd",
       "type": "registry:ui",
       "title": "Kbd",
