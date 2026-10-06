@@ -25,6 +25,8 @@ import InputStates from "./input-states"
 import LabelDemo from "./label-demo"
 import RadioGroupCards from "./radio-group-cards"
 import RadioGroupDemo from "./radio-group-demo"
+import SegmentedControlDemo from "./segmented-control-demo"
+import SegmentedControlVariants from "./segmented-control-variants"
 import SelectDemo from "./select-demo"
 import SelectGroups from "./select-groups"
 import SelectStates from "./select-states"
@@ -73,6 +75,8 @@ export const demos = {
   "switch-states": SwitchStates,
   "radio-group-demo": RadioGroupDemo,
   "radio-group-cards": RadioGroupCards,
+  "segmented-control-demo": SegmentedControlDemo,
+  "segmented-control-variants": SegmentedControlVariants,
 } satisfies Record<string, ComponentType>
 
 export type DemoName = keyof typeof demos
