@@ -13,7 +13,7 @@ AniBT 「贴纸手账」组件库：模切白边贴纸、糖果光泽按钮、�
   - 浮层：`dialog`、`alert-dialog`、`confirm-dialog`、`dropdown-menu`、`popover`、`hover-card`、`sheet`、`drawer`、`sonner`、`command`、`searchable-select`、`multi-select`、`markdown-editor`
   - 区块：`poster-card`、`release-row`
 
-> **English summary.** AniBT UI is the component library behind [anibt.net](https://anibt.net), published as a shadcn registry under the `@anibt` namespace. It ships a `registry:theme` item (light mode “Shirozakura” on `:root`, dark mode “Yozakura” on `.dark`, mapped onto the standard shadcn tokens plus `--anibt-*` extras and `anibt-*` utilities) and 45 Radix-based components and blocks (buttons, badges, forms, overlays, poster cards, release rows…) that drop into any shadcn/Tailwind v4 project. Add `"@anibt": "https://ui.anibt.net/r/{name}.json"` to the `registries` of your `components.json`, then run `npx shadcn@latest add @anibt/theme` once (it swaps the standard shadcn colours for Shirozakura/Yozakura) and add components such as `npx shadcn@latest add @anibt/button`. Code is MIT; the AniBT logo and mascot are not.
+> **English summary.** AniBT UI is the component library behind [anibt.net](https://anibt.net), published as a shadcn registry under the `@anibt` namespace. It ships a `registry:theme` item (light mode “Shirozakura” on `:root`, dark mode “Yozakura” on `.dark`, mapped onto the standard shadcn tokens plus `--anibt-*` extras and `anibt-*` utilities) and 45 Radix-based components and blocks (buttons, badges, forms, overlays, poster cards, release rows…) that drop into any shadcn/Tailwind v4 project. Add `"@anibt": "https://ui.anibt.net/r/{name}.json"` to the `registries` of your `components.json`, then run `npx shadcn@latest add @anibt/theme` once (it swaps the standard shadcn colours for Shirozakura/Yozakura) and add components such as `npx shadcn@latest add @anibt/button`. Code is AGPL-3.0-only; the AniBT logo and mascot are not.
 
 ## 在你的项目里使用
 
@@ -74,7 +74,7 @@ app/                              Next.js 页面；globals.css = 标准 shadcn i
 components/site/                  站点外壳与文档组件
 components/demos/                 文档里的在线示例（预览 + 代码）
 content/docs/                     文档（MDX，fumadocs）
-public/brand/                     品牌素材（不在 MIT 许可内）
+public/brand/                     品牌素材（不在 AGPL 许可内）
 ```
 
 ### 加一个组件
@@ -112,7 +112,7 @@ public/brand/                     品牌素材（不在 MIT 许可内）
 
 ## 许可
 
-代码以 MIT 许可发布（见 [LICENSE](./LICENSE)，站长可以更改）。**品牌素材除外**：`public/brand/` 下的 AniBT logo 与吉祥物图片不在 MIT 许可内，只用于本站展示，不通过 registry 分发。
+代码以 GNU Affero General Public License v3.0 发布，仅此版本（SPDX：`AGPL-3.0-only`），全文见 [LICENSE](./LICENSE)。`shadcn add` 写入项目的组件源码适用同一许可。**品牌素材除外**：`public/brand/` 下的 AniBT logo 与吉祥物图片不在该许可内，只用于本站展示，不通过 registry 分发。
 
 ## 维护者备注：已核对的 shadcn registry 事实
 

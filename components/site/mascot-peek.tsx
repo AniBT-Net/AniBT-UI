@@ -9,7 +9,7 @@ import { cn } from "@/lib/utils"
  * part of the picture (negative margin here, `relative z-10` on the card).
  * Decorative: `aria-hidden`, no pointer events; reduced motion holds it still.
  *
- * The picture is an AniBT brand asset (not MIT): it ships with the site, never
+ * The picture is an AniBT brand asset (not AGPL): it ships with the site, never
  * through the registry.
  */
 export function MascotPeek({ className, size = 112 }: { className?: string; size?: number }) {

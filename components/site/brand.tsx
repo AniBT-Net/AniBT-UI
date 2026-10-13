@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils"
 
 /**
  * The 「AniBT UI」 wordmark: the AniBT sticker logo with a tilted candy
- * 「UI」 sticker stuck on its tail. The logo is an AniBT brand asset (not MIT).
+ * 「UI」 sticker stuck on its tail. The logo is an AniBT brand asset (not AGPL).
  */
 export function Brand({ className, compact = false }: { className?: string; compact?: boolean }) {
   return (

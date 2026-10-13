@@ -24,7 +24,7 @@ export function SiteFooter() {
           {/* eslint-disable-next-line @next/next/no-img-element -- static export */}
           <img src="/brand/anibt-logo@2x.webp" alt="AniBT" width={960} height={488} className="anibt-rim-cut h-6 w-auto" />
           <span>
-            AniBT UI · 代码 MIT · 品牌素材（logo、吉祥物）不在开源许可内
+            AniBT UI · 代码 AGPL-3.0 · 品牌素材（logo、吉祥物）不在开源许可内
           </span>
         </div>
         <nav aria-label="页脚" className="flex flex-wrap items-center gap-x-1 gap-y-1 md:ml-auto">
