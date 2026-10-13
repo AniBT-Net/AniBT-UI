@@ -6,7 +6,7 @@ export const SITE_NAME = "AniBT UI"
 export const SITE_DESCRIPTION =
   "AniBT 「贴纸手账」组件库：模切白边贴纸、糖果光泽按钮、和纸胶带标记当前位置。以 shadcn registry 分发，一条命令装进你的项目。"
 
-export const GITHUB_URL = "https://github.com/AniBT-Net/AniBT-UI"
+export const GITHUB_URL = "https://github.com/OpenAniBT/ui"
 export const ANIBT_URL = "https://anibt.net"
 
 /** The CLI line a page shows for one item. */
