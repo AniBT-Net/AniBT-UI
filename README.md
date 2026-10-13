@@ -3,7 +3,7 @@
 > 二次元「贴纸手账」风格组件库，专为动漫与 ACG 站点设计。基于 Tailwind CSS v4 与 Radix UI 构建，通过 [shadcn registry](https://ui.shadcn.com/docs/registry) 分发，源码直落项目，零运行时黑盒。
 
 <p align="left">
-  <a href="https://ui.anibt.net"><strong>在线文档与组件预览 →</strong></a>
+  <a href="https://ui.anibt.net"><strong>在线文档与组件预览</strong></a>
 </p>
 
 [![Site](https://img.shields.io/badge/Demo%20%26%20Docs-ui.anibt.net-f472b6?style=flat-square)](https://ui.anibt.net)
@@ -13,7 +13,7 @@
 
 ---
 
-## 🎨 视觉与设计特色
+## 视觉与设计特色
 
 AniBT UI 采用独特的「贴纸手账」视觉语言，告别千篇一律的通用后台风格：
 
@@ -27,7 +27,7 @@ AniBT UI 采用独特的「贴纸手账」视觉语言，告别千篇一律的�
 
 ---
 
-## 🚀 快速上手
+## 快速上手
 
 适用于已初始化 `shadcn` 且使用 `Tailwind CSS v4` 的 React / Next.js / Vite 项目。
 
@@ -75,7 +75,7 @@ npx shadcn@latest add @anibt/button @anibt/badge @anibt/card
 
 ---
 
-## 📦 组件总览 (45+ 个条目)
+## 组件总览 (45+ 个条目)
 
 | 分类 | 组件列表 |
 | :--- | :--- |
@@ -85,11 +85,11 @@ npx shadcn@latest add @anibt/button @anibt/badge @anibt/card
 | **浮层与反馈** | `dialog` · `alert` · `alert-dialog` · `confirm-dialog` · `dropdown-menu` · `popover` · `hover-card` · `sheet` · `drawer` · `tooltip` · `command` · `sonner` |
 | **业务区块** | `poster-card`（番剧海报卡片） · `release-row`（种子发布列表行） · `markdown-editor`（Markdown 编辑器） |
 
-👉 查看全部组件交互演示与 API：[ui.anibt.net/docs/components](https://ui.anibt.net/docs/components)
+查看全部组件交互演示与 API：[ui.anibt.net/docs/components](https://ui.anibt.net/docs/components)
 
 ---
 
-## 💻 本地开发
+## 本地开发
 
 本项目集成了组件 Registry 生成与在线文档站点：
 
@@ -114,7 +114,7 @@ pnpm build
 
 ---
 
-## 📄 开源许可
+## 开源许可
 
 - 组件代码基于 [AGPL-3.0-only](./LICENSE) 协议开源。
 - **品牌资产保留**：`public/brand/` 目录下的 AniBT Logo 与吉祥物形象为专属品牌资产，不适用于开源许可，未经许可请勿直接用于商业品牌展示。
